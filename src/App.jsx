@@ -1,11 +1,15 @@
 import Layout from 'layouts/Layout';
 import Router from './shared/Router';
+import GlobalStyle from 'styles/GlobalStyle';
 
 function App() {
   return (
-    <Layout>
-      <Router />
-    </Layout>
+    <>
+      <GlobalStyle />
+      <Layout>
+        <Router />
+      </Layout>
+    </>
   );
 }
 
