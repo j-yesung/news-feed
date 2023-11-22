@@ -1,6 +1,5 @@
 import { useNavigate } from 'react-router-dom';
 import React, { useEffect } from 'react';
-import Write from './Write';
 import { getDocs } from 'firebase/firestore';
 import { newsFeedCollection } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
@@ -30,8 +29,6 @@ const Home = () => {
   return (
     <>
       {/* 글쓰기 버튼을 눌렀을 때, Write 컴포넌트로 이동해야 합니다. */}
-      {/* <Write /> */}
-      <Link to="/write">글쓰기</Link>
       {contentsData.map(contents => (
         <div key={contents.id}>
           <h2>{contents.title}</h2>
