@@ -1,5 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { collection, getFirestore } from 'firebase/firestore';
+// import { addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
 
 // Firebase config
 const firebaseConfig = {
@@ -14,3 +16,7 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const newsFeed = collection(db, 'newsFeed');
+
+// export { db, auth, newsFeed, addDoc, getDocs, updateDoc, deleteDoc, doc };
