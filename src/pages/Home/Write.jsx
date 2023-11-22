@@ -4,6 +4,7 @@ import { addDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
 import { addContents } from 'redux/modules/content';
 import { getFormattedDate } from '../../utils/date';
+import userIcon from '../../assets/user.svg';
 import * as S from './Write.styled';
 import shortId from 'shortid';
 
@@ -24,9 +25,11 @@ const Write = () => {
 
     const newContents = {
       id: shortId.generate(),
+      name: '닉네임^^',
       title: title,
       content: content,
       date: formattedDate,
+      pic: userIcon,
     };
     const docs = await addDoc(newsFeedCollection, newContents);
     dispatch(addContents({ id: docs.id, ...newContents }));

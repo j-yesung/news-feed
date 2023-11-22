@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import userIcon from '../assets/6138488_person_profile_user_account_group_icon.svg';
-import lightIcon from '../assets/7548901_user_interface_sun_sunny_brightness_icon.svg';
+import userIcon from '../assets/user.svg';
+import lightIcon from '../assets/dark.svg';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';

@@ -4,9 +4,8 @@ import { getDocs } from 'firebase/firestore';
 import { newsFeedCollection } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { setContents } from 'redux/modules/content';
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-// Section 컴포넌트 안에 존재하는 컴포넌트입니다.
+
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -28,11 +27,13 @@ const Home = () => {
 
   return (
     <>
-      {/* 글쓰기 버튼을 눌렀을 때, Write 컴포넌트로 이동해야 합니다. */}
       {contentsData.map(contents => (
         <div key={contents.id}>
+          <img src={contents.pic} alt="사진" />
+          <p>{contents.name}</p>
           <h2>{contents.title}</h2>
           <p>{contents.content}</p>
+          <p>{contents.date}</p>
         </div>
       ))}
       <Button onClick={goToWritePage}>글쓰기</Button>

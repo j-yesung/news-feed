@@ -5,7 +5,7 @@ import Nav from './Nav';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 
-const SectionContainer = styled.section`
+const Section = styled.section`
   background-color: lemonchiffon;
   width: calc(100vw - 220px);
   height: 100vh;
@@ -20,9 +20,9 @@ const Layout = () => {
     <>
       <Header />
       <Nav />
-      <SectionContainer>
+      <Section>
         <Outlet />
-      </SectionContainer>
+      </Section>
       {/* <Footer /> */}
     </>
   );
