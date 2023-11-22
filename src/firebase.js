@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
+import { collection, getFirestore } from 'firebase/firestore';
 
 // Firebase config
 const firebaseConfig = {
@@ -14,3 +15,5 @@ const firebaseConfig = {
 
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
+export const db = getFirestore(app);
+export const newsFeedCollection = collection(db, 'news-feed');
