@@ -1,13 +1,13 @@
 import React, { useRef } from 'react';
-import { v4 as uuidv4 } from 'uuid';
 import { newsFeedCollection } from '../../firebase';
 import { addDoc } from 'firebase/firestore';
 import { useDispatch } from 'react-redux';
-import { addContents } from 'redux/modules/contents';
+import { addContents } from 'redux/modules/content';
 import { getFormattedDate } from '../../utils/date';
 import * as S from './Write.styled';
+import shortId from 'shortid';
 
-const Form = () => {
+const Write = () => {
   const dispatch = useDispatch();
   const titleRef = useRef();
   const contentRef = useRef();
@@ -23,7 +23,7 @@ const Form = () => {
     const formattedDate = getFormattedDate(currentDate);
 
     const newContents = {
-      id: uuidv4(),
+      id: shortId.generate(),
       title: title,
       content: content,
       date: formattedDate,
@@ -39,9 +39,9 @@ const Form = () => {
     <S.WriteBox>
       <S.TitleInput ref={titleRef} type="text" name="title" placeholder="제목" />
       <S.Textarea ref={contentRef} placeholder="내용" />
-      <S.Button onClick={createNewsFeedArticle}>글쓰기</S.Button>
+      <S.Button onClick={createNewsFeedArticle}>작성 완료</S.Button>
     </S.WriteBox>
   );
 };
 
-export default Form;
+export default Write;

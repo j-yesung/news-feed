@@ -1,17 +1,29 @@
 import React from 'react';
 import Header from './Header';
-import Footer from './Footer';
-import Section from './Section';
+// import Footer from './Footer';
 import Nav from './Nav';
+import { Outlet } from 'react-router-dom';
+import styled from 'styled-components';
 
-const Layout = props => {
+const SectionContainer = styled.section`
+  background-color: lemonchiffon;
+  width: calc(100vw - 220px);
+  height: 100vh;
+  margin-left: 200px;
+  margin-top: 73px;
+  overflow-x: hidden;
+  box-sizing: border-box;
+`;
+
+const Layout = () => {
   return (
     <>
-      {/* 여기다가 Header, Footer, Section 블록처럼 쌓으면 됩니다. */}
       <Header />
       <Nav />
-      <Section>{props.children}</Section>
-      <Footer />
+      <SectionContainer>
+        <Outlet />
+      </SectionContainer>
+      {/* <Footer /> */}
     </>
   );
 };

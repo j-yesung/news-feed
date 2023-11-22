@@ -12,6 +12,7 @@ const HeaderContainer = styled.header`
   font-weight: 600;
   font-size: 25px;
   align-items: center;
+  position: fixed;
   justify-content: space-between;
   p {
     color: white;
