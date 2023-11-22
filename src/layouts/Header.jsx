@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import userIcon from '../assets/user.svg';
 import lightIcon from '../assets/dark.svg';
+import userIcon from '../assets/user.svg';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -13,6 +12,7 @@ const HeaderContainer = styled.header`
   font-size: 25px;
   align-items: center;
   position: fixed;
+  z-index: 99;
   justify-content: space-between;
   p {
     color: white;

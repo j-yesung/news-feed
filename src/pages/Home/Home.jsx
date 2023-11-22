@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react';
 import { getDocs } from 'firebase/firestore';
-import { newsFeedCollection } from '../../firebase';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { setContents } from 'redux/modules/content';
-import styled from 'styled-components';
+import { newsFeedCollection } from '../../firebase';
+import * as S from './Home.styled';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -27,32 +27,25 @@ const Home = () => {
 
   return (
     <>
-      {contentsData.map(contents => (
-        <div key={contents.id}>
-          <img src={contents.pic} alt="사진" />
-          <p>{contents.name}</p>
-          <h2>{contents.title}</h2>
-          <p>{contents.content}</p>
-          <p>{contents.date}</p>
-        </div>
-      ))}
-      <Button onClick={goToWritePage}>글쓰기</Button>
+      <S.Button onClick={goToWritePage}>글쓰기</S.Button>
+      <S.BoxContainer>
+        <S.ContentsList>
+          {contentsData.map(contents => (
+            <S.ContentsBox key={contents.id}>
+              <S.Title>{contents.title}</S.Title>
+              <S.AvatarName>
+                <S.Avatar src={contents.pic} alt="사진" />
+                <S.Name>{contents.name}</S.Name>
+              </S.AvatarName>
+
+              <S.Content>{contents.content}</S.Content>
+              <S.Date>{contents.date}</S.Date>
+            </S.ContentsBox>
+          ))}
+        </S.ContentsList>
+      </S.BoxContainer>
     </>
   );
 };
 
 export default Home;
-
-const Button = styled.button`
-  cursor: pointer;
-  border: none;
-  padding: 10px 20px;
-  font-weight: bold;
-  background-color: #f4eba5;
-  border-radius: 5px;
-
-  font-size: 18px;
-  &:hover {
-    background-color: #a5c7bb;
-  }
-`;

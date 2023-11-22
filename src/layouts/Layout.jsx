@@ -1,17 +1,16 @@
-import React from 'react';
 import Header from './Header';
 // import Footer from './Footer';
-import Nav from './Nav';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
+import Nav from './Nav';
 
 const Section = styled.section`
-  background-color: lemonchiffon;
+  background-color: transparent;
   width: calc(100vw - 220px);
   height: 100vh;
   margin-left: 200px;
   margin-top: 73px;
-  overflow-x: hidden;
+
   box-sizing: border-box;
 `;
 
