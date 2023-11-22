@@ -24,6 +24,9 @@ const Home = () => {
   const goToWritePage = () => {
     navigate('/write');
   };
+  const goToContentPage = id => {
+    navigate(`/content/${id}`);
+  };
 
   return (
     <>
@@ -31,7 +34,7 @@ const Home = () => {
       <S.BoxContainer>
         <S.ContentsList>
           {contentsData.map(contents => (
-            <S.ContentsBox key={contents.id}>
+            <S.ContentsBox key={contents.id} onClick={() => goToContentPage(contents.id)}>
               <S.Title>{contents.title}</S.Title>
               <S.AvatarName>
                 <S.Avatar src={contents.pic} alt="사진" />

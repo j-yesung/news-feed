@@ -21,10 +21,10 @@ export const updateContents = (id, updateContents) => {
     payload: { id, updateContents },
   };
 };
-export const deleteContents = contents => {
+export const deleteContents = id => {
   return {
     type: DELETE_CONTENTS,
-    payload: contents,
+    payload: id,
   };
 };
 
