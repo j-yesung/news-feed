@@ -65,16 +65,16 @@ const Content = () => {
             </S.AvatarName>
             {findData.isEditing ? (
               <div key={findData.id}>
-                <input ref={titleRef} defaultValue={findData.title}></input>
-                <textarea ref={contentRef} defaultValue={findData.content}></textarea>
+                <S.InputTitle ref={titleRef} defaultValue={findData.title}></S.InputTitle>
+                <S.Textarea ref={contentRef} defaultValue={findData.content}></S.Textarea>
               </div>
             ) : (
               <div key={findData.id}>
-                <h2>{findData.title}</h2>
-                <p>{findData.content}</p>
+                <S.Title>{findData.title}</S.Title>
+                <S.Content>{findData.content}</S.Content>
               </div>
             )}
-            <p>{findData.date}</p>
+            <S.Date>{findData.date}</S.Date>
             {findData.isEditing ? (
               <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
             ) : (

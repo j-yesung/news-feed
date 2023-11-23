@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 export const Avatar = styled.img`
   width: 50px;
+  margin-left: 10px;
 `;
 
 export const View = styled.div`
@@ -38,18 +39,60 @@ export const Box = styled.div`
   align-items: center;
   width: 100%;
   height: calc(100vh - 85px);
-  background-color: bisque;
+  //background-color: bisque;
 `;
 
 export const Name = styled.p`
-  background-color: azure;
+  //background-color: azure;
   padding: 10px;
   margin-left: 20px;
   font-weight: bold;
+  width: 300px;
 `;
 
 export const AvatarName = styled.div`
   display: flex;
-  background-color: lemonchiffon;
+  //background-color: lemonchiffon;
   align-items: center;
+  padding: 5px 0;
+  border-bottom: 2px solid #ccc;
+`;
+
+export const Date = styled.p`
+  //background-color: antiquewhite;
+  position: absolute;
+  padding: 10px;
+  right: 20px;
+  top: 32px;
+`;
+
+export const Content = styled.div`
+  line-height: 2rem;
+`;
+
+export const Title = styled.h2`
+  font-weight: bold;
+  font-size: 28px;
+  padding: 30px 0;
+`;
+
+export const Textarea = styled.textarea`
+  resize: none;
+  width: 100%;
+  font-size: 20px;
+  height: 350px;
+  outline: none;
+  line-height: 2rem;
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+`;
+
+export const InputTitle = styled.input`
+  border: 1px solid #ccc;
+  padding: 10px;
+  width: 100%;
+  font-size: 20px;
+  margin: 20px 0 10px;
+  outline: none;
 `;
