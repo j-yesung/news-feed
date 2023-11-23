@@ -6,12 +6,14 @@ import Content from '../pages/Detail/Content';
 import Layout from '../layouts/Layout';
 import Login from 'pages/Login/Login';
 import Profile from 'pages/User/Profile';
+import Signup from 'pages/Login/Signup';
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Layout />}>
           <Route path="/home" element={<Home />} />
           <Route path="/write" element={<Write />} />
