@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase';
+// import { useDispatch, useSelector } from 'react-redux';
 
 const Signup = () => {
   const [nickname, setNickName] = useState('');
@@ -8,13 +9,19 @@ const Signup = () => {
   const [password, setPassword] = useState('');
   const [twicePw, setTwicePw] = useState('');
   console.log(nickname);
+
+  // const dispatch = useDispatch();
+  // const data = useSelector((state)=> state);
+  // console.log('유저셀렉터',data);
+
   // const ref =useRef("")
 
   // ref.current = "바꾼값"
 
   const nameHandler = useCallback(e => {
     setNickName(e.target.value);
-  }, []);
+    console.log(e.target.value);
+  }, []); 
   const emailHandler = useCallback(e => {
     setEmail(e.target.value);
   }, []);
@@ -56,8 +63,8 @@ const Signup = () => {
       });
   }, [nickname, email, password]);
 
-  // const user = auth.currentUser;
-  // console.log('user', user);
+  const user = auth.currentUser;
+  console.log('user', user);
 
   return (
     <div>
