@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './Nav';
 
+
 const Section = styled.section`
   background-color: transparent;
   width: calc(100vw - 220px);
