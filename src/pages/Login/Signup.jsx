@@ -25,35 +25,39 @@ const Signup = () => {
     setTwicePw(e.target.value);
   }, []);
 
-  const auth = getAuth();
-  updateProfile(auth.currentUser, {
-    displayName: nickname,
-    // photoURL: 'https://example.com/jane-q-user/profile.jpg',
-  });
+
   const signUp = useCallback(event => {
     event.preventDefault();
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
         // 회원가입 성공시
+        console.log(' 회원가입 성공',userCredential);
 
-        // .then(() => {
-        //   // Profile updated!
-        //   // ...
-        // })
-        // .catch(error => {
-        //   // An error occurred
-        //   // ...
-        // });
-        console.log(userCredential);
+        // 사용자 프로필 업데이트
+        const user = userCredential.user;
+  
+        updateProfile(user, {
+          displayName: nickname,
+          // photoURL: 'https://example.com/jane-q-user/profile.jpg',
+        })
+          .then(() => {
+            console.log('프로필 업데이트 성공!',user);
+            // 프로필 업데이트 성공!
+            // 필요한 경우 여기에 추가 로직을 수행합니다.
+          })
+          .catch(error => {
+            // 프로필 업데이트 중 오류 발생
+            console.error(error);
+          });
       })
       .catch(error => {
         // 회원가입 실패시
         console.error(error);
       });
-  }, []);
+  }, [nickname, email, password]);
 
-  const user = auth.currentUser;
-  console.log('user', user);
+  // const user = auth.currentUser;
+  // console.log('user', user);
 
   return (
     <div>
