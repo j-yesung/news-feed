@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteDoc, doc, getDocs, updateDoc } from 'firebase/firestore';
-import { newsFeedCollection } from '../../firebase';
-import { deleteContents, setContents, updateContents } from 'redux/modules/content';
-import { getFormattedDate } from '../../utils/date';
+import { getDocs } from 'firebase/firestore';
+import { deleteNewsFeed, newsFeedCollection, updateNewFeed } from '../../firebase';
+import { deleteContents, editContents, setContents, updateContents } from 'redux/modules/content';
 
 const Content = () => {
   const params = useParams();
@@ -14,11 +13,14 @@ const Content = () => {
   const contentsData = useSelector(state => state.contents.contents);
   const findData = contentsData.find(contents => contents.id === params.id);
 
-  // 조회
+  const titleRef = useRef();
+  const contentRef = useRef();
+
+  // 조회 => 여기서 또 조회하는 이유는 새로고침 때문이다.
   useEffect(() => {
     const getContents = async () => {
       const querySnapshot = await getDocs(newsFeedCollection);
-      const data = querySnapshot.docs.map(doc => doc.data());
+      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       dispatch(setContents(data));
     };
     getContents();
@@ -26,44 +28,30 @@ const Content = () => {
 
   console.log('🚀 findData:', findData);
 
-  // 수정
+  // 수정 버튼 클릭했을 때
+  const HandleEditingToggle = id => dispatch(editContents(id));
+
+  // 수정 완료 버튼을 눌렀을 때
   const HandleUpdateNewsFeed = async updateData => {
-    try {
-      // 수정할 문서 참조
-      const docRef = doc(newsFeedCollection, updateData.id);
+    const title = titleRef.current.value;
+    const content = contentRef.current.value;
+    const updates = {
+      title: title,
+      content: content,
+      isEditing: false,
+    };
 
-      // 업데이트할 값들 객체로 정의
-      const updates = {
-        title: updateData.title,
-        content: updateData.content,
-        data: getFormattedDate(new Date()),
-      };
-
-      await updateDoc(docRef, updates);
-
-      // Redux state 업데이트
-      dispatch(updateContents(updateData.id, updateData));
-      console.log('업데이트!');
-    } catch (error) {
-      console.error('데이터 업데이트 중 에러 발생:', error);
-    }
+    await updateNewFeed(updateData.id, updates);
+    dispatch(updateContents(updateData.id, updates));
+    // TODO: 수정 완료하면 해당 화면으로 다시 리렌더링 되게 수정할 수 있도록.
+    navigate('/');
   };
 
-  //삭제
-  const HandleDeleteNewsFeed = async deleteData => {
-    try {
-      // 삭제할 문서 참조
-      const docRef = doc(newsFeedCollection, deleteData.id);
-      await deleteDoc(docRef);
-
-      // Redux state 업데이트
-      dispatch(deleteContents(deleteData.id));
-      console.log('삭제 완료');
-      // 삭제 후 Home 페이지로 이동
-      navigate('/');
-    } catch (error) {
-      console.error('데이터 삭제 중 에러 발생:', error);
-    }
+  // 삭제
+  const HandleDeleteNewsFeed = async id => {
+    await deleteNewsFeed(id);
+    dispatch(deleteContents(id));
+    navigate('/');
   };
 
   return (
@@ -73,11 +61,24 @@ const Content = () => {
         <>
           <img src={findData.pic} alt="사진" />
           <p>{findData.name}</p>
-          <h2>{findData.title}</h2>
-          <p>{findData.content}</p>
+          {findData.isEditing ? (
+            <div key={findData.id}>
+              <input ref={titleRef} defaultValue={findData.title}></input>
+              <textarea ref={contentRef} defaultValue={findData.content}></textarea>
+            </div>
+          ) : (
+            <div key={findData.id}>
+              <h2>{findData.title}</h2>
+              <p>{findData.content}</p>
+            </div>
+          )}
           <p>{findData.date}</p>
-          <button onClick={() => HandleUpdateNewsFeed(findData)}>수정</button>
-          <button onClick={() => HandleDeleteNewsFeed(findData)}>삭제</button>
+          {findData.isEditing ? (
+            <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
+          ) : (
+            <button onClick={() => HandleEditingToggle(findData.id)}>수정</button>
+          )}
+          <button onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</button>
         </>
       )}
     </div>

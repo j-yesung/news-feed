@@ -10,13 +10,14 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const contentsData = useSelector(state => state.contents.contents);
-  console.log('contentsData: ', contentsData);
 
+  // 뉴스피드 불러오기
   useEffect(() => {
     const getContents = async () => {
       const querySnapshot = await getDocs(newsFeedCollection);
-      const data = querySnapshot.docs.map(doc => doc.data());
+      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       dispatch(setContents(data));
+      console.log('🚀 getContents ~ data:', data);
     };
     getContents();
   }, [dispatch]);

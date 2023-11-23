@@ -6,9 +6,10 @@ import { addContents } from 'redux/modules/content';
 import { getFormattedDate } from '../../utils/date';
 import userIcon from '../../assets/user.svg';
 import * as S from './Write.styled';
-import shortId from 'shortid';
+import { useNavigate } from 'react-router-dom';
 
 const Write = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const titleRef = useRef();
   const contentRef = useRef();
@@ -24,15 +25,16 @@ const Write = () => {
     const formattedDate = getFormattedDate(currentDate);
 
     const newContents = {
-      id: shortId.generate(),
       name: '닉네임^^',
       title: title,
       content: content,
       date: formattedDate,
       pic: userIcon,
+      isEditing: false,
     };
     const docs = await addDoc(newsFeedCollection, newContents);
     dispatch(addContents({ id: docs.id, ...newContents }));
+    navigate('/'); // 홈으로 이동
 
     titleRef.current.value = '';
     contentRef.current.value = '';

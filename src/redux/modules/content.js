@@ -1,5 +1,6 @@
 const GET_CONTENTS = 'contents/GET_CONTENTS';
 const ADD_CONTENTS = 'contents/ADD_CONTENTS';
+const EDIT_CONTENTS = 'contents/EDIT_CONTENTS';
 const UPDATE_CONTENTS = 'contents/UPDATE_CONTENTS';
 const DELETE_CONTENTS = 'contents/DELETE_CONTENTS';
 
@@ -13,6 +14,12 @@ export const addContents = content => {
   return {
     type: ADD_CONTENTS,
     payload: content,
+  };
+};
+export const editContents = id => {
+  return {
+    type: EDIT_CONTENTS,
+    payload: id,
   };
 };
 export const updateContents = (id, updateContents) => {
@@ -35,14 +42,27 @@ const initialState = {
 const content = (state = initialState, action) => {
   switch (action.type) {
     case GET_CONTENTS:
-      return { ...state, contents: action.payload };
+      return { contents: action.payload };
     case ADD_CONTENTS:
       return { ...state, contents: [...state.contents, action.payload] };
+    case EDIT_CONTENTS:
+      return {
+        ...state,
+        contents: state.contents.map(contents => {
+          if (contents.id === action.payload) {
+            return {
+              ...contents,
+              isEditing: !contents.isEditing,
+            };
+          }
+          return contents;
+        }),
+      };
     case UPDATE_CONTENTS:
       return {
         ...state,
         contents: state.contents.map(contents =>
-          contents.id === action.payload.id ? action.payload.updateContents : contents,
+          contents.id === action.payload.id ? { ...contents, ...action.payload.updateContents } : contents,
         ),
       };
     case DELETE_CONTENTS:
