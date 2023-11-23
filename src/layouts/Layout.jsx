@@ -8,9 +8,11 @@ const Layout = props => {
   return (
     <>
       {/* 여기다가 Header, Footer, Section 블록처럼 쌓으면 됩니다. */}
+
       <Header />
       <Nav />
       <Section>{props.children}</Section>
+
       <Footer />
     </>
   );
