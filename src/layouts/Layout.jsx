@@ -11,7 +11,7 @@ const Layout = props => {
 
       <Header />
       <Nav />
-      <Section>{props.children}</Section>
+      <Section></Section>
 
       <Footer />
     </>
