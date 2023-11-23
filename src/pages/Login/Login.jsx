@@ -14,6 +14,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [authenticatedEmail, setAuthenticatedEmail] = useState('');
 
+  console.log('인증정보', authenticatedEmail);
   //모달창
   const [modalOpen, setModalOpen] = useState(false);
   const onChange = event => {
@@ -98,10 +99,10 @@ const Login = () => {
 
         {/* firebase로 부터 받아온 userCredential에 값이 있을 경우만 보이는 */}
 
-        <button onClick={showModal}>비밀번호찾기</button>
-        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+        {/* <button onClick={showModal}>비밀번호찾기</button>
+        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />} */}
 
-        {/* <button onClick={findPw}>비밀번호찾기</button> */}
+        <button onClick={findPw}>비밀번호찾기</button>
       </form>
     </div>
   );
