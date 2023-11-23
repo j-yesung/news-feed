@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -8,6 +7,9 @@ const NavContainer = styled.nav`
   position: fixed;
   height: calc(100vh - 73px);
   margin-top: 73px;
+  @media ${props => props.theme.mobile} {
+    display: none;
+  }
 `;
 
 const Menu = styled.ul`

@@ -1,7 +1,7 @@
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import lightIcon from '../assets/dark.svg';
 import userIcon from '../assets/user.svg';
-import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -15,6 +15,8 @@ const HeaderContainer = styled.header`
   position: fixed;
   z-index: 99;
   justify-content: space-between;
+  @media ${props => props.theme.mobile} {
+  }
   p {
     color: white;
   }
