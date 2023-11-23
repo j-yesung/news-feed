@@ -42,13 +42,15 @@ const Write = () => {
   };
 
   return (
-    <S.Box>
-      <S.WriteBox>
-        <S.TitleInput ref={titleRef} type="text" name="title" placeholder="제목" />
-        <S.Textarea ref={contentRef} placeholder="내용" />
-        <S.Button onClick={createNewsFeedArticle}>작성 완료</S.Button>
-      </S.WriteBox>
-    </S.Box>
+    <>
+      <S.Box>
+        <S.WriteBox>
+          <S.TitleInput ref={titleRef} type="text" name="title" placeholder="제목" />
+          <S.Textarea ref={contentRef} placeholder="내용" />
+          <S.Button onClick={createNewsFeedArticle}>작성 완료</S.Button>
+        </S.WriteBox>
+      </S.Box>
+    </>
   );
 };
 

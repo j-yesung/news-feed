@@ -5,9 +5,10 @@ export const TitleInput = styled.input`
   border: none;
   padding: 10px 0;
   padding-left: 10px;
-  font-size: 20px;
+  font-size: 40px;
   width: 100%;
-  background-color: #eee;
+  margin-bottom: 10px;
+  background-color: #fff;
   &::placeholder {
     color: #aaa;
   }
@@ -18,12 +19,12 @@ export const Textarea = styled.textarea`
   outline: none;
   resize: none;
   font-size: 20px;
-  background-color: #eee;
+  background-color: #fff;
   border: none;
   border-radius: 10px;
   padding: 10px 0;
   padding-left: 10px;
-  margin: 20px 0;
+  margin: 20px 0 30px;
   height: 300px;
   &::placeholder {
     color: #aaa;
@@ -50,9 +51,8 @@ export const WriteBox = styled.div`
   font-weight: bold;
   justify-content: center;
   padding: 100px 100px;
-  background-color: #fff;
+  background-color: transparent;
   border-radius: 10px;
-  box-shadow: 3px 3px 13px #aaa;
 `;
 
 export const Box = styled.div`
@@ -62,4 +62,10 @@ export const Box = styled.div`
   width: 100%;
   height: calc(100vh - 85px);
   //background-color: bisque;
+`;
+
+export const Label = styled.h2`
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
 `;
