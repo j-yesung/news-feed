@@ -1,14 +1,31 @@
 import FileUpload from 'components/upload/FileUpload';
 import { auth } from '../../firebase';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
 
-// 프로필 페이지 컴포넌트
 const Profile = () => {
-  console.log('auth', auth);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    // 유저 정보 가져오기
+    const subscribe = onAuthStateChanged(auth, user => {
+      setUser(user);
+    });
+
+    return () => {
+      subscribe();
+    };
+  }, []);
+
   return (
     <>
       <div>Profile</div>
       <FileUpload />
+      {user && (
+        <div>
+          <p>닉네임 : {user.displayName}</p>
+          <p>이메일 : {user.email}</p>
+        </div>
+      )}
     </>
   );
 };
