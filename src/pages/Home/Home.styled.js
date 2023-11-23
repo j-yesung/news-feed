@@ -29,6 +29,7 @@ export const Title = styled.h2`
   font-size: 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 `;
 
 export const Content = styled.p`
