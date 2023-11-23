@@ -7,9 +7,31 @@ const GlobalStyle = createGlobalStyle`
       font-weight: normal;
       font-style: normal;
   }
+  @font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
   body {
     display: flex;
+    background-color: #eee;
+    font-family: 'Pretendard-Regular';
     
+  }
+
+  input {
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+  }
+  textarea {
+    font-family: inherit;
+    padding: 0;
+    margin: 0;
+  }
+  button {
+    font-family: inherit;
   }
 `;
 
