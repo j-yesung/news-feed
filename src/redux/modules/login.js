@@ -19,10 +19,7 @@ const initialState = {
 const login = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOGIN:
-      return {
-        ...state,
-        state: action.payload,
-      };
+      return { ...state, state: action.payload };
     default:
       return state;
   }

@@ -1,5 +1,5 @@
 
-const ADD_MEMBER = 'singup/ADD_MEMBER';
+const ADD_MEMBER = 'signup/ADD_MEMBER';
 
 
 export const addMember =(payload) => {
@@ -9,7 +9,7 @@ export const addMember =(payload) => {
 
  const initialState = null
 
-const singup = (state = initialState, action) => {
+const signup = (state = initialState, action) => {
     switch (action.type) {
       case ADD_MEMBER:
           console.log('멤버',action);
@@ -22,4 +22,4 @@ const singup = (state = initialState, action) => {
     }
   };
 
-export default singup
+export default signup

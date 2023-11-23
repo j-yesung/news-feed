@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { collection, getFirestore } from 'firebase/firestore';
-// import { addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getFirestore, updateDoc } from 'firebase/firestore';
 
 // Firebase config
 const firebaseConfig = {
@@ -17,6 +16,26 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-export const newsFeed = collection(db, 'newsFeed');
+export const newsFeedCollection = collection(db, 'news-feed');
 
-// export { db, auth, newsFeed, addDoc, getDocs, updateDoc, deleteDoc, doc };
+// 뉴스피드 수정
+export const updateNewFeed = async (id, updateData) => {
+  console.log('🚀 ~ file: firebase.js:23 ~ updateNewFeed ~ id, updateData:', id, updateData);
+  try {
+    const docRef = doc(db, 'news-feed', id);
+    updateDoc(docRef, updateData);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+// 뉴스피드 삭제
+export const deleteNewsFeed = async id => {
+  console.log('id: ', id);
+  try {
+    await deleteDoc(doc(db, 'news-feed', id));
+    console.log('삭제 완료');
+  } catch (e) {
+    console.error(e);
+  }
+};
