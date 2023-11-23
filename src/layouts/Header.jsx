@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import lightIcon from '../assets/dark.svg';
 import userIcon from '../assets/user.svg';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -20,6 +21,10 @@ const HeaderContainer = styled.header`
   span {
     color: #f4eba5;
   }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `;
 const UserIcon = styled.img`
   width: 30px;
@@ -33,9 +38,11 @@ const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <p>
-          오늘의 <span>나</span>
-        </p>
+        <Link to="/home">
+          <p>
+            오늘의 <span>나</span>
+          </p>
+        </Link>
         {/* 이미지는 동적으로 변경해줘야 합니다. */}
         <div>
           <DarkMode src={lightIcon} />

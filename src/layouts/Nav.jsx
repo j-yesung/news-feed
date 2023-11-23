@@ -1,8 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const Navi = styled.nav`
-  //background-color: lemonchiffon;
+const NavContainer = styled.nav`
   width: 200px;
   text-align: center;
   position: fixed;
@@ -37,14 +37,20 @@ const MenuBox = styled.ul`
       font-weight: bold;
     }
   }
+  a {
+    text-decoration: none;
+    color: #000;
+  }
 `;
 
 const Nav = () => {
   return (
-    <Navi>
+    <NavContainer>
       <Menu>
         <MenuBox>
-          <li>메인으로</li>
+          <Link to="/home">
+            <li>메인으로</li>
+          </Link>
         </MenuBox>
         <li>
           {/* 첫번째 섹션 */}
@@ -69,12 +75,14 @@ const Nav = () => {
         <li>
           {/* 세번째 섹션 */}
           <MenuBox>
-            <li>마이페이지</li>
+            <Link to="/profile">
+              <li>마이 페이지</li>
+            </Link>
             <li>로그아웃</li>
           </MenuBox>
         </li>
       </Menu>
-    </Navi>
+    </NavContainer>
   );
 };
 
