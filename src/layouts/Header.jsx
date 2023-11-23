@@ -1,7 +1,6 @@
-import React from 'react';
 import styled from 'styled-components';
-import userIcon from '../assets/6138488_person_profile_user_account_group_icon.svg';
-import lightIcon from '../assets/7548901_user_interface_sun_sunny_brightness_icon.svg';
+import lightIcon from '../assets/dark.svg';
+import userIcon from '../assets/user.svg';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -12,6 +11,8 @@ const HeaderContainer = styled.header`
   font-weight: 600;
   font-size: 25px;
   align-items: center;
+  position: fixed;
+  z-index: 99;
   justify-content: space-between;
   p {
     color: white;

@@ -1,10 +1,10 @@
 import Home from 'pages/Home/Home';
 import React from 'react';
 
-const Section = props => {
+const Section = () => {
   return (
     <>
-      <section>{props.children}</section>
+      <section></section>
     </>
   );
 };
