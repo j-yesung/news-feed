@@ -16,7 +16,8 @@ const Write = () => {
 
   /**
    * 게시글 추가하기
-   * TODO: 유효성 검사 하기
+   * TODO: 유효성 검사
+   * TODO: name value 닉네임으로 변경
    */
   const createNewsFeedArticle = async () => {
     const title = titleRef.current.value;
