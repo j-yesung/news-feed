@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { collection, deleteDoc, doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { getStorage } from 'firebase/storage';
 
 // Firebase config
 const firebaseConfig = {
@@ -17,6 +18,7 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const newsFeedCollection = collection(db, 'news-feed');
+export const storage = getStorage(app);
 
 // 뉴스피드 수정
 export const updateNewFeed = async (id, updateData) => {

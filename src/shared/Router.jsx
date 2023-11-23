@@ -4,6 +4,8 @@ import Home from '../pages/Home/Home';
 import Write from '../pages/Home/Write';
 import Content from '../pages/Detail/Content';
 import Layout from '../layouts/Layout';
+import Login from 'pages/Login/Login';
+import Profile from 'pages/User/Profile';
 
 const Router = () => {
   return (
