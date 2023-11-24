@@ -11,10 +11,9 @@ import * as S from './Write.styled';
 const Write = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const authUser = useSelector(state => state.user.user);
   const titleRef = useRef();
   const contentRef = useRef();
-  const authUser = useSelector(state => state.user.user);
-  console.log('🚀 ~ file: Profile.jsx:11 ~ Profile ~ authUser:', authUser);
 
   /**
    * 뉴스피드 추가하기
