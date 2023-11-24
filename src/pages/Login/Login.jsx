@@ -1,10 +1,12 @@
-import { useState, useRef } from 'react';
-import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../firebase';
-import ModalBasic from './ModalBasic';
+import { sendPasswordResetEmail, signInWithEmailAndPassword } from 'firebase/auth';
+import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setLogin } from 'redux/modules/login';
 import { useNavigate } from 'react-router-dom';
+import { setLogin } from 'redux/modules/login';
+import githubButton from '../../assets/github.svg';
+import { auth } from '../../firebase';
+import * as S from './Login.styled';
+import ModalBasic from './ModalBasic';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -71,25 +73,41 @@ const Login = () => {
   };
 
   return (
-    <div className="App">
-      <h2>로그인 페이지</h2>
+    <S.LoginBox>
+      <h2>안녕하세요</h2>
+      <p>만나서 반가워요. 오늘 하루는 행복했나요?</p>
       <form>
         <div>
-          <label>이메일 : </label>
-          <input type="email" value={email} name="email" onChange={onChange} required></input>
+          <S.EmailInput
+            type="email"
+            value={email}
+            name="email"
+            onChange={onChange}
+            placeholder="이메일"
+            required></S.EmailInput>
         </div>
         <div>
-          <label>비밀번호 : </label>
-          <input type="password" value={password} name="password" onChange={onChange} required></input>
+          <S.PwInput
+            type="password"
+            value={password}
+            name="password"
+            placeholder="비밀번호"
+            onChange={onChange}
+            required></S.PwInput>
         </div>
-        <button onClick={() => navigation('/signup')}>회원가입</button>
-        <button onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
-          로그인
-        </button>
-        <button onClick={showModal}>비밀번호 찾기</button>
+        <S.LoginBtn onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
+          오늘의 나 시작하기
+        </S.LoginBtn>
+        <S.BtnBundle>
+          <S.FindPwBtn onClick={showModal}>비밀번호 찾기</S.FindPwBtn>
+          <S.SignUpBtn onClick={() => navigation('/signup')}>회원가입</S.SignUpBtn>
+        </S.BtnBundle>
+        <S.SocialLogin>
+          <S.GithubButton src={githubButton} />
+        </S.SocialLogin>
         {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
       </form>
-    </div>
+    </S.LoginBox>
   );
 };
 
