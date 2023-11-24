@@ -73,41 +73,43 @@ const Login = () => {
   };
 
   return (
-    <S.LoginBox>
-      <h2>안녕하세요</h2>
-      <p>만나서 반가워요. 오늘 하루는 행복했나요?</p>
-      <form>
-        <div>
-          <S.EmailInput
-            type="email"
-            value={email}
-            name="email"
-            onChange={onChange}
-            placeholder="이메일"
-            required></S.EmailInput>
-        </div>
-        <div>
-          <S.PwInput
-            type="password"
-            value={password}
-            name="password"
-            placeholder="비밀번호"
-            onChange={onChange}
-            required></S.PwInput>
-        </div>
-        <S.LoginBtn onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
-          오늘의 나 시작하기
-        </S.LoginBtn>
-        <S.BtnBundle>
-          <S.FindPwBtn onClick={showModal}>비밀번호 찾기</S.FindPwBtn>
-          <S.SignUpBtn onClick={() => navigation('/signup')}>회원가입</S.SignUpBtn>
-        </S.BtnBundle>
-        <S.SocialLogin>
-          <S.GithubButton src={githubButton} />
-        </S.SocialLogin>
-        {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
-      </form>
-    </S.LoginBox>
+    <>
+      <S.LoginBox>
+        <h2>안녕하세요</h2>
+        <p>만나서 반가워요. 오늘 하루는 행복했나요?</p>
+        <form>
+          <div>
+            <S.EmailInput
+              type="email"
+              value={email}
+              name="email"
+              onChange={onChange}
+              placeholder="이메일"
+              required></S.EmailInput>
+          </div>
+          <div>
+            <S.PwInput
+              type="password"
+              value={password}
+              name="password"
+              placeholder="비밀번호"
+              onChange={onChange}
+              required></S.PwInput>
+          </div>
+          <S.LoginBtn onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
+            오늘의 나 시작하기
+          </S.LoginBtn>
+          <S.BtnBundle>
+            <S.FindPwBtn onClick={showModal}>비밀번호 찾기</S.FindPwBtn>
+            <S.SignUpBtn onClick={() => navigation('/signup')}>회원가입</S.SignUpBtn>
+          </S.BtnBundle>
+          <S.SocialLogin>
+            <S.GithubButton src={githubButton} />
+          </S.SocialLogin>
+        </form>
+      </S.LoginBox>
+      {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+    </>
   );
 };
 
