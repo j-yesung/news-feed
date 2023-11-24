@@ -17,7 +17,6 @@ const Home = () => {
       const querySnapshot = await getDocs(newsFeedCollection);
       const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
       dispatch(setContents(data));
-      console.log('🚀 getContents ~ data:', data);
     };
     getContents();
   }, [dispatch]);
