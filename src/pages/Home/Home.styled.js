@@ -70,7 +70,7 @@ export const ContentsBox = styled.div`
   margin: 30px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-
+  cursor: pointer;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
   @media (max-width: 1660px) {
     margin: 20px;
