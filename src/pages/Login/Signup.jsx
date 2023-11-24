@@ -2,15 +2,10 @@ import React, { useState, useCallback, useRef } from 'react';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
-import { addName, addEmail, addPw, addTpw } from 'redux/modules/signup';
+// import { addName, addEmail, addPw, addTpw } from 'redux/modules/signup';
 import userIcon from '../../assets/user.svg';
 
 const Signup = () => {
-  // const [nickname, setNickName] = useState('');
-  // const [email, setEmail] = useState('');
-  // const [password, setPassword] = useState('');
-  // const [twicePw, setTwicePw] = useState('');
-  // console.log(nickname);git
 
   const [active, setActive] = useState(false);
   const ActiveIsSignUp = () => {
@@ -25,8 +20,6 @@ const Signup = () => {
   const email = useSelector(state => state.signup.email);
   const password = useSelector(state => state.signup.password);
   const twicePw = useSelector(state => state.signup.tPassword);
-  // const data = useSelector(state => state.signup);
-  // console.log('유저셀렉터', data);
 
   // const ref =useRef("") ref는 변경되면 렌더링이 안된다는걸 다시 한번 기억
   const nicknameRef = useRef(null);
@@ -36,20 +29,20 @@ const Signup = () => {
   // ref.current = "바꾼값"
   console.log('ref', nicknameRef);
 
-  const nameHandler = e => {
-    dispatch(addName(e.target.value));
-  };
-  const emailHandler = e => {
-    dispatch(addEmail(e.target.value));
-  };
-  const passwordHandler = e => {
-    dispatch(addPw(e.target.value));
-  };
-  const twicePwHandler = e => {
-    dispatch(addTpw(e.target.value));
-  };
+  // const nameHandler = e => {
+  //   dispatch(addName(e.target.value));
+  // };
+  // const emailHandler = e => {
+  //   dispatch(addEmail(e.target.value));
+  // };
+  // const passwordHandler = e => {
+  //   dispatch(addPw(e.target.value));
+  // };
+  // const twicePwHandler = e => {
+  //   dispatch(addTpw(e.target.value));
+  // };
 
-  const signUp = useCallback(
+  const signUp = (
     event => {
       event.preventDefault();
 
@@ -57,7 +50,10 @@ const Signup = () => {
       const email = emailRef.current.value;
       const password = passwordRef.current.value;
       const twicePw = twicePwRef.current.value;
-
+console.log(nickname)
+console.log(email)
+console.log(password)
+console.log(twicePw)
       if (nickname === '') {
         alert('닉네임을 입력해주세요');
         return;
@@ -76,10 +72,7 @@ const Signup = () => {
         alert('비밀번호를 입력해주세요.');
         return;
       }
-      if (password === '') {
-        alert('비밀번호를 입력해주세요.');
-        return;
-      }
+
 
       if (twicePw === '') {
         alert('재확인 비밀번호를 입력해주세요.');
@@ -117,8 +110,7 @@ const Signup = () => {
           // 회원가입 실패시
           console.error(error);
         });
-    },
-    [nickname, email, password],
+    }
   );
 
   const user = auth.currentUser;
@@ -130,42 +122,43 @@ const Signup = () => {
       <p>오늘의 나와 함께 갓생만들기 시작해요</p>
       <div>
         <input
-          onKeyUp={ActiveIsSignUp}
+          // onKeyUp={ActiveIsSignUp}
           ref={nicknameRef}
           placeholder="닉네임"
-          value={nickname}
-          onChange={nameHandler}
+          // value={nickname}
+          // onChange={nameHandler}
         />
         <br />
         <input
-          onKeyUp={ActiveIsSignUp}
+          // onKeyUp={ActiveIsSignUp}
           ref={emailRef}
           type="email"
           placeholder="이메일"
-          value={email}
-          onChange={emailHandler}
+          // value={email}
+          // onChange={emailHandler}
         />
         <br />
         <input
-          onKeyUp={ActiveIsSignUp}
+          // onKeyUp={ActiveIsSignUp}
           ref={passwordRef}
           type="password"
           placeholder="비밀번호"
-          value={password}
-          onChange={passwordHandler}
+          // value={password}
+          // onChange={passwordHandler}
         />
         <br />
         <input
-          onKeyUp={ActiveIsSignUp}
+          // onKeyUp={ActiveIsSignUp}
           ref={twicePwRef}
           type="password"
           placeholder="비밀번호재확인"
-          value={twicePw}
-          onChange={twicePwHandler}
+          // value={twicePw}
+          // onChange={twicePwHandler}
         />
       </div>
       <div>
         <button
+        type='submit'
           className={active ? 'activeLoginBtn' : 'loginBtn'}
           disabled={nickname === '' || email === '' || password === '' || twicePw === '' ? true : false}
           onClick={signUp}>
