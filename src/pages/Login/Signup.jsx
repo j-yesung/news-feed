@@ -5,9 +5,10 @@ import { auth } from '../../firebase';
 import userIcon from '../../assets/user.svg';
 
 const Signup = () => {
+  const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   const [isActive, setIsActive] = useState(false);
   const navigator = useNavigate();
-  const pattern = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-za-z0-9\-]+/;
+
   const nicknameRef = useRef();
   const emailRef = useRef();
   const passwordRef = useRef();
@@ -18,21 +19,33 @@ const Signup = () => {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
     const twicePw = twicePwRef.current.value;
-
-    const isNicknameValid = nickname !== '';
-    const isEmailValid = pattern.test(email);
-    const isPasswordValid = password !== '';
-    const isTwicePwValid = twicePw !== '' && password === twicePw;
-
-    setIsActive(isNicknameValid && isEmailValid && isPasswordValid && isTwicePwValid);
+    setIsActive(nickname !== '' && email !== '' && password !== '' && twicePw !== '');
   };
 
-  const signUp = () => {
+  const signUp = event => {
+    event.preventDefault();
     const nickname = nicknameRef.current.value;
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
+    const twicePw = twicePwRef.current.value;
 
-    if (pattern.test(email) === false) return alert('이메일형식이 올바르지 않습니다.');
+    if (nickname === '') {
+      return alert('닉네임을 입력해주세요.');
+    }
+
+    if (email === '') {
+      return alert('이메일을 입력해 주세요.');
+    } else if (!emailRegex.test(email)) {
+      return alert('이메일형식이 올바르지 않습니다.');
+    }
+
+    if (password === '') {
+      return alert('비밀번호를 입력해주세요.');
+    }
+
+    if (twicePw !== password) {
+      return alert('비밀번호가 일치하지 않습니다.');
+    }
 
     createUserWithEmailAndPassword(auth, email, password)
       .then(userCredential => {
@@ -48,11 +61,11 @@ const Signup = () => {
       <p>환영합니다</p>
       <p>오늘의 나와 함께 갓생만들기 시작해요</p>
       <div>
-        <input ref={nicknameRef} onKeyUp={checkFormValidity} placeholder="닉네임" />
+        <input ref={nicknameRef} onBlur={checkFormValidity} placeholder="닉네임" />
         <br />
-        <input ref={emailRef} onKeyUp={checkFormValidity} type="email" placeholder="이메일" />
+        <input ref={emailRef} onBlur={checkFormValidity} type="email" placeholder="이메일" />
         <br />
-        <input ref={passwordRef} onKeyUp={checkFormValidity} type="password" placeholder="비밀번호" />
+        <input ref={passwordRef} onBlur={checkFormValidity} type="password" placeholder="비밀번호" />
         <br />
         <input ref={twicePwRef} onKeyUp={checkFormValidity} type="password" placeholder="비밀번호 재확인" />
       </div>
