@@ -35,18 +35,16 @@ const Login = () => {
 
   // 로그인
   const signIn = async event => {
+    console.log('인증관리', auth);
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      let nickName = authUser.displayName;
 
       let userInfo = {
         email,
         password,
-        nickName,
       };
       dispatch(setLogin(userInfo));
-      navigation('/');
       alert('로그인이 완료되었습니다.');
       navigation('/');
     } catch (error) {

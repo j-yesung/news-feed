@@ -50,7 +50,7 @@ const ModalBasic = ({ setModalOpen }) => {
       <form>
         <div>
           <label>이메일 : </label>
-          <input type="email" required value={email} onChange={onChange}></input>
+          <input type="email" value={email} onChange={onChange}></input>
           <button onClick={findPw}>비밀번호 재설정</button>
         </div>
       </form>
