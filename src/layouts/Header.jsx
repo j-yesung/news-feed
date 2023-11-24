@@ -46,8 +46,9 @@ const Header = () => {
   const authUser = useSelector(state => state.user.user);
 
   const logOut = async event => {
-    if (authUser !== '') {
-      await signOut(authUser);
+    // auth는 firebase에서 제공해 주는 SDK이므로 로그아웃 시, SDK 내용물을 넣어야 합니다.
+    if (auth !== '') {
+      await signOut(auth);
       dispatch(setLogout());
       navigate('/');
       alert('로그아웃 되었습니다.');

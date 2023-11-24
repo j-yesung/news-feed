@@ -10,7 +10,7 @@ const Signup = () => {
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   // const [twicePw, setTwicePw] = useState('');
-  // console.log(nickname);git 
+  // console.log(nickname);git
 
   const [active, setActive] = useState(false);
   const ActiveIsSignUp = () => {
