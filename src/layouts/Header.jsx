@@ -40,7 +40,7 @@ const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <Link to="/home">
+        <Link to="/">
           <p>
             오늘의 <span>나</span>
           </p>

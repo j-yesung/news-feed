@@ -1,5 +1,6 @@
 import Header from './Header';
 // import Footer from './Footer';
+import UpDown from 'components/Button/UpDown';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
 import Nav from './Nav';
@@ -27,6 +28,7 @@ const Layout = () => {
       <Section>
         <Outlet />
       </Section>
+      <UpDown />
       {/* <Footer /> */}
     </>
   );
