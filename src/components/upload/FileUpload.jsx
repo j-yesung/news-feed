@@ -1,19 +1,17 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage, auth } from '../../firebase';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
 import userIcon from '../../assets/user.svg';
 
 const FileUpload = () => {
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [downloadURL, setDownloadURL] = useState(null);
   const authUser = useSelector(state => state.user.user);
   const inputRef = useRef();
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [downloadURL, setDownloadURL] = useState(authUser ? authUser.photoURL : userIcon);
 
-  const handleFileSelect = event => {
-    setSelectedFile(event.target.files[0]);
-  };
+  const handleFileSelect = event => setSelectedFile(event.target.files[0]);
 
   const handleUpload = async () => {
     if (!selectedFile) return alert('파일을 업로드 해주세요.');
@@ -22,16 +20,9 @@ const FileUpload = () => {
     const imageUrl = await getDownloadURL(imageRef);
 
     // 프로필 사진 업데이트
-    updateProfile(authUser, {
-      photoURL: imageUrl,
-    })
-      .then(() => {
-        setDownloadURL(imageUrl);
-        console.log('updated profile');
-      })
-      .catch(error => {
-        console.error('공습 경보!', error);
-      });
+    updateProfile(authUser, { photoURL: imageUrl })
+      .then(() => setDownloadURL(imageUrl))
+      .catch(error => console.error('공습 경보!', error));
   };
 
   const onClearImage = () => {
