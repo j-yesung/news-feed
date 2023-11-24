@@ -3,41 +3,19 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
 
-const Modal = styled.div`
-  width: 100%;
-  height: 100%;
-
-  z-index: 999;
-
+const Bg = styled.div`
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  /* 모달창 디자인 */
-  background-color: white;
-  border-radius: 8px;
+  width: 100vw;
+  background-color: aliceblue;
 `;
 
-const CloseBtn = styled.button`
-  border: none;
-  border-radius: 8px;
-  background-color: transparent;
-  font-weight: bold;
-  right: 0;
-  top: 0;
-  position: absolute;
-  font-size: 29px;
-  margin-right: 20px;
-  margin-top: 10px;
-`;
-const Email = styled.input`
-  border: 1px solid #ccc;
-  padding: 10px;
-  margin: 20px 0;
-  outline: none;
-  border-radius: 8px;
-`;
+const Modal = styled.div``;
+
+const CloseBtn = styled.button``;
+const Email = styled.input``;
+
+export const ResetPwBtn = styled.button``;
+
 const ModalBasic = ({ setModalOpen }) => {
   const [email, setEmail] = useState('');
   const closeModal = () => {
@@ -58,17 +36,20 @@ const ModalBasic = ({ setModalOpen }) => {
     }
   };
   return (
-    <Modal>
-      ModalBasic
-      <CloseBtn onClick={closeModal}>&#10005;</CloseBtn>
-      <form>
-        <div>
-          <label>이메일 : </label>
-          <Email type="email" required value={email} onChange={onChange}></Email>
-          <button onClick={findPw}>비밀번호 재설정</button>
-        </div>
-      </form>
-    </Modal>
+    <>
+      <Bg>
+        <Modal>
+          <h2>비밀번호 재설정</h2>
+          <CloseBtn onClick={closeModal}>&#10005;</CloseBtn>
+          <form>
+            <div>
+              <Email type="email" value={email} placeholder="이메일" onChange={onChange}></Email>
+              <ResetPwBtn onClick={findPw}>비밀번호 재설정</ResetPwBtn>
+            </div>
+          </form>
+        </Modal>
+      </Bg>
+    </>
   );
 };
 
