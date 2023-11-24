@@ -1,9 +1,9 @@
-import React, { useState, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { auth } from '../../firebase';
+import { useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import userIcon from '../../assets/user.svg';
-
+import { auth } from '../../firebase';
+import * as S from './Signup.styled';
 const Signup = () => {
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   const [isActive, setIsActive] = useState(false);
@@ -57,24 +57,25 @@ const Signup = () => {
   };
 
   return (
-    <form>
-      <p>환영합니다</p>
-      <p>오늘의 나와 함께 갓생만들기 시작해요</p>
+    <S.SignUpBox>
+      <h2>환영합니다 !</h2>
+      <p>오늘의 나와 함께 갓생만들기 시작해요!</p>
       <div>
-        <input ref={nicknameRef} onBlur={checkFormValidity} placeholder="닉네임" />
-        <br />
-        <input ref={emailRef} onBlur={checkFormValidity} type="email" placeholder="이메일" />
-        <br />
-        <input ref={passwordRef} onBlur={checkFormValidity} type="password" placeholder="비밀번호" />
-        <br />
-        <input ref={twicePwRef} onKeyUp={checkFormValidity} type="password" placeholder="비밀번호 재확인" />
+        <S.NameInput ref={nicknameRef} onBlur={checkFormValidity} placeholder="닉네임" />
+
+        <S.EmailInput ref={emailRef} onBlur={checkFormValidity} type="email" placeholder="이메일" />
+
+        <S.PasswordInput ref={passwordRef} onBlur={checkFormValidity} type="password" placeholder="비밀번호" />
+
+        <S.TwicePwInput ref={twicePwRef} onKeyUp={checkFormValidity} type="password" placeholder="비밀번호 재확인" />
       </div>
       <div>
-        <button disabled={!isActive} onClick={signUp}>
+        <S.SignUpBtn disabled={!isActive} onClick={signUp}>
           회원가입
-        </button>
+        </S.SignUpBtn>
+        <S.LoginBtn onClick={() => navigator('/login')}>로그인하기</S.LoginBtn>
       </div>
-    </form>
+    </S.SignUpBox>
   );
 };
 
