@@ -1,6 +1,6 @@
 import { addDoc } from 'firebase/firestore';
 import { useRef } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addContents } from 'redux/modules/content';
 import userIcon from '../../assets/user.svg';
@@ -13,10 +13,11 @@ const Write = () => {
   const dispatch = useDispatch();
   const titleRef = useRef();
   const contentRef = useRef();
+  const authUser = useSelector(state => state.user.user);
+  console.log('🚀 ~ file: Profile.jsx:11 ~ Profile ~ authUser:', authUser);
 
   /**
    * 뉴스피드 추가하기
-   * TODO: name value 닉네임으로 변경
    */
   const createNewsFeedArticle = async () => {
     const title = titleRef.current.value;
@@ -24,7 +25,7 @@ const Write = () => {
     const currentDate = new Date();
     const formattedDate = getFormattedDate(currentDate);
     const newContents = {
-      name: '닉네임^^',
+      name: authUser.displayName,
       title: title,
       content: content,
       date: formattedDate,
@@ -36,7 +37,7 @@ const Write = () => {
 
     const docs = await addDoc(newsFeedCollection, newContents);
     dispatch(addContents({ id: docs.id, ...newContents }));
-    navigate('/'); // 홈으로 이동
+    navigate('/');
 
     titleRef.current.value = '';
     contentRef.current.value = '';
