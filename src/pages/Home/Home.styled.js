@@ -72,14 +72,27 @@ export const ContentsBox = styled.div`
   border-bottom-right-radius: 20px;
 
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  @media (max-width: 1660px) {
+    margin: 20px;
+  }
+  @media (max-width: 1579px) {
+    margin: 10px;
+  }
 `;
 
 export const ContentsList = styled.div`
   display: flex;
-  margin-top: 60px;
+  margin-top: 0px;
   width: 1440px;
   flex-wrap: wrap;
-  background-color: #eee;
+  //background-color: violet;
+  @media ${props => props.theme.mobile} {
+    justify-content: center;
+  }
+  @media (max-width: 1660px) {
+    justify-content: center;
+    width: 100vw;
+  }
 `;
 
 export const AvatarName = styled.div`
@@ -90,5 +103,7 @@ export const AvatarName = styled.div`
 export const BoxContainer = styled.div`
   z-index: 999;
   display: flex;
+  width: 100%;
+  //background-color: bisque;
   justify-content: center;
 `;
