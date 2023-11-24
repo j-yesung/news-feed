@@ -3,14 +3,14 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { addName, addEmail, addPw, addTpw } from 'redux/modules/signup';
-import userIcon from '../assets/user.svg';
+import userIcon from '../../assets/user.svg';
 
 const Signup = () => {
   // const [nickname, setNickName] = useState('');
   // const [email, setEmail] = useState('');
   // const [password, setPassword] = useState('');
   // const [twicePw, setTwicePw] = useState('');
-  // console.log(nickname);git 
+  // console.log(nickname);git
 
   const [active, setActive] = useState(false);
   const ActiveIsSignUp = () => {
