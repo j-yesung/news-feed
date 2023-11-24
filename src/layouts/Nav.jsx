@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 const NavContainer = styled.nav`
@@ -46,6 +47,11 @@ const MenuBox = styled.ul`
 `;
 
 const Nav = () => {
+  const navigator = useNavigate();
+  const authUser = useSelector(state => state.user.user);
+
+  const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
+
   return (
     <NavContainer>
       <Menu>
@@ -77,9 +83,7 @@ const Nav = () => {
         <li>
           {/* 세번째 섹션 */}
           <MenuBox>
-            <Link to="/profile">
-              <li>마이 페이지</li>
-            </Link>
+            <li onClick={profilePage}>마이 페이지</li>
             <li>로그아웃</li>
           </MenuBox>
         </li>
