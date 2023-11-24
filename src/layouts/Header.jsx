@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import lightIcon from '../assets/dark.svg';
+import lightIcon from '../assets/dark.svg'; 
 import userIcon from '../assets/user.svg';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
