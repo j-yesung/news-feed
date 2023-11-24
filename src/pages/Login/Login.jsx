@@ -51,6 +51,7 @@ const Login = () => {
       };
       dispatch(setLogin(userInfo));
       alert('로그인이 완료되었습니다.');
+      navigation('/');
     } catch (error) {
       alert('로그인 실패');
       console.log(error.message);
