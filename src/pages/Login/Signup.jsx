@@ -3,7 +3,7 @@ import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase';
 import { useDispatch, useSelector } from 'react-redux';
 import { addName, addEmail, addPw, addTpw } from 'redux/modules/signup';
-import userIcon from '../assets/user.svg';
+import userIcon from '../../assets/user.svg';
 
 const Signup = () => {
   // const [nickname, setNickName] = useState('');
@@ -121,8 +121,8 @@ const Signup = () => {
     [nickname, email, password],
   );
 
-  // const user = auth.currentUser;
-  // console.log('user', user);
+  const user = auth.currentUser;
+  console.log('user', user);
 
   return (
     <form>

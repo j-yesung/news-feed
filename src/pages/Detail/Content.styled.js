@@ -66,11 +66,15 @@ export const Date = styled.p`
   font-weight: bold;
   right: 20px;
   top: 17px;
+
+  @media (max-width: 1099px) {
+    //
+  }
 `;
 
 export const Content = styled.div`
   line-height: 2rem;
-  height: 400px;
+  height: 370px;
   overflow: auto;
 `;
 
@@ -90,6 +94,7 @@ export const Textarea = styled.textarea`
   border: 1px solid #ccc;
   padding: 10px;
   margin: 10px 0;
+  border-radius: 10px;
 `;
 
 export const InputTitle = styled.input`
@@ -100,4 +105,5 @@ export const InputTitle = styled.input`
   font-size: 28px;
   margin: 20px 0 10px;
   outline: none;
+  border-radius: 10px;
 `;
