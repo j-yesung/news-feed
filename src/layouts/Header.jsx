@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import lightIcon from '../assets/dark.svg';
+import lightIcon from '../assets/dark.svg'; 
 import userIcon from '../assets/user.svg';
 import { Link } from 'react-router-dom';
 
