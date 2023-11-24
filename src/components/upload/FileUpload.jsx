@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
 import { storage, auth } from '../../firebase';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
 import userIcon from '../../assets/user.svg';
 
