@@ -28,7 +28,7 @@ const Write = () => {
       title: title,
       content: content,
       date: formattedDate,
-      pic: userIcon,
+      pic: authUser.photoURL,
       isEditing: false,
     };
 
