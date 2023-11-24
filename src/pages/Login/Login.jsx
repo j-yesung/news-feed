@@ -37,38 +37,27 @@ const Login = () => {
 
   // 로그인
   const signIn = async event => {
+    console.log('인증관리', auth);
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      let nickName = authUser.displayName;
 
       let userInfo = {
         email,
         password,
-        nickName,
       };
       dispatch(setLogin(userInfo));
-      navigation('/');
       alert('로그인이 완료되었습니다.');
+      navigation('/');
     } catch (error) {
       alert('로그인 실패');
       console.log(error.message);
     }
   };
 
-  // 비밀번호 찾기
-  const findPw = async () => {
-    try {
-      await sendPasswordResetEmail(authUser, email);
-      alert('메일이 전송되었습니다.');
-    } catch (error) {
-      console.log(error.message);
-      alert('비밀번호 찾기 ');
-    }
-  };
-
   // 모달창 함수
-  const showModal = () => {
+  const showModal = event => {
+    event.preventDefault();
     setModalOpen(true);
   };
 
@@ -80,21 +69,27 @@ const Login = () => {
         <form>
           <div>
             <S.EmailInput
-              type="email"
+              type="text"
               value={email}
               name="email"
               onChange={onChange}
-              placeholder="이메일"
-              required></S.EmailInput>
+              placeholder="이메일"></S.EmailInput>
           </div>
           <div>
-            <S.PwInput
+            {/* <S.PwInput
               type="password"
               value={password}
               name="password"
               placeholder="비밀번호"
               onChange={onChange}
               required></S.PwInput>
+          </div> */}
+            <S.PwInput
+              type="password"
+              value={password}
+              name="password"
+              placeholder="비밀번호"
+              onChange={onChange}></S.PwInput>
           </div>
           <S.LoginBtn onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
             오늘의 나 시작하기
