@@ -1,18 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import { useRef, useEffect } from 'react';
+import { auth } from '../../firebase';
+import { sendPasswordResetEmail } from 'firebase/auth';
 
-// const modalRef = useRef < HTMLDivElement > null;
 const Modal = styled.div`
   width: 40%;
   height: 40%;
 
-  /* 최상단 위치 */
   z-index: 999;
 
-  /* 중앙 배치
-  /* top, bottom, left, right 는 브라우저 기준으로 작동한다. */
-  /* translate는 본인의 크기 기준으로 작동한다. */
   position: absolute;
   top: 50%;
   left: 50%;
@@ -29,40 +25,33 @@ const Modal = styled.div`
   }
 `;
 const ModalBasic = ({ setModalOpen }) => {
+  const [email, setEmail] = useState('');
   const closeModal = () => {
     setModalOpen(false);
   };
 
-  //   useEffect(() => {
-  //     //     // 이벤트 핸들러 함수
-  //     const handler = event => {
-  //       //       // mousedown 이벤트가 발생한 영역이 모달창이 아닐 때, 모달창 제거 처리
-  //       if (modalRef.current && !modalRef.current.contains(event.target)) {
-  //         setModalOpen(false);
-  //       }
-  //     };
+  const onChange = event => {
+    setEmail(event.target.value);
+  };
 
-  //     //     // 이벤트 핸들러 등록
-  //     document.addEventListener('mousedown', handler);
-  //     // document.addEventListener('touchstart', handler); // 모바일 대응
-
-  //     return () => {
-  //       // 이벤트 핸들러 해제
-  //       document.removeEventListener('mousedown', handler);
-  //       // document.removeEventListener('touchstart', handler); // 모바일 대응
-  //     };
-  //   });
-
+  const findPw = async () => {
+    try {
+      await sendPasswordResetEmail(auth, email);
+      alert('메일이 전송되었습니다.');
+    } catch (error) {
+      console.log(error.code, error.message);
+      alert('비밀번호가 재설정 이메일을 전송하는데 실패했습니다 ');
+    }
+  };
   return (
-    // <Modal ref={modalRef}>
     <Modal>
       ModalBasic
       <button onClick={closeModal}>X</button>
       <form>
         <div>
           <label>이메일 : </label>
-          <input type="email" required></input>
-          <button>이메일찾기</button>
+          <input type="email" required value={email} onChange={onChange}></input>
+          <button onClick={findPw}>비밀번호 재설정</button>
         </div>
       </form>
     </Modal>
