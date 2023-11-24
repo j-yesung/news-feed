@@ -18,14 +18,14 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const newsFeedCollection = collection(db, 'news-feed');
+export const imagesCollection = collection(db, 'images');
 export const storage = getStorage(app);
 
 // 뉴스피드 수정
 export const updateNewFeed = async (id, updateData) => {
-  console.log('🚀 ~ file: firebase.js:23 ~ updateNewFeed ~ id, updateData:', id, updateData);
   try {
     const docRef = doc(db, 'news-feed', id);
-    updateDoc(docRef, updateData);
+    await updateDoc(docRef, updateData);
   } catch (e) {
     console.error(e);
   }
@@ -36,8 +36,17 @@ export const deleteNewsFeed = async id => {
   console.log('id: ', id);
   try {
     await deleteDoc(doc(db, 'news-feed', id));
-    console.log('삭제 완료');
   } catch (e) {
     console.error(e);
   }
 };
+
+// 뉴스피드 수정
+// export const updateProfileImages = async (url) => {
+//   try {
+//     const docRef = doc(db, 'images', id);
+//     updateDoc(docRef, updateData);
+//   } catch (e) {
+//     console.error(e);
+//   }
+// };
