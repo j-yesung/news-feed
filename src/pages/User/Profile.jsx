@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import FileUpload from 'components/upload/FileUpload';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { updateProfile } from 'firebase/auth';
 
 const Profile = () => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
   const contentsData = useSelector(state => state.contents.contents);
+  const [isNameEditing, setIsNameEditing] = useState(false);
+  const nameRef = useRef();
 
   useEffect(() => {
     if (!authUser) {
@@ -14,26 +17,24 @@ const Profile = () => {
     }
   }, [authUser, navigator]);
 
-  if (!authUser) return alert('로그인이 필요합니다.');
-
+  if (!authUser) return alert('로그인이 필요합니다.'); // TODO: 이거 문제 있음
   const myContents = contentsData.filter(contents => contents.name === authUser.displayName);
 
-  console.log('🚀 닉네임', myContents);
-  console.log('🚀 콘텐츠', contentsData);
-  console.log('🚀 유저 정보', authUser);
+  // 닉네임 변경
+  const onNameChange = () => {
+    updateProfile(authUser, {
+      displayName: nameRef.current.value,
+    })
+      .then(() => {
+        setIsNameEditing(!isNameEditing);
+      })
+      .catch(error => {
+        console.error('공습 경보!', error);
+      });
+  };
 
-  // updateProfile(auth.currentUser, {
-  //   displayName: 'Jane Q. User',
-  //   photoURL: 'https://example.com/jane-q-user/profile.jpg',
-  // })
-  //   .then(() => {
-  //     // Profile updated!
-  //     // ...
-  //   })
-  //   .catch(error => {
-  //     // An error occurred
-  //     // ...
-  //   });
+  console.log(isNameEditing);
+  console.log('🚀 유저 정보', authUser);
 
   return (
     <>
@@ -42,9 +43,18 @@ const Profile = () => {
       {authUser && (
         <>
           <div>
-            <p>닉네임 : {authUser.displayName}</p>
+            {isNameEditing ? (
+              <input ref={nameRef} type="text" defaultValue={authUser.displayName} />
+            ) : (
+              <p>{authUser.displayName}</p>
+            )}
             <p>이메일 : {authUser.email}</p>
           </div>
+          {isNameEditing ? (
+            <button onClick={onNameChange}>저장</button>
+          ) : (
+            <button onClick={() => setIsNameEditing(true)}>닉네임 변경</button>
+          )}
           <br />
         </>
       )}
