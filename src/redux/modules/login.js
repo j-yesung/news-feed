@@ -1,25 +1,32 @@
+//TYPE 설정
 const USER_LOGIN = 'login/USER_LOGIN';
+const USER_LOGOUT = 'login/USER_LOGOUT';
 
-export const setLogin = (email, password) => {
-  return {
-    type: USER_LOGIN,
-    payload: {
-      email,
-      password,
-    },
-  };
+//ACTION_CREATOR 생성
+export const setLogin = payload => {
+  return { type: USER_LOGIN, payload };
+};
+export const setLogout = payload => {
+  return { type: USER_LOGOUT, payload };
 };
 
 const initialState = {
-  isLogin: false,
   email: '',
   password: '',
+  nickName: '',
 };
 
 const login = (state = initialState, action) => {
   switch (action.type) {
     case USER_LOGIN:
-      return { ...state, state: action.payload };
+      return {
+        ...state,
+        email: action.payload.email,
+        password: action.payload.password,
+        nickName: action.payload.nickName,
+      };
+    case USER_LOGOUT:
+      return { ...state, email: '', password: '', nickName: '' };
     default:
       return state;
   }

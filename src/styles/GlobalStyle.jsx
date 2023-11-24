@@ -17,7 +17,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     background-color: #eee;
     font-family: 'Pretendard-Regular';
-    
+  
   }
 
   input {
