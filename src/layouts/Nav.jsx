@@ -50,7 +50,7 @@ const Nav = () => {
     <NavContainer>
       <Menu>
         <MenuBox>
-          <Link to="/home">
+          <Link to="/">
             <li>메인으로</li>
           </Link>
         </MenuBox>

@@ -66,6 +66,10 @@ export const Date = styled.p`
   font-weight: bold;
   right: 20px;
   top: 17px;
+
+  @media (max-width: 1099px) {
+    //
+  }
 `;
 
 export const Content = styled.div`
