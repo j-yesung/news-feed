@@ -10,16 +10,6 @@ const Login = () => {
   const [authenticatedEmail, setAuthenticatedEmail] = useState('');
   const idRef = useRef();
   const [isValid, setIsValid] = useState(false);
-  const handleIdInput = e => {
-    const idValue = e.target.value;
-    setEmail(email);
-    idValue.includes('@') && password.length >= 5 ? setIsValid(true) : setIsValid(false);
-  };
-  const handlePwInput = e => {
-    const pwdValue = e.target.value;
-    setPassword(password);
-    idRef.includes('@') && pwdValue.length >= 5 ? setIsValid(true) : setIsValid(false);
-  };
 
   const activeEmail = useSelector(state => state.login);
   const dispatch = useDispatch();
@@ -37,7 +27,7 @@ const Login = () => {
     }
     if (name === 'password') {
       const pwdValue = event.target.value;
-      pwdValue.includes('@') && pwdValue.length >= 6 ? setIsValid(true) : setIsValid(false);
+      pwdValue.length >= 6 ? setIsValid(true) : setIsValid(false);
       setPassword(value);
     }
   };
@@ -65,10 +55,11 @@ const Login = () => {
       console.log(error.message);
     }
   };
+
   //로그아웃 정보
   const logOut = async event => {
     //조건을 로컬스토리지 세션으로 걸어야함
-    if (activeEmail.email !== '') {
+    if (auth !== '') {
       event.preventDefault();
       await signOut(auth);
       dispatch(setLogout());
@@ -79,6 +70,7 @@ const Login = () => {
     }
   };
 
+  console.log(auth.currentUser);
   //비밀번호 찾기
   const findPw = async () => {
     try {
@@ -92,12 +84,11 @@ const Login = () => {
 
   useEffect = (() => {}, []);
 
-  console.log(activeEmail.email);
   // 모달창 함수
   const showModal = () => {
     setModalOpen(true);
   };
-  const isFormValid = email !== '' && password !== '';
+
   return (
     <div className="App">
       <h2>로그인 페이지</h2>
@@ -112,12 +103,8 @@ const Login = () => {
         </div>
         <button onClick={signUp}>회원가입</button>
 
-        {activeEmail.email === '' ? (
-          <button
-            onClick={signIn}
-            ref={idRef}
-            style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}
-            disabled={isFormValid}>
+        {auth.currentUser === null ? (
+          <button onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
             로그인
           </button>
         ) : (

@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import lightIcon from '../assets/dark.svg';
 import userIcon from '../assets/user.svg';
-
+import { auth } from '../firebase';
+import { signOut } from 'firebase/auth';
+import { Navigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setLogout } from 'redux/modules/login';
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
   display: flex;
@@ -37,10 +41,29 @@ const DarkMode = styled.img`
 `;
 
 const Header = () => {
+  console.log('헤더부분', auth);
+  const dispatch = useDispatch();
+
+  const navigation = () => {
+    navigate('/login');
+  };
+  const logOut = async event => {
+    //조건을 로컬스토리지 세션으로 걸어야함
+    if (auth !== '') {
+      await signOut(auth);
+      dispatch(setLogout());
+      alert('로그아웃 되었습니다.');
+    } else {
+      event.preventDefault();
+      alert('현재 로그인이 되어 있지 않습니다.');
+    }
+  };
+
+  const navigate = useNavigate();
   return (
     <>
       <HeaderContainer>
-        <Link to="/home">
+        <Link to="/">
           <p>
             오늘의 <span>나</span>
           </p>
@@ -49,6 +72,11 @@ const Header = () => {
         <div>
           <DarkMode src={lightIcon} />
           <UserIcon src={userIcon} />
+          {auth.currentUser == null ? (
+            <button onClick={navigation}>로그인</button>
+          ) : (
+            <button onClick={logOut}>로그아웃</button>
+          )}
         </div>
       </HeaderContainer>
     </>
