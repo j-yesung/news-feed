@@ -15,8 +15,7 @@ const Write = () => {
   const contentRef = useRef();
 
   /**
-   * 게시글 추가하기
-   * TODO: 유효성 검사
+   * 뉴스피드 추가하기
    * TODO: name value 닉네임으로 변경
    */
   const createNewsFeedArticle = async () => {
@@ -24,7 +23,6 @@ const Write = () => {
     const content = contentRef.current.value;
     const currentDate = new Date();
     const formattedDate = getFormattedDate(currentDate);
-
     const newContents = {
       name: '닉네임^^',
       title: title,
@@ -33,6 +31,9 @@ const Write = () => {
       pic: userIcon,
       isEditing: false,
     };
+
+    if (!title || !content) return alert('제목과 내용을 입력해주세요.');
+
     const docs = await addDoc(newsFeedCollection, newContents);
     dispatch(addContents({ id: docs.id, ...newContents }));
     navigate('/'); // 홈으로 이동
