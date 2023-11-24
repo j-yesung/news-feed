@@ -41,11 +41,14 @@ const DarkMode = styled.img`
 `;
 
 const Header = () => {
-  console.log('헤더부분', auth);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const navigation = () => {
     navigate('/login');
+  };
+  const navigationSingup = () => {
+    navigate('/signup');
   };
   const logOut = async event => {
     //조건을 로컬스토리지 세션으로 걸어야함
@@ -59,7 +62,6 @@ const Header = () => {
     }
   };
 
-  const navigate = useNavigate();
   return (
     <>
       <HeaderContainer>
@@ -77,6 +79,7 @@ const Header = () => {
           ) : (
             <button onClick={logOut}>로그아웃</button>
           )}
+          {auth.currentUser == null && <button onClick={navigationSingup}>회원가입</button>}
         </div>
       </HeaderContainer>
     </>

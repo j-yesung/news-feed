@@ -4,6 +4,7 @@ import { auth } from '../../firebase';
 import ModalBasic from './ModalBasic';
 import { useSelector, useDispatch } from 'react-redux';
 import { setLogin, setLogout } from 'redux/modules/login';
+import { useNavigate } from 'react-router-dom';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -11,7 +12,7 @@ const Login = () => {
   const idRef = useRef();
   const [isValid, setIsValid] = useState(false);
 
-  const activeEmail = useSelector(state => state.login);
+  const navigation = useNavigate();
   const dispatch = useDispatch();
 
   //모달창
@@ -32,8 +33,8 @@ const Login = () => {
     }
   };
 
-  const signUp = event => {
-    //회원가입 페이지로 이동
+  const navigationSingup = () => {
+    navigation('/signup');
   };
 
   //로그인
@@ -101,7 +102,7 @@ const Login = () => {
           <label>비밀번호 : </label>
           <input type="password" value={password} name="password" onChange={onChange} required></input>
         </div>
-        <button onClick={signUp}>회원가입</button>
+        <button onClick={navigationSingup}>회원가입</button>
 
         {auth.currentUser === null ? (
           <button onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
