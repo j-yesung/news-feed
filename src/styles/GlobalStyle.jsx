@@ -14,8 +14,9 @@ const GlobalStyle = createGlobalStyle`
     font-style: normal;
 }
   body {
+    transition: all 0.3s;
     display: flex;
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.bgColor};
     font-family: 'Pretendard-Regular';
   
   }

@@ -50,7 +50,6 @@ const comment = (state = initialState, action) => {
         ...state,
         comments: state.comments.map(comment => {
           if (comment.id === action.payload) {
-            console.log(comment);
             return { ...comment, isEditing: true };
           }
           return comment;

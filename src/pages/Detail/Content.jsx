@@ -13,6 +13,7 @@ const Content = () => {
   const navigate = useNavigate();
   const contentsData = useSelector(state => state.contents.contents);
   const findData = contentsData.find(contents => contents.id === params.id);
+  const authUser = useSelector(state => state.user.user);
 
   const titleRef = useRef();
   const contentRef = useRef();
@@ -51,10 +52,6 @@ const Content = () => {
     navigate('/');
   };
 
-  const authUser = useSelector(state => state.user.user);
-
-  console.log('얍얍', findData.name);
-  console.log('얍222222', authUser.displayName);
   return (
     <div>
       {/* findData가 존재하면 아래 내용 호출 */}

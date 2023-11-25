@@ -5,14 +5,16 @@ import { setLogout } from 'redux/modules/login';
 import styled from 'styled-components';
 import lightIcon from '../assets/dark.svg';
 import menuIcon from '../assets/navigation_icon.svg';
-import userIcon from '../assets/user.svg';
 import { auth } from '../firebase';
+import { darkTheme, lightTheme } from 'styles/theme';
+import { setThemeMode } from 'redux/modules/dark';
+import { useEffect } from 'react';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
   display: flex;
   width: 100vw;
-  background-color: #a5c7bb;
+  background-color: ${({ theme }) => theme.signatureColorTwo};
   padding: 20px;
   font-weight: 600;
   font-size: 25px;
@@ -26,7 +28,7 @@ const HeaderContainer = styled.header`
     color: white;
   }
   span {
-    color: #f4eba5;
+    color: ${({ theme }) => theme.signatureColorOne};
   }
   a {
     text-decoration: none;
@@ -39,6 +41,8 @@ const UserIcon = styled.img`
 const DarkMode = styled.img`
   margin-right: 20px;
   width: 30px;
+  cursor: pointer;
+  filter: ${({ theme }) => theme.invertFilter};
 `;
 
 const MenuIcon = styled.img`
@@ -51,7 +55,7 @@ const MenuIcon = styled.img`
 `;
 
 const SignUpBtn = styled.button`
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.buttonBgColor};
   border: none;
   padding: 8px 15px;
   font-size: 15px;
@@ -62,12 +66,12 @@ const SignUpBtn = styled.button`
   cursor: pointer;
 
   &:hover {
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.buttonHoverColor};
   }
 `;
 
 const LoginBtn = styled.button`
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.buttonBgColor};
   border: none;
   font-size: 15px;
   font-weight: bold;
@@ -76,12 +80,12 @@ const LoginBtn = styled.button`
   cursor: pointer;
   border-radius: 8px;
   &:hover {
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.buttonHoverColor};
   }
 `;
 
 const LogOutBtn = styled.button`
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.buttonBgColor};
   border: none;
   font-size: 15px;
   font-weight: bold;
@@ -91,7 +95,7 @@ const LogOutBtn = styled.button`
   cursor: pointer;
   border-radius: 8px;
   &:hover {
-    background-color: #eee;
+    background-color: ${({ theme }) => theme.buttonHoverColor};
   }
 `;
 
@@ -99,13 +103,14 @@ const Buttons = styled.div`
   display: flex;
   align-items: center;
 `;
+
 const Header = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const authUser = useSelector(state => state.user.user);
+  const themeMode = useSelector(state => state.themeReducer.isMode);
 
   const logOut = async event => {
-    // auth는 firebase에서 제공해 주는 SDK이므로 로그아웃 시, SDK 내용물을 넣어야 합니다.
     if (auth !== '') {
       await signOut(auth);
       dispatch(setLogout());
@@ -114,6 +119,18 @@ const Header = () => {
     } else {
       event.preventDefault();
       alert('현재 로그인이 되어 있지 않습니다.');
+    }
+  };
+
+  useEffect(() => {
+    dispatch(setThemeMode(lightTheme));
+  }, [dispatch]);
+
+  const toggleTheme = () => {
+    if (themeMode === lightTheme) {
+      dispatch(setThemeMode(darkTheme));
+    } else {
+      dispatch(setThemeMode(lightTheme));
     }
   };
 
@@ -134,9 +151,13 @@ const Header = () => {
           ) : (
             <LogOutBtn onClick={logOut}>로그아웃</LogOutBtn>
           )}
-          <DarkMode src={lightIcon} />
-          <UserIcon src={userIcon} />
-          <MenuIcon src={menuIcon} />
+          {authUser && (
+            <>
+              <DarkMode src={lightIcon} onClick={toggleTheme} />
+              <UserIcon src={authUser.photoURL} />
+              <MenuIcon src={menuIcon} />
+            </>
+          )}
         </Buttons>
       </HeaderContainer>
     </>

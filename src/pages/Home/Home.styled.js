@@ -5,7 +5,7 @@ export const Button = styled.button`
   border: none;
   padding: 10px 20px;
   font-weight: bold;
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.buttonBgColor};
   border-radius: 5px;
   float: right;
 
@@ -13,7 +13,7 @@ export const Button = styled.button`
 
   font-size: 18px;
   &:hover {
-    background-color: #a5c7bb;
+    background-color: ${({ theme }) => theme.signatureColorTwo};
   }
 `;
 export const Avatar = styled.img`
@@ -23,17 +23,17 @@ export const Avatar = styled.img`
 `;
 
 export const Title = styled.h2`
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.contentsHeaderColor};
   padding: 13px 0px 13px 20px;
   font-weight: bold;
   font-size: 20px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  color: ${({ theme }) => theme.textColor};
 `;
 
 export const Content = styled.p`
-  //background-color: yellowgreen;
   padding: 5px 0 10px;
   line-height: 1.8rem;
   font-size: 20px;
@@ -42,20 +42,19 @@ export const Content = styled.p`
 
   text-overflow: ellipsis;
   overflow: hidden;
-  display: -webkit-box; // 얘네를 추가히준다
+  display: -webkit-box;
   -webkit-line-clamp: 7;
   -webkit-box-orient: vertical;
 `;
 
 export const Name = styled.p`
-  //background-color: gainsboro;
   padding: 20px 10px;
   font-size: 20px;
   width: calc(100% - 50px);
 `;
 
 export const Date = styled.p`
-  background-color: #a5c7bb;
+  background-color: ${({ theme }) => theme.contentsFooterColor};
   padding: 20px 10px;
   text-align: center;
   font-weight: bold;
@@ -104,6 +103,5 @@ export const BoxContainer = styled.div`
   z-index: 999;
   display: flex;
   width: 100%;
-  //background-color: bisque;
   justify-content: center;
 `;

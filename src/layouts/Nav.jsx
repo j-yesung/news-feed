@@ -35,14 +35,15 @@ const MenuBox = styled.ul`
     left: 50%;
     transform: translate(-50%, 0px);
     &:hover {
-      background-color: #f4eba5;
+      background-color: ${({ theme }) => theme.contentsHeaderColor};
       cursor: pointer;
       font-weight: bold;
+      color: ${({ theme }) => theme.buttonTextColor};
     }
   }
   a {
     text-decoration: none;
-    color: #000;
+    color: ${({ theme }) => theme.contentsTextColor};
   }
 `;
 
