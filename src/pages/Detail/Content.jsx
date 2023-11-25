@@ -27,8 +27,6 @@ const Content = () => {
     getContents();
   }, [dispatch]);
 
-  console.log('🚀 findData:', findData);
-
   // 수정 버튼 클릭했을 때
   const HandleEditingToggle = id => dispatch(editContents(id));
 
@@ -44,8 +42,6 @@ const Content = () => {
 
     await updateNewsFeed(updateData.id, updates);
     dispatch(updateContents(updateData.id, updates));
-    // TODO: 수정 완료하면 해당 화면으로 다시 리렌더링 되게 수정할 수 있도록.
-    navigate('/');
   };
 
   // 삭제

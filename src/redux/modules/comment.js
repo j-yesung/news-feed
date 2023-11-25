@@ -64,7 +64,6 @@ const comment = (state = initialState, action) => {
         ),
       };
     case DELETE_COMMENT:
-      console.log(state, action.payload);
       return {
         ...state,
         comments: state.comments.filter(comment => comment.id !== action.payload),
