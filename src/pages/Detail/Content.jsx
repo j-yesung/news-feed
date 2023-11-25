@@ -5,6 +5,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { deleteContents, editContents, setContents, updateContents } from 'redux/modules/content';
 import { deleteNewsFeed, newsFeedCollection, updateNewFeed } from '../../firebase';
 import * as S from './Content.styled';
+
 const Content = () => {
   const params = useParams();
   const dispatch = useDispatch();
@@ -53,6 +54,10 @@ const Content = () => {
     navigate('/');
   };
 
+  const authUser = useSelector(state => state.user.user);
+
+  console.log('얍얍', findData.name);
+  console.log('얍222222', authUser.displayName);
   return (
     <div>
       {/* findData가 존재하면 아래 내용 호출 */}
@@ -75,12 +80,17 @@ const Content = () => {
               </div>
             )}
             <S.Date>{findData.date}</S.Date>
-            {findData.isEditing ? (
-              <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
-            ) : (
-              <button onClick={() => HandleEditingToggle(findData.id)}>수정</button>
-            )}
-            <button onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</button>
+
+            {authUser.displayName === findData.name ? (
+              findData.isEditing ? (
+                <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
+              ) : (
+                <>
+                  <button onClick={() => HandleEditingToggle(findData.id)}>수정</button>
+                  <button onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</button>
+                </>
+              )
+            ) : null}
           </S.View>
         </S.Box>
       )}
