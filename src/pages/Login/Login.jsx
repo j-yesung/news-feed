@@ -124,7 +124,7 @@ const Login = () => {
               style={{ border: isPasswordValid ? '1px solid blue' : '1px solid red' }}></S.PwInput>
           </div>
           {isPasswordValid ? (
-            <S.ValidationText style={{ color: 'blue' }}>비밀번호를 올바르게 작성되었습니다!</S.ValidationText>
+            <S.ValidationText style={{ color: 'blue' }}>비밀번호가 올바르게 작성되었습니다!</S.ValidationText>
           ) : (
             <S.ValidationText style={{ color: 'red' }}>비밀번호는 6자리 이상 입력해주세요!</S.ValidationText>
           )}
