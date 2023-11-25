@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import userIcon from '../../assets/user.svg';
 import { auth } from '../../firebase';
 import * as S from './Signup.styled';
+
 const Signup = () => {
   const emailRegex = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/;
   const [isActive, setIsActive] = useState(false);
