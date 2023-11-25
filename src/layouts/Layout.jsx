@@ -13,7 +13,7 @@ const Section = styled.section`
   margin-top: 73px;
 
   box-sizing: border-box;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
     margin-left: 0px;
     margin-top: 0;
     width: 100vw;

@@ -20,7 +20,7 @@ const HeaderContainer = styled.header`
   position: fixed;
   z-index: 99;
   justify-content: space-between;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
   }
   p {
     color: white;
@@ -45,7 +45,7 @@ const MenuIcon = styled.img`
   width: 30px;
   display: none;
   margin-left: 20px;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
     display: flex;
   }
 `;

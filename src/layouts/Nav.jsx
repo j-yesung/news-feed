@@ -8,7 +8,7 @@ const NavContainer = styled.nav`
   position: fixed;
   height: calc(100vh - 73px);
   margin-top: 73px;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
