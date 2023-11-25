@@ -18,11 +18,11 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export const newsFeedCollection = collection(db, 'news-feed');
-export const imagesCollection = collection(db, 'images');
+export const commentCollection = collection(db, 'comments');
 export const storage = getStorage(app);
 
 // 뉴스피드 수정
-export const updateNewFeed = async (id, updateData) => {
+export const updateNewsFeed = async (id, updateData) => {
   try {
     const docRef = doc(db, 'news-feed', id);
     await updateDoc(docRef, updateData);
@@ -33,7 +33,6 @@ export const updateNewFeed = async (id, updateData) => {
 
 // 뉴스피드 삭제
 export const deleteNewsFeed = async id => {
-  console.log('id: ', id);
   try {
     await deleteDoc(doc(db, 'news-feed', id));
   } catch (e) {
@@ -41,12 +40,21 @@ export const deleteNewsFeed = async id => {
   }
 };
 
-// 뉴스피드 수정
-// export const updateProfileImages = async (url) => {
-//   try {
-//     const docRef = doc(db, 'images', id);
-//     updateDoc(docRef, updateData);
-//   } catch (e) {
-//     console.error(e);
-//   }
-// };
+// 댓글 수정
+export const updatingComment = async (id, updateData) => {
+  try {
+    const docRef = doc(db, 'comments', id);
+    await updateDoc(docRef, updateData);
+  } catch (e) {
+    console.error(e);
+  }
+};
+
+// 댓글 삭제
+export const deletingComment = async id => {
+  try {
+    await deleteDoc(doc(db, 'comments', id));
+  } catch (e) {
+    console.error(e);
+  }
+};
