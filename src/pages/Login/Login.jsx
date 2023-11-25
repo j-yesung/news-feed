@@ -3,16 +3,23 @@ import { useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { setLogin } from 'redux/modules/login';
+import { GoogleAuthProvider, signInWithPopup, GithubAuthProvider } from 'firebase/auth';
 import githubButton from '../../assets/github.svg';
+import googleButton from '../../assets/google.svg';
 import { auth } from '../../firebase';
 import * as S from './Login.styled';
 import ModalBasic from './ModalBasic';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const idRef = useRef();
   const [isValid, setIsValid] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  const idRef = useRef();
   const authUser = useSelector(state => state.user.user);
+
+  const isEmailValid = /\S+@\S+\.\S+/.test(email);
+  const isPasswordValid = password.length >= 6;
 
   const navigation = useNavigate();
   const dispatch = useDispatch();
@@ -61,6 +68,32 @@ const Login = () => {
     setModalOpen(true);
   };
 
+  // 구글로그인
+  function handleGoogleLogin() {
+    const provider = new GoogleAuthProvider(); // provider 구글 설정
+    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
+      .then(data => {
+        setUserData(data.user); // user data 설정
+        navigation('/');
+        console.log(data); // console에 UserCredentialImpl 출력
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
+
+  function handleGithubLogin() {
+    const provider = new GoogleAuthProvider(); // provider 구글 설정
+    signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
+      .then(data => {
+        setUserData(data.user); // user data 설정
+        navigation('/');
+        console.log(data); // console에 UserCredentialImpl 출력
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  }
   return (
     <>
       <S.LoginBox>
@@ -73,25 +106,29 @@ const Login = () => {
               value={email}
               name="email"
               onChange={onChange}
-              placeholder="이메일"></S.EmailInput>
+              placeholder="이메일"
+              style={{ border: isEmailValid ? '1px solid blue' : '1px solid red' }}></S.EmailInput>
           </div>
+          {isEmailValid ? (
+            <S.ValidationText style={{ color: 'blue' }}>이메일이 올바르게 작성되었습니다!</S.ValidationText>
+          ) : (
+            <S.ValidationText style={{ color: 'red' }}>이메일을 형식에 맞게 작성해주세요!</S.ValidationText>
+          )}
           <div>
-            {/* <S.PwInput
-              type="password"
-              value={password}
-              name="password"
-              placeholder="비밀번호"
-              onChange={onChange}
-              required></S.PwInput>
-          </div> */}
             <S.PwInput
               type="password"
               value={password}
               name="password"
               placeholder="비밀번호"
-              onChange={onChange}></S.PwInput>
+              onChange={onChange}
+              style={{ border: isPasswordValid ? '1px solid blue' : '1px solid red' }}></S.PwInput>
           </div>
-          <S.LoginBtn onClick={signIn} ref={idRef} style={{ backgroundColor: isValid ? '#4ec5f4' : 'white' }}>
+          {isPasswordValid ? (
+            <S.ValidationText style={{ color: 'blue' }}>비밀번호를 올바르게 작성되었습니다!</S.ValidationText>
+          ) : (
+            <S.ValidationText style={{ color: 'red' }}>비밀번호는 6자리 이상 입력해주세요!</S.ValidationText>
+          )}
+          <S.LoginBtn onClick={signIn} ref={idRef} disabled={!isEmailValid || !isPasswordValid}>
             오늘의 나 시작하기
           </S.LoginBtn>
           <S.BtnBundle>
@@ -99,7 +136,12 @@ const Login = () => {
             <S.SignUpBtn onClick={() => navigation('/signup')}>회원가입</S.SignUpBtn>
           </S.BtnBundle>
           <S.SocialLogin>
-            <S.GithubButton src={githubButton} />
+            <button type="button" style={{ background: 'transparent', border: 'none' }} onClick={handleGithubLogin}>
+              <S.GithubButton style={{}} src={githubButton}></S.GithubButton>
+            </button>
+            <button type="button" style={{ background: 'transparent', border: 'none' }} onClick={handleGithubLogin}>
+              <S.GooglebButton style={{}} src={googleButton}></S.GooglebButton>
+            </button>
           </S.SocialLogin>
         </form>
       </S.LoginBox>

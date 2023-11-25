@@ -2,7 +2,7 @@ import { sendPasswordResetEmail } from 'firebase/auth';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { auth } from '../../firebase';
-
+import * as S from './Login.styled';
 const Bg = styled.div`
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
@@ -39,7 +39,7 @@ const Email = styled.input`
   outline: none;
   border: 2px solid #ccc;
   border-radius: 8px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   margin-top: 30px;
   &::placeholder {
     color: #ccc;
@@ -55,22 +55,22 @@ export const ResetPwBtn = styled.button`
   cursor: pointer;
   font-weight: bold;
   margin-bottom: 10px;
-  &:hover {
-    background-color: #a5c7bb !important;
-  }
+  margin-top: 15px;
 `;
 
+const NameClose = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
 const ModalBasic = ({ setModalOpen }) => {
   const [email, setEmail] = useState('');
+
+  const isEmailValid = /\S+@\S+\.\S+/.test(email);
+
   const closeModal = () => {
     setModalOpen(false);
   };
-
-  const NameClose = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  `;
 
   const onChange = event => {
     setEmail(event.target.value);
@@ -78,10 +78,11 @@ const ModalBasic = ({ setModalOpen }) => {
 
   const findPw = async () => {
     try {
+      console.log(auth, email);
       await sendPasswordResetEmail(auth, email);
       alert('메일이 전송되었습니다.');
     } catch (error) {
-      console.log(error.code, error.message);
+      alert(error.code, error.message);
       alert('비밀번호가 재설정 이메일을 전송하는데 실패했습니다 ');
     }
   };
@@ -93,10 +94,23 @@ const ModalBasic = ({ setModalOpen }) => {
             <h2>비밀번호 재설정</h2>
             <CloseBtn onClick={closeModal}>&#10005;</CloseBtn>
           </NameClose>
+
           <form>
             <div>
-              <Email type="email" value={email} placeholder="이메일" onChange={onChange}></Email>
-              <ResetPwBtn onClick={findPw}>비밀번호 재설정</ResetPwBtn>
+              <Email
+                type="email"
+                value={email}
+                placeholder="이메일"
+                onChange={onChange}
+                style={{ border: isEmailValid ? '1px solid blue' : '1px solid red' }}></Email>
+              {isEmailValid ? (
+                <S.ValidationText style={{ color: 'blue' }}>이메일이 올바르게 작성되었습니다!</S.ValidationText>
+              ) : (
+                <S.ValidationText style={{ color: 'red' }}>이메일을 형식에 맞게 작성해주세요!</S.ValidationText>
+              )}
+              <ResetPwBtn onClick={findPw} disabled={!isEmailValid}>
+                비밀번호 재설정
+              </ResetPwBtn>
             </div>
           </form>
         </Modal>

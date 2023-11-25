@@ -35,9 +35,6 @@ export const LoginBtn = styled.button`
   cursor: pointer;
   font-weight: bold;
   margin-bottom: 10px;
-  &:hover {
-    background-color: #a5c7bb !important;
-  }
 `;
 export const FindPwBtn = styled.button`
   background-color: transparent;
@@ -54,7 +51,7 @@ export const PwInput = styled.input`
     color: #ccc;
   }
   border: 2px solid #ccc;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 `;
 export const EmailInput = styled.input`
   padding: 10px;
@@ -69,6 +66,12 @@ export const EmailInput = styled.input`
   }
 `;
 
+//이메일 , 비밀번호 텍스트
+export const ValidationText = styled.div`
+  font-size: 12px;
+  opacity: 0.5;
+`;
+
 export const BtnBundle = styled.div`
   display: flex;
   margin-top: 8px;
@@ -76,6 +79,10 @@ export const BtnBundle = styled.div`
 `;
 
 export const GithubButton = styled.img`
+  width: 30px;
+  cursor: pointer;
+`;
+export const GooglebButton = styled.img`
   width: 30px;
   cursor: pointer;
 `;
