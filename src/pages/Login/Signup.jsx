@@ -62,7 +62,7 @@ const Signup = () => {
       <h2>환영합니다 !</h2>
       <p>오늘의 나와 함께 갓생만들기 시작해요!</p>
       <div>
-        <S.NameInput ref={nicknameRef} onBlur={checkFormValidity} placeholder="닉네임" />
+        <S.NameInput ref={nicknameRef} onBlur={checkFormValidity} placeholder="닉네임" maxLength="10" />
 
         <S.EmailInput ref={emailRef} onBlur={checkFormValidity} type="email" placeholder="이메일" />
 
