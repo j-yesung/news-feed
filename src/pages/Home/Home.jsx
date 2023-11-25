@@ -5,8 +5,6 @@ import * as S from './Home.styled';
 const Home = () => {
   const navigate = useNavigate();
   const contentsData = useSelector(state => state.contents.contents);
-  const authUser = useSelector(state => state.user.user);
-  console.log('🚀 ~ file: Home.jsx:16 ~ Home ~ authUser:', authUser);
 
   return (
     <>

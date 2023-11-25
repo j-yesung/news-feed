@@ -3,7 +3,6 @@ import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { addContents } from 'redux/modules/content';
-import userIcon from '../../assets/user.svg';
 import { newsFeedCollection } from '../../firebase';
 import { getFormattedDate } from '../../utils/date';
 import * as S from './Write.styled';
