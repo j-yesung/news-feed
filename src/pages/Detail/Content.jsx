@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteContents, editContents, setContents, updateContents } from 'redux/modules/content';
-import { deleteNewsFeed, newsFeedCollection, updateNewFeed } from '../../firebase';
+import { deleteNewsFeed, newsFeedCollection, updateNewsFeed } from '../../firebase';
 import * as S from './Content.styled';
+import Comment from './Comment';
 
 const Content = () => {
   const params = useParams();
@@ -41,7 +42,7 @@ const Content = () => {
       isEditing: false,
     };
 
-    await updateNewFeed(updateData.id, updates);
+    await updateNewsFeed(updateData.id, updates);
     dispatch(updateContents(updateData.id, updates));
     // TODO: 수정 완료하면 해당 화면으로 다시 리렌더링 되게 수정할 수 있도록.
     navigate('/');
@@ -94,6 +95,7 @@ const Content = () => {
           </S.View>
         </S.Box>
       )}
+      <Comment />
     </div>
   );
 };
