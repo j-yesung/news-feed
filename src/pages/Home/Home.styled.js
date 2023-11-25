@@ -86,7 +86,7 @@ export const ContentsList = styled.div`
   width: 1440px;
   flex-wrap: wrap;
   //background-color: violet;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
     justify-content: center;
   }
   @media (max-width: 1660px) {
