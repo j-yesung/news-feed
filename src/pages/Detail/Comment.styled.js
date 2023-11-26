@@ -4,9 +4,20 @@ export const CommentBox = styled.div`
   //background-color: lavenderblush;
   width: 338px;
   height: 448px;
+  background-color: #fff;
   overflow-y: auto;
   overflow-x: hidden;
   border-left: 3px double #ccc;
+  @media (max-width: 1280px) {
+    width: 100%;
+    border-left: none;
+    height: 150px;
+    margin-top: 10px;
+    border-top: 2px solid #a5c7bb;
+  }
+  @media (max-width: 768px) {
+    height: 100%;
+  }
 `;
 
 export const CommentTitle = styled.div`
@@ -38,6 +49,7 @@ export const CommentInput = styled.input`
   box-sizing: border-box;
   border: 2px solid #ccc;
   outline: none;
+  background-color: #fff;
 
   font-size: 1.1rem;
   border-radius: 5px;
@@ -142,15 +154,19 @@ export const CommentFinishButton = styled.button`
   border: none;
   background-color: #f4eba5;
   padding: 5px 10px;
-  left: 230px;
-  position: relative;
+
   border-radius: 3px;
+  margin: 0 10px 10px;
+
   &:hover {
     background-color: #a5c7bb;
   }
-  margin: 0 10px 10px;
 `;
 
+export const CommentFinishBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+`;
 export const CommentTextarea = styled.textarea`
   resize: none;
   padding: 10px;
@@ -161,4 +177,7 @@ export const CommentTextarea = styled.textarea`
   width: 275px;
   border-radius: 10px;
   border: 2px solid #ccc;
+  @media (max-width: 1280px) {
+    width: calc(100% - 20px);
+  }
 `;

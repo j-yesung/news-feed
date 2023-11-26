@@ -89,7 +89,9 @@ const Comment = () => {
                   {comment.isEditing ? (
                     <div>
                       <S.CommentTextarea ref={editCommentRef} defaultValue={comment.comment}></S.CommentTextarea>
-                      <S.CommentFinishButton onClick={() => handleUpdateComment(comment)}>저장</S.CommentFinishButton>
+                      <S.CommentFinishBox>
+                        <S.CommentFinishButton onClick={() => handleUpdateComment(comment)}>저장</S.CommentFinishButton>
+                      </S.CommentFinishBox>
                     </div>
                   ) : (
                     <div>
