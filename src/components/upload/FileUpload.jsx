@@ -93,6 +93,9 @@ const ProfileImg = styled.img`
   @media (max-width: 935px) {
     width: 300px;
   }
+  @media (max-width: 935px) {
+    width: 200px;
+  }
 `;
 
 const ProfileImgBox = styled.div`
