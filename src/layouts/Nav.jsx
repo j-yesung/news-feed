@@ -7,6 +7,7 @@ const NavContainer = styled.nav`
   background-color: #eee;
   text-align: center;
   position: fixed;
+  z-index: 99999;
   height: calc(100vh - 75px);
   margin-top: 75px;
   @media (max-width: 768px) {
