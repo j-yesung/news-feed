@@ -6,7 +6,7 @@ export const Avatar = styled.img`
 
 export const View = styled.div`
   background-color: #fff;
-  width: 70%;
+  width: 1067px;
   border-radius: 20px;
   padding: 8px 10px 20px 20px;
   font-size: 20px;
@@ -132,6 +132,9 @@ export const InputTitle = styled.input`
 export const ViewCommentBox = styled.div`
   //background-color: blueviolet;
   display: flex;
+  @media (max-width: 1280px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const TitleTextarea = styled.div`

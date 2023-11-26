@@ -160,5 +160,5 @@ export const CommentTextarea = styled.textarea`
   outline: none;
   width: 275px;
   border-radius: 10px;
-  border: 1px solid #ccc;
+  border: 2px solid #ccc;
 `;
