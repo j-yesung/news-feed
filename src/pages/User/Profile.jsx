@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import FileUpload from 'components/upload/FileUpload';
 import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
+
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
@@ -10,8 +11,8 @@ const Profile = () => {
   const [isNameEditing, setIsNameEditing] = useState(false);
   const myContents = contentsData.filter(contents => contents.name === authUser.displayName);
   const nameRef = useRef();
-  const navigate = useNavigate();
 
+  const navigate = useNavigate();
   // 닉네임 변경
   const onNameChange = () => {
     updateProfile(authUser, { displayName: nameRef.current.value })
