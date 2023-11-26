@@ -9,8 +9,8 @@ const NavContainer = styled.nav`
   background-color: #eee;
   text-align: center;
   position: fixed;
-  height: calc(100vh - 73px);
-  margin-top: 73px;
+  height: calc(100vh - 75px);
+  margin-top: 75px;
   @media (max-width: 768px) {
     display: ${props => (props.$isVisible ? 'block' : 'none')};
   }
@@ -97,7 +97,7 @@ const Nav = ({ isVisible }) => {
         <li>
           {/* 세번째 섹션 */}
           <MenuBox>
-            <li onClick={profilePage}>마이 페이지</li>
+            <li onClick={() => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'))}>마이 페이지</li>
             <li>로그아웃</li>
           </MenuBox>
         </li>

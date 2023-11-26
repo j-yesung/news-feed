@@ -9,8 +9,9 @@ const Home = () => {
   const categoryData = useSelector(state => state.navbar);
 
   const category = [
-    ['음악', '스포츠'],
-    ['직장인', '대학생'],
+    ['음악', '스포츠'], //section 1
+    ['직장인', '대학생'], //section2
+    [''],
   ];
 
   const [selectedCategory, setSelectedCategory] = useState('');

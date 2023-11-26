@@ -1,13 +1,21 @@
 import styled from 'styled-components';
 
 export const ProfileTop = styled.div`
-  //background-color: lemonchiffon;
+  // background-color: lemonchiffon;
   width: 100%;
   margin-left: 20px;
   line-height: 2rem;
+  /* @media only screen and (max-width: 935px) {
+    margin-left: 0;
+  }*/
+  @media only screen and (max-width: 935px) {
+    border-top: 2px solid #ccc;
+    padding-top: 10px;
+    margin-left: 0;
+  }
 `;
 export const ProfileName = styled.div`
-  // background-color: blanchedalmond;
+  //background-color: blanchedalmond;
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
@@ -49,6 +57,41 @@ export const ProfileBox = styled.div`
   width: 900px;
   margin: 130px auto 30px;
   box-shadow: 3px 3px 10px #aaa;
+  @media only screen and (max-width: 1120px) {
+    width: 800px;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 700px;
+  }
+  @media only screen and (max-width: 935px) {
+    flex-wrap: wrap;
+    padding: 10px 10px 30px;
+    width: 650px;
+  }
+  @media only screen and (max-width: 870px) {
+    width: 600px;
+  }
+  @media only screen and (max-width: 820px) {
+    width: 500px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 700px;
+  }
+  @media only screen and (max-width: 730px) {
+    width: 600px;
+  }
+  @media only screen and (max-width: 630px) {
+    width: 500px;
+  }
+  @media only screen and (max-width: 525px) {
+    width: 400px;
+  }
+  @media only screen and (max-width: 450px) {
+    width: 350px;
+  }
+  @media only screen and (max-width: 380px) {
+    width: 300px;
+  }
 `;
 
 export const MyEmail = styled.p`
@@ -101,6 +144,39 @@ export const BulletinBox = styled.div`
   font-size: 1.2rem;
 
   line-height: 2rem;
+  @media only screen and (max-width: 1120px) {
+    width: 800px;
+  }
+  @media only screen and (max-width: 1024px) {
+    width: 700px;
+  }
+  @media only screen and (max-width: 935px) {
+    width: 650px;
+  }
+  @media only screen and (max-width: 870px) {
+    width: 600px;
+  }
+  @media only screen and (max-width: 820px) {
+    width: 500px;
+  }
+  @media only screen and (max-width: 768px) {
+    width: 700px;
+  }
+  @media only screen and (max-width: 730px) {
+    width: 600px;
+  }
+  @media only screen and (max-width: 630px) {
+    width: 500px;
+  }
+  @media only screen and (max-width: 525px) {
+    width: 400px;
+  }
+  @media only screen and (max-width: 450px) {
+    width: 350px;
+  }
+  @media only screen and (max-width: 380px) {
+    width: 300px;
+  }
 `;
 
 export const Title = styled.h2`
