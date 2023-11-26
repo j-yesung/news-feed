@@ -189,3 +189,8 @@ export const FinishBtn = styled.button`
     background-color: #a5c7bb;
   }
 `;
+
+export const HashTag = styled.div`
+  display: flex;
+  align-items: center;
+`;
