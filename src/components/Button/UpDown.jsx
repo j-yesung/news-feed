@@ -13,10 +13,10 @@ const UpDown = () => {
     });
   };
   return (
-    <div>
+    <UpDownBox>
       <UpButton onClick={scrollTop}>&#8593;</UpButton>
       <DownButton onClick={scrollDown}>&#8595; </DownButton>
-    </div>
+    </UpDownBox>
   );
 };
 
@@ -58,3 +58,5 @@ const DownButton = styled.button`
     background-color: #ccc;
   }
 `;
+
+const UpDownBox = styled.div``;

@@ -90,6 +90,9 @@ export const NameDate = styled.div`
       font-size: 1.2rem;
     }
   }
+  @media (max-width: 324px) {
+    margin-left: 2px;
+  }
 `;
 
 export const CommentBundle = styled.li`
