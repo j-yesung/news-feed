@@ -137,3 +137,28 @@ export const ModifyDeleteButtons = styled.div`
 
   //background-color: red;
 `;
+
+export const CommentFinishButton = styled.button`
+  border: none;
+  background-color: #f4eba5;
+  padding: 5px 10px;
+  left: 230px;
+  position: relative;
+  border-radius: 3px;
+  &:hover {
+    background-color: #a5c7bb;
+  }
+  margin: 0 10px 10px;
+`;
+
+export const CommentTextarea = styled.textarea`
+  resize: none;
+  padding: 10px;
+  line-height: 1.5rem;
+  font-size: 1.1rem;
+  margin: 10px;
+  outline: none;
+  width: 275px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+`;

@@ -88,8 +88,8 @@ const Comment = () => {
                   </S.CommentBundle>
                   {comment.isEditing ? (
                     <div>
-                      <textarea ref={editCommentRef} defaultValue={comment.comment}></textarea>
-                      <button onClick={() => handleUpdateComment(comment)}>저장</button>
+                      <S.CommentTextarea ref={editCommentRef} defaultValue={comment.comment}></S.CommentTextarea>
+                      <S.CommentFinishButton onClick={() => handleUpdateComment(comment)}>저장</S.CommentFinishButton>
                     </div>
                   ) : (
                     <div>

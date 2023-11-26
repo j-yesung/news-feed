@@ -121,7 +121,7 @@ export const Textarea = styled.textarea`
 export const InputTitle = styled.input`
   border: 1px solid #ccc;
   padding: 10px;
-  width: 700px;
+  width: 698px;
   font-weight: bold;
   font-size: 28px;
   margin: 10px 0 10px;
@@ -132,4 +132,24 @@ export const InputTitle = styled.input`
 export const ViewCommentBox = styled.div`
   //background-color: blueviolet;
   display: flex;
+`;
+
+export const TitleTextarea = styled.div`
+  width: 700px;
+`;
+
+export const FinishBtn = styled.button`
+  padding: 10px 20px;
+  border: none;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #f4eba5;
+  &:hover {
+    background-color: #a5c7bb;
+  }
 `;
