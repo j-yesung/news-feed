@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { storage, auth } from '../../firebase';
-import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
+import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import userIcon from '../../assets/user.svg';
+import { auth, storage } from '../../firebase';
 
 const FileUpload = () => {
   const authUser = useSelector(state => state.user.user);
@@ -35,17 +36,71 @@ const FileUpload = () => {
 
   return (
     <>
-      <div>
-        <h2>파일 업로드 컴포넌트</h2>
-        <input ref={inputRef} type="file" onChange={handleFileSelect} />
-        <button onClick={handleUpload}>업로드</button>
-        <button onClick={onClearImage}>이미지 제거</button>
-      </div>
-      <div>
-        <img src={downloadURL} width="50px" alt="사진 없음" />
-      </div>
+      <ProfileImgBox>
+        {/*<h2>프로필 이미지 변경</h2>*/}
+        <div>
+          <ProfileImg src={downloadURL} width="50px" alt="사진 없음" />
+        </div>
+        <Upload ref={inputRef} type="file" onChange={handleFileSelect} />
+        <UploadBtn onClick={handleUpload}>업로드</UploadBtn>
+        <DeleteBtn onClick={onClearImage}>이미지 제거</DeleteBtn>
+      </ProfileImgBox>
     </>
   );
 };
 
 export default FileUpload;
+
+const UploadBtn = styled.button`
+  background-color: #f4eba5;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+
+  width: 70%;
+  border-radius: 5px;
+  margin: 10px 0;
+  &:hover {
+    background-color: #a5c7bb;
+  }
+`;
+
+const DeleteBtn = styled.button`
+  background-color: #f4eba5;
+  border: none;
+  width: 70%;
+  font-weight: bold;
+  margin: 10px 0;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  &:hover {
+    background-color: #a5c7bb;
+  }
+`;
+
+const ProfileImg = styled.img`
+  width: 150px;
+  text-align: center;
+  border-radius: 50%;
+  margin-top: 20px;
+  box-shadow: 3px 3px 10px #aaa;
+`;
+
+const ProfileImgBox = styled.div`
+  background-color: #ddd;
+  width: 350px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+`;
+
+const Upload = styled.input`
+  background-color: #fff;
+  width: 70%;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 15px 0 10px;
+`;

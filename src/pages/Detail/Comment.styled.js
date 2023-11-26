@@ -74,7 +74,8 @@ export const CommentBtn = styled.button`
 `;
 export const AvatarPic = styled.img`
   width: 50px;
-
+  height: 50px;
+  border-radius: 50%;
   margin-left: 20px;
 `;
 export const NameDate = styled.div`
