@@ -90,11 +90,12 @@ const ProfileImg = styled.img`
 `;
 
 const ProfileImgBox = styled.div`
-  background-color: #ddd;
+  //background-color: #ddd;
   width: 350px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  border-right: 2px solid #eee;
 `;
 
 const Upload = styled.input`
