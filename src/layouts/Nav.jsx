@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { UseSelector } from 'react-redux/es/hooks/useSelector';
+import { Dispatch } from 'react';
+import { setcategory1, setcategory2 } from 'redux/modules/navbar';
 const NavContainer = styled.nav`
   width: 200px;
   background-color: #eee;
@@ -52,21 +54,33 @@ const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
+  const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
+
+  console.log(isVisible);
+
+  const dispatch = useDispatch();
+  const MenuBarFiltering1 = category => {
+    dispatch(setcategory1(category));
+  };
+  const MenuBarFiltering2 = category => {
+    dispatch(setcategory2(category));
+  };
+
   return (
     <NavContainer $isVisible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">
-            <li>메인으로</li>
+            <li onClick={() => MenuBarFiltering()}>메인으로</li>
           </Link>
         </MenuBox>
         <li>
           {/* 첫번째 섹션 */}
           <MenuBox>
-            <li>1번째 섹션</li>
-            <li>2번째 섹션</li>
-            <li>3번째 섹션</li>
-            <li>4번째 섹션</li>
+            <li onClick={() => MenuBarFiltering2('대학생')}>대학생</li>
+            <li onClick={() => MenuBarFiltering2('직장인')}>직장인</li>
+            <li onClick={() => MenuBarFiltering1('음악')}>음악</li>
+            <li onClick={() => MenuBarFiltering1('스포츠')}>스포츠</li>
           </MenuBox>
         </li>
         <li>
