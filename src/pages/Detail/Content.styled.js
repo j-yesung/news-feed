@@ -5,10 +5,10 @@ export const Avatar = styled.img`
 `;
 
 export const View = styled.div`
-  background-color: skyblue;
+  background-color: #fff;
   width: 70%;
   border-radius: 20px;
-  padding: 8px 20px 20px;
+  padding: 8px 10px 20px 20px;
   font-size: 20px;
   height: calc(100vh - 300px);
   position: relative;
@@ -50,6 +50,7 @@ export const Box = styled.div`
   align-items: center;
   width: 100%;
   height: calc(100vh - 85px);
+
   //background-color: bisque;
 `;
 
@@ -69,7 +70,8 @@ export const AvatarName = styled.div`
   width: 100%;
 
   padding: 5px 0 10px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #a5c7bb;
+  margin-bottom: 5px;
 `;
 
 export const Date = styled.p`
@@ -85,19 +87,22 @@ export const Date = styled.p`
 
 export const Content = styled.div`
   line-height: 2rem;
-  height: 370px;
-  background-color: lemonchiffon;
+  height: 360px;
+  background-color: #fff;
   overflow: auto;
   width: 700px;
   padding-right: 15px;
+  // border-right: 3px double #ccc;
 `;
 
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 28px;
-  padding: 30px 0 20px;
-  background-color: aliceblue;
+  padding: 20px 0 20px;
+  //background-color: aliceblue;
   width: 700px;
+  margin-bottom: 2px;
+  //  border-right: 3px double #ccc;
 `;
 
 export const Textarea = styled.textarea`
