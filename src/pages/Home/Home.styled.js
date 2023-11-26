@@ -20,6 +20,7 @@ export const Avatar = styled.img`
   width: 50px;
   margin-left: 10px;
   padding: 10px 0;
+  border-radius: 50%;
 `;
 
 export const Title = styled.h2`
@@ -37,7 +38,7 @@ export const Content = styled.p`
   padding: 5px 0 10px;
   line-height: 1.8rem;
   font-size: 20px;
-  margin: 0px 20px 20px;
+  margin: 0px 20px 63px;
   height: 210px;
 
   text-overflow: ellipsis;
@@ -61,12 +62,16 @@ export const Date = styled.p`
   font-size: 23px;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const ContentsBox = styled.div`
   background-color: #fff;
   width: 300px;
   margin: 30px;
+  position: relative;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   cursor: pointer;
