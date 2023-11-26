@@ -49,14 +49,14 @@ const MenuBox = styled.ul`
   }
 `;
 
-const Nav = ({ isVisible, toggleNav }) => {
+const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
   const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
 
   return (
-    <NavContainer isVisible={isVisible}>
+    <NavContainer is-visible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">
