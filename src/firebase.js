@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
-import { collection, deleteDoc, doc, getFirestore, updateDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, getFirestore, orderBy, query, updateDoc } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
 
 // Firebase config

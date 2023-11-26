@@ -1,4 +1,4 @@
-import { addDoc, getDocs } from 'firebase/firestore';
+import { addDoc, getDocs, orderBy, query } from 'firebase/firestore';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
@@ -22,12 +22,21 @@ const Comment = () => {
 
   console.log('lengthNum', CURRENT_COMMENT_NUM.length);
 
-  // 조회 => 여기서 또 조회하는 이유는 새로고침 때문이다
   useEffect(() => {
     const getComments = async () => {
-      const querySnapshot = await getDocs(commentCollection);
-      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      dispatch(setComment(data));
+      try {
+        const q = query(commentCollection, orderBy('date', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const commentList = [];
+        querySnapshot.forEach(doc => {
+          commentList.push({ ...doc.data(), id: doc.id });
+        });
+        console.log(commentList);
+        dispatch(setComment(commentList));
+      } catch (e) {
+        console.error(e);
+        return [];
+      }
     };
     getComments();
   }, [dispatch]);
