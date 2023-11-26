@@ -1,7 +1,9 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { UseSelector } from 'react-redux/es/hooks/useSelector';
+import { Dispatch } from 'react';
+import { setcategory1 } from 'redux/modules/navbar';
 const NavContainer = styled.nav`
   width: 200px;
   text-align: center;
@@ -48,6 +50,12 @@ const MenuBox = styled.ul`
 `;
 
 const Nav = () => {
+  const dispatch = useDispatch();
+  const MenuBarFiltering = category => {
+    console.log(category);
+
+    dispatch(setcategory1(category));
+  };
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
@@ -58,15 +66,15 @@ const Nav = () => {
       <Menu>
         <MenuBox>
           <Link to="/">
-            <li>메인으로</li>
+            <li onClick={() => MenuBarFiltering()}>메인으로</li>
           </Link>
         </MenuBox>
         <li>
           {/* 첫번째 섹션 */}
           <MenuBox>
-            <li>1번째 섹션</li>
-            <li>2번째 섹션</li>
-            <li>3번째 섹션</li>
+            <li onClick={() => MenuBarFiltering('대학생')}>대학생</li>
+            <li onClick={() => MenuBarFiltering('직장인')}>직장인</li>
+
             <li>4번째 섹션</li>
           </MenuBox>
         </li>

@@ -14,9 +14,9 @@ const Content = () => {
   const contentsData = useSelector(state => state.contents.contents);
   const findData = contentsData.find(contents => contents.id === params.id);
   const authUser = useSelector(state => state.user.user);
-
   const titleRef = useRef();
   const contentRef = useRef();
+  console.log('어스유저', authUser);
 
   // 조회 => 여기서 또 조회하는 이유는 새로고침 때문이다.
   useEffect(() => {
@@ -64,7 +64,7 @@ const Content = () => {
                 <S.Name>{findData.name}</S.Name>
                 <S.Date>{findData.date}</S.Date>
               </div>
-              {authUser.displayName === findData.name ? (
+              {authUser?.displayName === findData.name ? (
                 findData.isEditing ? (
                   <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
                 ) : (
@@ -85,6 +85,8 @@ const Content = () => {
                 <div key={findData.id}>
                   <S.Title>{findData.title}</S.Title>
                   <S.Content>{findData.content}</S.Content>
+                  <div># {findData.category}</div>
+                  <div># {findData.category2}</div>
                 </div>
               )}
               <Comment />
