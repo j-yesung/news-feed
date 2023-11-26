@@ -5,11 +5,13 @@ export const LoginBox = styled.div`
   position: absolute;
   left: 50%;
   top: 50%;
-
+  width: 305px;
   transform: translate(-50%, -50%);
   padding: 20px;
   line-height: 2rem;
   border-radius: 10px;
+  box-sizing: border-box;
+  max-width: 100%;
   border: 1px solid #ccc;
   box-shadow: 2px 2px 8px #ccc;
   //rem <body> 16px 설정되어있는 폰트사이즈 기준으로

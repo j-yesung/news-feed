@@ -24,6 +24,12 @@ const Modal = styled.div`
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: 3px 3px 10px #555;
+  @media (max-width: 511px) {
+    width: 300px;
+  }
+  @media (max-width: 410px) {
+    width: 250px;
+  }
 `;
 
 const CloseBtn = styled.button`
