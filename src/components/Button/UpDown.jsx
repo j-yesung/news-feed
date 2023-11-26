@@ -28,13 +28,14 @@ const UpButton = styled.button`
   bottom: 90px;
   right: 25px;
   border: none;
-  background-color: #f4eba5;
+  background-color: ${({ theme }) => theme.upButtonBgColor};
   z-index: 99;
   font-size: 30px;
   border-radius: 10px;
   width: 60px;
   box-shadow: 2px 2px 2px #aaa;
   font-weight: bold;
+  filter: ${({ theme }) => theme.invertFilter};
   &:hover {
     background-color: #ccc;
   }
@@ -49,9 +50,10 @@ const DownButton = styled.button`
   border-radius: 10px;
   right: 25px;
   font-size: 30px;
-  background-color: #a5c7bb;
+  background-color: ${({ theme }) => theme.downButtonBgColor};
   width: 60px;
   z-index: 99;
+  filter: ${({ theme }) => theme.invertFilter};
   &:hover {
     background-color: #ccc;
   }

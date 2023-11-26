@@ -1,8 +1,8 @@
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyle';
-import { theme } from 'styles/theme';
+import { lightTheme, theme } from 'styles/theme';
 import Router from './shared/Router';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, newsFeedCollection } from './firebase';
@@ -12,6 +12,7 @@ import { setContents } from 'redux/modules/content';
 
 function App() {
   const dispatch = useDispatch();
+  const themeMode = useSelector(state => state.themeReducer.isMode);
 
   useEffect(() => {
     // 뉴스피드 불러오기
@@ -31,7 +32,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeMode || lightTheme}>
       <GlobalStyle />
       <Router />
     </ThemeProvider>

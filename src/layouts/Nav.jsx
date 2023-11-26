@@ -8,7 +8,7 @@ const NavContainer = styled.nav`
   position: fixed;
   height: calc(100vh - 73px);
   margin-top: 73px;
-  @media ${props => props.theme.mobile} {
+  @media (max-width: 768px) {
     display: none;
   }
 `;
@@ -35,14 +35,15 @@ const MenuBox = styled.ul`
     left: 50%;
     transform: translate(-50%, 0px);
     &:hover {
-      background-color: #f4eba5;
+      background-color: ${({ theme }) => theme.contentsHeaderColor};
       cursor: pointer;
       font-weight: bold;
+      color: ${({ theme }) => theme.buttonTextColor};
     }
   }
   a {
     text-decoration: none;
-    color: #000;
+    color: ${({ theme }) => theme.contentsTextColor};
   }
 `;
 

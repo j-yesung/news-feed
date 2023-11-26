@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { deleteContents, editContents, setContents, updateContents } from 'redux/modules/content';
 import { deleteNewsFeed, newsFeedCollection, updateNewsFeed } from '../../firebase';
-import * as S from './Content.styled';
 import Comment from './Comment';
+import * as S from './Content.styled';
 
 const Content = () => {
   const params = useParams();
@@ -13,6 +13,7 @@ const Content = () => {
   const navigate = useNavigate();
   const contentsData = useSelector(state => state.contents.contents);
   const findData = contentsData.find(contents => contents.id === params.id);
+  const authUser = useSelector(state => state.user.user);
 
   const titleRef = useRef();
   const contentRef = useRef();
@@ -26,8 +27,6 @@ const Content = () => {
     };
     getContents();
   }, [dispatch]);
-
-  console.log('🚀 findData:', findData);
 
   // 수정 버튼 클릭했을 때
   const HandleEditingToggle = id => dispatch(editContents(id));
@@ -44,8 +43,6 @@ const Content = () => {
 
     await updateNewsFeed(updateData.id, updates);
     dispatch(updateContents(updateData.id, updates));
-    // TODO: 수정 완료하면 해당 화면으로 다시 리렌더링 되게 수정할 수 있도록.
-    navigate('/');
   };
 
   // 삭제
@@ -55,10 +52,6 @@ const Content = () => {
     navigate('/');
   };
 
-  const authUser = useSelector(state => state.user.user);
-
-  console.log('얍얍', findData.name);
-  console.log('얍222222', authUser);
   return (
     <div>
       {/* findData가 존재하면 아래 내용 호출 */}
@@ -67,35 +60,38 @@ const Content = () => {
           <S.View>
             <S.AvatarName>
               <S.Avatar src={findData.pic} alt="사진" />
-              <S.Name>{findData.name}</S.Name>
+              <div>
+                <S.Name>{findData.name}</S.Name>
+                <S.Date>{findData.date}</S.Date>
+              </div>
+              {authUser.displayName === findData.name ? (
+                findData.isEditing ? (
+                  <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
+                ) : (
+                  <>
+                    <S.ModifyBtn onClick={() => HandleEditingToggle(findData.id)}>수정</S.ModifyBtn>
+                    <S.DeleteBtn onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</S.DeleteBtn>
+                  </>
+                )
+              ) : null}
             </S.AvatarName>
-            {findData.isEditing ? (
-              <div key={findData.id}>
-                <S.InputTitle ref={titleRef} defaultValue={findData.title}></S.InputTitle>
-                <S.Textarea ref={contentRef} defaultValue={findData.content}></S.Textarea>
-              </div>
-            ) : (
-              <div key={findData.id}>
-                <S.Title>{findData.title}</S.Title>
-                <S.Content>{findData.content}</S.Content>
-              </div>
-            )}
-            <S.Date>{findData.date}</S.Date>
-
-            {authUser === findData.name ? (
-              findData.isEditing ? (
-                <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
+            <S.ViewCommentBox>
+              {findData.isEditing ? (
+                <div key={findData.id}>
+                  <S.InputTitle ref={titleRef} defaultValue={findData.title}></S.InputTitle>
+                  <S.Textarea ref={contentRef} defaultValue={findData.content}></S.Textarea>
+                </div>
               ) : (
-                <>
-                  <button onClick={() => HandleEditingToggle(findData.id)}>수정</button>
-                  <button onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</button>
-                </>
-              )
-            ) : null}
+                <div key={findData.id}>
+                  <S.Title>{findData.title}</S.Title>
+                  <S.Content>{findData.content}</S.Content>
+                </div>
+              )}
+              <Comment />
+            </S.ViewCommentBox>
           </S.View>
         </S.Box>
       )}
-      <Comment />
     </div>
   );
 };

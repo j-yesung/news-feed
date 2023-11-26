@@ -50,7 +50,6 @@ const comment = (state = initialState, action) => {
         ...state,
         comments: state.comments.map(comment => {
           if (comment.id === action.payload) {
-            console.log(comment);
             return { ...comment, isEditing: true };
           }
           return comment;
@@ -64,7 +63,6 @@ const comment = (state = initialState, action) => {
         ),
       };
     case DELETE_COMMENT:
-      console.log(state, action.payload);
       return {
         ...state,
         comments: state.comments.filter(comment => comment.id !== action.payload),

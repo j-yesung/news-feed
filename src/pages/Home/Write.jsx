@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { addContents } from 'redux/modules/content';
 import { newsFeedCollection } from '../../firebase';
 import { getFormattedDate } from '../../utils/date';
+import shortid from 'shortid';
 import * as S from './Write.styled';
 
 const Write = () => {
@@ -28,6 +29,7 @@ const Write = () => {
       content: content,
       date: formattedDate,
       pic: authUser.photoURL,
+      seq: shortid.generate(),
       isEditing: false,
     };
 
