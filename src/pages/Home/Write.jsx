@@ -24,6 +24,7 @@ const Write = () => {
     const currentDate = new Date();
     const formattedDate = getFormattedDate(currentDate);
     const newContents = {
+      email: authUser.email,
       name: authUser.displayName,
       title: title,
       content: content,

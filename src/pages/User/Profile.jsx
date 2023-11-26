@@ -2,17 +2,16 @@ import React, { useRef, useState } from 'react';
 import FileUpload from 'components/upload/FileUpload';
 import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
-
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
   const authUser = useSelector(state => state.user.user);
   const contentsData = useSelector(state => state.contents.contents);
   const [isNameEditing, setIsNameEditing] = useState(false);
-  const myContents = contentsData.filter(contents => contents.name === authUser.displayName);
+  const myContents = contentsData.filter(contents => contents.email === authUser.email);
   const nameRef = useRef();
-
   const navigate = useNavigate();
+
   // 닉네임 변경
   const onNameChange = () => {
     updateProfile(authUser, { displayName: nameRef.current.value })
@@ -30,7 +29,13 @@ const Profile = () => {
         <>
           <div>
             {isNameEditing ? (
-              <input ref={nameRef} type="text" defaultValue={authUser.displayName} />
+              <input
+                ref={nameRef}
+                type="text"
+                maxLength="10"
+                placeholder="10자 이내로 입력해 주세요."
+                defaultValue={authUser.displayName}
+              />
             ) : (
               <p>{authUser.displayName}</p>
             )}
