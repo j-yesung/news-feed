@@ -7,8 +7,8 @@ const NavContainer = styled.nav`
   background-color: #eee;
   text-align: center;
   position: fixed;
-  height: calc(100vh - 73px);
-  margin-top: 73px;
+  height: calc(100vh - 75px);
+  margin-top: 75px;
   @media (max-width: 768px) {
     display: ${props => (props.$isVisible ? 'block' : 'none')};
   }

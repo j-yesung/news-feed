@@ -9,7 +9,7 @@ const Section = styled.section`
   width: calc(100vw - 220px);
   height: 100vh;
   margin-left: 200px;
-  margin-top: 73px;
+  padding-top: 73px;
 
   box-sizing: border-box;
   @media (max-width: 768px) {
