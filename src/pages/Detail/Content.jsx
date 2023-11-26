@@ -58,7 +58,7 @@ const Content = () => {
   const authUser = useSelector(state => state.user.user);
 
   console.log('얍얍', findData.name);
-  console.log('얍222222', authUser.displayName);
+  console.log('얍222222', authUser);
   return (
     <div>
       {/* findData가 존재하면 아래 내용 호출 */}
@@ -82,7 +82,7 @@ const Content = () => {
             )}
             <S.Date>{findData.date}</S.Date>
 
-            {authUser.displayName === findData.name ? (
+            {authUser === findData.name ? (
               findData.isEditing ? (
                 <button onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</button>
               ) : (

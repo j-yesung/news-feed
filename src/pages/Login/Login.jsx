@@ -8,7 +8,7 @@ import githubButton from '../../assets/github.svg';
 import googleButton from '../../assets/google.svg';
 import { auth } from '../../firebase';
 import * as S from './Login.styled';
-import ModalBasic from './ModalBasic';
+import FindPW from './FindPw';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -31,13 +31,9 @@ const Login = () => {
       target: { name, value },
     } = event;
     if (name === 'email') {
-      const emailValue = event.target.value;
-      emailValue.includes('@') && password.length >= 5 ? setIsValid(true) : setIsValid(false);
       setEmail(value);
     }
     if (name === 'password') {
-      const pwdValue = event.target.value;
-      pwdValue.length >= 6 ? setIsValid(true) : setIsValid(false);
       setPassword(value);
     }
   };
@@ -83,7 +79,7 @@ const Login = () => {
   }
 
   function handleGithubLogin() {
-    const provider = new GoogleAuthProvider(); // provider 구글 설정
+    const provider = new GithubAuthProvider(); // provider 깃허브 설정
     signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
       .then(data => {
         setUserData(data.user); // user data 설정
@@ -94,6 +90,17 @@ const Login = () => {
         console.log(err);
       });
   }
+
+  const [focusedInput, setFocusedInput] = useState(null);
+
+  // Track focused input
+  const handleInputFocus = name => {
+    setFocusedInput(name);
+  };
+
+  const isFocusedEmailValid = focusedInput === 'email' && /\S+@\S+\.\S+/.test(email);
+  const isFocusedPasswordValid = focusedInput === 'password' && password.length >= 6;
+
   return (
     <>
       <S.LoginBox>
@@ -106,27 +113,47 @@ const Login = () => {
               value={email}
               name="email"
               onChange={onChange}
+              onFocus={() => handleInputFocus('email')} // Set the focused input
+              onBlur={() => setFocusedInput(null)} // Reset focused input when blur occurs
               placeholder="이메일"
-              style={{ border: isEmailValid ? '1px solid blue' : '1px solid red' }}></S.EmailInput>
-          </div>
-          {isEmailValid ? (
+              style={{
+                border: isFocusedEmailValid
+                  ? '1px solid blue'
+                  : focusedInput === 'email'
+                  ? '1px solid red'
+                  : '1px solid gray',
+              }}></S.EmailInput>
+          </div>{' '}
+          {isFocusedEmailValid ? (
             <S.ValidationText style={{ color: 'blue' }}>이메일이 올바르게 작성되었습니다!</S.ValidationText>
           ) : (
-            <S.ValidationText style={{ color: 'red' }}>이메일을 형식에 맞게 작성해주세요!</S.ValidationText>
+            focusedInput === 'email' && (
+              <S.ValidationText style={{ color: 'red' }}>이메일 형식에 맞게 작성해주세요!</S.ValidationText>
+            )
           )}
           <div>
             <S.PwInput
               type="password"
               value={password}
               name="password"
+              onFocus={() => handleInputFocus('password')} // Set the focused input
+              onBlur={() => setFocusedInput(null)} // Reset focused input when blur occurs
               placeholder="비밀번호"
               onChange={onChange}
-              style={{ border: isPasswordValid ? '1px solid blue' : '1px solid red' }}></S.PwInput>
+              style={{
+                border: isFocusedPasswordValid
+                  ? '1px solid blue'
+                  : focusedInput === 'password'
+                  ? '1px solid red'
+                  : '1px solid gray',
+              }}></S.PwInput>
           </div>
-          {isPasswordValid ? (
+          {isFocusedPasswordValid ? (
             <S.ValidationText style={{ color: 'blue' }}>비밀번호가 올바르게 작성되었습니다!</S.ValidationText>
           ) : (
-            <S.ValidationText style={{ color: 'red' }}>비밀번호는 6자리 이상 입력해주세요!</S.ValidationText>
+            focusedInput === 'password' && (
+              <S.ValidationText style={{ color: 'red' }}>비밀번호는 6자리 이상 입력해주세요!</S.ValidationText>
+            )
           )}
           <S.LoginBtn onClick={signIn} ref={idRef} disabled={!isEmailValid || !isPasswordValid}>
             오늘의 나 시작하기
@@ -139,13 +166,13 @@ const Login = () => {
             <button type="button" style={{ background: 'transparent', border: 'none' }} onClick={handleGithubLogin}>
               <S.GithubButton style={{}} src={githubButton}></S.GithubButton>
             </button>
-            <button type="button" style={{ background: 'transparent', border: 'none' }} onClick={handleGithubLogin}>
+            <button type="button" style={{ background: 'transparent', border: 'none' }} onClick={handleGoogleLogin}>
               <S.GooglebButton style={{}} src={googleButton}></S.GooglebButton>
             </button>
           </S.SocialLogin>
         </form>
       </S.LoginBox>
-      {modalOpen && <ModalBasic setModalOpen={setModalOpen} />}
+      {modalOpen && <FindPW setModalOpen={setModalOpen} />}
     </>
   );
 };

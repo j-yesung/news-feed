@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import FileUpload from 'components/upload/FileUpload';
 import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
-
+import { Navigate, useNavigate } from 'react-router-dom';
 const Profile = () => {
   const authUser = useSelector(state => state.user.user);
   const contentsData = useSelector(state => state.contents.contents);
@@ -10,6 +10,7 @@ const Profile = () => {
   const myContents = contentsData.filter(contents => contents.name === authUser.displayName);
   const nameRef = useRef();
 
+  const navigate = useNavigate();
   // 닉네임 변경
   const onNameChange = () => {
     updateProfile(authUser, { displayName: nameRef.current.value })
@@ -17,6 +18,9 @@ const Profile = () => {
       .catch(error => console.error('공습 경보!', error));
   };
 
+  const goToContentDetail = contentId => {
+    navigate(`/content/${contentId}`);
+  };
   console.log('🚀 유저 정보', authUser);
 
   return authUser ? (
@@ -44,7 +48,9 @@ const Profile = () => {
       {/* 자기가 작성한 게시글 보여주기 */}
       {authUser &&
         myContents.map(contents => (
-          <div key={contents.id}>
+          <div key={contents.id} onClick={() => goToContentDetail(contents.id)}>
+            {/* Display content information */}
+            {/* This will navigate to content detail when clicked */}
             <div>제목 : {contents.title}</div>
             <div>내용 : {contents.content}</div>
             <div>날짜 : {contents.date}</div>
