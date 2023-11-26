@@ -26,17 +26,17 @@ const Profile = () => {
       <S.ProfileBox>
         <FileUpload />
         <S.ProfileTop>
-          <p>이메일 : {authUser?.email}</p>
+          <S.MyEmail>이메일 : {authUser?.email}</S.MyEmail>
           {authUser && (
             <S.ProfileName>
               {isNameEditing ? (
-                <input ref={nameRef} type="text" defaultValue={authUser.displayName} />
+                <S.ChangeInput ref={nameRef} type="text" defaultValue={authUser.displayName} />
               ) : (
-                <p>{authUser.displayName}</p>
+                <S.NowNickName>{authUser.displayName}</S.NowNickName>
               )}
 
               {isNameEditing ? (
-                <button onClick={onNameChange}>저장</button>
+                <S.SaveBtn onClick={onNameChange}>저장</S.SaveBtn>
               ) : (
                 <S.ChangeName onClick={() => setIsNameEditing(true)}>닉네임 변경</S.ChangeName>
               )}

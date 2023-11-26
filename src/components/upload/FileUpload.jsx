@@ -57,9 +57,13 @@ const UploadBtn = styled.button`
   padding: 10px 20px;
   font-weight: bold;
   cursor: pointer;
+
   width: 70%;
   border-radius: 5px;
   margin: 10px 0;
+  &:hover {
+    background-color: #a5c7bb;
+  }
 `;
 
 const DeleteBtn = styled.button`
@@ -72,6 +76,9 @@ const DeleteBtn = styled.button`
   padding: 10px 20px;
   border-radius: 5px;
   margin-bottom: 20px;
+  &:hover {
+    background-color: #a5c7bb;
+  }
 `;
 
 const ProfileImg = styled.img`
@@ -84,7 +91,7 @@ const ProfileImg = styled.img`
 
 const ProfileImgBox = styled.div`
   background-color: #ddd;
-  width: 300px;
+  width: 350px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
