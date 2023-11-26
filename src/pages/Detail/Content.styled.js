@@ -2,6 +2,7 @@ import styled from 'styled-components';
 export const Avatar = styled.img`
   width: 50px;
   margin-left: 10px;
+  border-radius: 50%;
 `;
 
 export const View = styled.div`

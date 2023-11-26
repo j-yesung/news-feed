@@ -1,10 +1,9 @@
-import React, { useRef, useState } from 'react';
 import FileUpload from 'components/upload/FileUpload';
-import { useSelector } from 'react-redux';
 import { updateProfile } from 'firebase/auth';
-
+import { useRef, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
+import * as S from './Profile.styled';
 const Profile = () => {
   const authUser = useSelector(state => state.user.user);
   const contentsData = useSelector(state => state.contents.contents);
@@ -22,27 +21,29 @@ const Profile = () => {
 
   return authUser ? (
     <>
-      <div>Profile</div>
+      <div>마이페이지</div>
       {/* FileUpload : 파일 업로드 컴포넌트 */}
-      <FileUpload />
-      <p>이메일 : {authUser?.email}</p>
-      {authUser && (
-        <>
-          <div>
-            {isNameEditing ? (
-              <input ref={nameRef} type="text" defaultValue={authUser.displayName} />
-            ) : (
-              <p>{authUser.displayName}</p>
-            )}
-          </div>
-          {isNameEditing ? (
-            <button onClick={onNameChange}>저장</button>
-          ) : (
-            <button onClick={() => setIsNameEditing(true)}>닉네임 변경</button>
+      <S.ProfileBox>
+        <FileUpload />
+        <S.ProfileTop>
+          <p>이메일 : {authUser?.email}</p>
+          {authUser && (
+            <S.ProfileName>
+              {isNameEditing ? (
+                <input ref={nameRef} type="text" defaultValue={authUser.displayName} />
+              ) : (
+                <p>{authUser.displayName}</p>
+              )}
+
+              {isNameEditing ? (
+                <button onClick={onNameChange}>저장</button>
+              ) : (
+                <S.ChangeName onClick={() => setIsNameEditing(true)}>닉네임 변경</S.ChangeName>
+              )}
+            </S.ProfileName>
           )}
-          <br />
-        </>
-      )}
+        </S.ProfileTop>
+      </S.ProfileBox>
       {authUser &&
         myContents.map(contents => (
           <div
@@ -54,9 +55,9 @@ const Profile = () => {
               margin: '10px',
               cursor: 'pointer',
             }}>
+            <div>날짜 : {contents.date}</div>
             <div>제목 : {contents.title}</div>
             <div>내용 : {contents.content}</div>
-            <div>날짜 : {contents.date}</div>
             <br />
           </div>
         ))}
