@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const CommentBox = styled.div`
   //background-color: lavenderblush;
-  width: 100%;
+  width: 338px;
   height: 448px;
   overflow-y: auto;
   overflow-x: hidden;

@@ -107,24 +107,24 @@ export const Title = styled.h2`
 
 export const Textarea = styled.textarea`
   resize: none;
-  width: 100%;
+  width: 698px;
   font-size: 20px;
-  height: 350px;
+  height: 360px;
   outline: none;
   line-height: 2rem;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 0;
+
   border-radius: 10px;
 `;
 
 export const InputTitle = styled.input`
   border: 1px solid #ccc;
   padding: 10px;
-  width: 100%;
+  width: 700px;
   font-weight: bold;
   font-size: 28px;
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
   outline: none;
   border-radius: 10px;
 `;
