@@ -14,7 +14,37 @@ export const TitleInput = styled.input`
   }
   border-radius: 10px;
 `;
+export const SelectedCategory = styled.select`
+  padding: 10px 20px;
+  width: 200px;
+  border-radius: 8px;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  font-weight: 500;
+  margin-bottom: 25px;
+  font-family: inherit;
 
+  &::-ms-expand {
+    display: none; /*for IE10,11*/
+  }
+`;
+export const SelectedCategory2 = styled.select`
+  padding: 10px 20px;
+  width: 200px;
+  border: none;
+  font-size: 20px;
+  outline: none;
+  font-weight: 500;
+  font-family: inherit;
+  margin-left: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+
+  &::-ms-expand {
+    display: none; /*for IE10,11*/
+  }
+`;
 export const Textarea = styled.textarea`
   outline: none;
   resize: none;

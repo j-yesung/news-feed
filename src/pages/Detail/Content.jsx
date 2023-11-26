@@ -73,8 +73,10 @@ const Content = () => {
                 <div key={findData.id}>
                   <S.Title>{findData.title}</S.Title>
                   <S.Content>{findData.content}</S.Content>
-                  <div># {findData.category}</div>
-                  <div># {findData.category2}</div>
+                  <S.HashTag>
+                    <div># {findData.category}</div>
+                    <div># {findData.category2}</div>
+                  </S.HashTag>
                 </div>
               )}
               <Comment />

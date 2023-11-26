@@ -1,14 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { UseSelector } from 'react-redux/es/hooks/useSelector';
-import { Dispatch } from 'react';
 import { setcategory1, setcategory2 } from 'redux/modules/navbar';
+import styled from 'styled-components';
 const NavContainer = styled.nav`
   width: 200px;
   background-color: #eee;
   text-align: center;
   position: fixed;
+  z-index: 99999;
   height: calc(100vh - 75px);
   margin-top: 75px;
   @media (max-width: 768px) {
@@ -71,7 +70,7 @@ const Nav = ({ isVisible }) => {
       <Menu>
         <MenuBox>
           <Link to="/">
-            <li onClick={() => MenuBarFiltering()}>메인으로</li>
+            <li>메인으로</li>
           </Link>
         </MenuBox>
         <li>
