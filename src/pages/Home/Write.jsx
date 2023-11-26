@@ -27,6 +27,7 @@ const Write = () => {
     const currentDate = new Date();
     const formattedDate = getFormattedDate(currentDate);
     const newContents = {
+      email: authUser.email,
       name: authUser.displayName,
       title: title,
       content: content,
@@ -60,7 +61,6 @@ const Write = () => {
             </option>
             <option value="음악">음악</option>
             <option value="스포츠">스포츠</option>
-            {/* Add more categories as needed */}
           </select>
           <select value={selectedCategory2} onChange={e => setSelectedCategory2(e.target.value)}>
             <option value="default" disabled>
@@ -68,7 +68,6 @@ const Write = () => {
             </option>
             <option value="대학생">대학생</option>
             <option value="직장인">직장인</option>
-            {/* Add more categories as needed */}
           </select>
           <S.Button onClick={createNewsFeedArticle}>작성 완료</S.Button>
         </S.WriteBox>

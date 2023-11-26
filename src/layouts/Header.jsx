@@ -8,7 +8,8 @@ import menuIcon from '../assets/navigation_icon.svg';
 import { auth } from '../firebase';
 import { darkTheme, lightTheme } from 'styles/theme';
 import { setThemeMode } from 'redux/modules/dark';
-import { useEffect } from 'react';
+import Nav from './Nav';
+import { useEffect, useState } from 'react';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -109,6 +110,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const authUser = useSelector(state => state.user.user);
   const themeMode = useSelector(state => state.themeReducer.isMode);
+  const [isNavOpen, setIsNavOpen] = useState(false);
 
   const logOut = async event => {
     if (auth !== '') {
@@ -126,13 +128,11 @@ const Header = () => {
     dispatch(setThemeMode(lightTheme));
   }, [dispatch]);
 
-  const toggleTheme = () => {
-    if (themeMode === lightTheme) {
-      dispatch(setThemeMode(darkTheme));
-    } else {
-      dispatch(setThemeMode(lightTheme));
-    }
-  };
+  // 메뉴 토글
+  const toggleNav = () => setIsNavOpen(!isNavOpen);
+  // 다크 모드 토글
+  const toggleTheme = () =>
+    themeMode === lightTheme ? dispatch(setThemeMode(darkTheme)) : dispatch(setThemeMode(lightTheme));
 
   return (
     <>
@@ -155,11 +155,12 @@ const Header = () => {
             <>
               <DarkMode src={lightIcon} onClick={toggleTheme} />
               <UserIcon src={authUser.photoURL} />
-              <MenuIcon src={menuIcon} />
+              <MenuIcon src={menuIcon} onClick={toggleNav} />
             </>
           )}
         </Buttons>
       </HeaderContainer>
+      <Nav isVisible={isNavOpen} />
     </>
   );
 };

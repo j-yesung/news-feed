@@ -10,7 +10,7 @@ export const setcategory2 = payload => {
 
 const initialState = {
   category1: 'default',
-  category2: 'default',
+  // category2: 'default',
 };
 
 const navbar = (state = initialState, action) => {

@@ -3,19 +3,21 @@ import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UseSelector } from 'react-redux/es/hooks/useSelector';
 import { Dispatch } from 'react';
-import { setcategory1 } from 'redux/modules/navbar';
+import { setcategory1, setcategory2 } from 'redux/modules/navbar';
 const NavContainer = styled.nav`
   width: 200px;
+  background-color: #eee;
   text-align: center;
   position: fixed;
   height: calc(100vh - 73px);
   margin-top: 73px;
   @media (max-width: 768px) {
-    display: none;
+    display: ${props => (props.$isVisible ? 'block' : 'none')};
   }
 `;
 
 const Menu = styled.ul`
+  background-color: #eee;
   li {
     margin: 10px 0;
   }
@@ -28,7 +30,6 @@ const MenuBox = styled.ul`
   border-radius: 10px;
 
   li {
-    //background-color: skyblue;
     padding: 10px 0;
     margin: 10px 0;
     width: 130%;
@@ -49,20 +50,24 @@ const MenuBox = styled.ul`
   }
 `;
 
-const Nav = () => {
-  const dispatch = useDispatch();
-  const MenuBarFiltering = category => {
-    console.log(category);
-
-    dispatch(setcategory1(category));
-  };
+const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
   const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
 
+  console.log(isVisible);
+
+  const dispatch = useDispatch();
+  const MenuBarFiltering1 = category => {
+    dispatch(setcategory1(category));
+  };
+  const MenuBarFiltering2 = category => {
+    dispatch(setcategory2(category));
+  };
+
   return (
-    <NavContainer>
+    <NavContainer $isVisible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">
@@ -72,10 +77,10 @@ const Nav = () => {
         <li>
           {/* 첫번째 섹션 */}
           <MenuBox>
-            <li onClick={() => MenuBarFiltering('대학생')}>대학생</li>
-            <li onClick={() => MenuBarFiltering('직장인')}>직장인</li>
-
-            <li>4번째 섹션</li>
+            <li onClick={() => MenuBarFiltering2('대학생')}>대학생</li>
+            <li onClick={() => MenuBarFiltering2('직장인')}>직장인</li>
+            <li onClick={() => MenuBarFiltering1('음악')}>음악</li>
+            <li onClick={() => MenuBarFiltering1('스포츠')}>스포츠</li>
           </MenuBox>
         </li>
         <li>
