@@ -10,7 +10,7 @@ const NavContainer = styled.nav`
   height: calc(100vh - 73px);
   margin-top: 73px;
   @media (max-width: 768px) {
-    display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
+    display: ${props => (props.$isVisible ? 'block' : 'none')};
   }
 `;
 
@@ -28,7 +28,6 @@ const MenuBox = styled.ul`
   border-radius: 10px;
 
   li {
-    //background-color: skyblue;
     padding: 10px 0;
     margin: 10px 0;
     width: 130%;
@@ -55,8 +54,10 @@ const Nav = ({ isVisible }) => {
 
   const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
 
+  console.log(isVisible);
+
   return (
-    <NavContainer is-visible={isVisible}>
+    <NavContainer $isVisible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">

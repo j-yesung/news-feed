@@ -18,6 +18,9 @@ const Comment = () => {
 
   // SEQUENCE
   const FIND_CONTENT_SEQUENCE = contentsData.find(contents => contents.id === params.id);
+  const CURRENT_COMMENT_NUM = commentData.filter(comments => comments.seq === FIND_CONTENT_SEQUENCE.seq && comments);
+
+  console.log('lengthNum', CURRENT_COMMENT_NUM.length);
 
   // 조회 => 여기서 또 조회하는 이유는 새로고침 때문이다
   useEffect(() => {
@@ -67,7 +70,7 @@ const Comment = () => {
   return (
     <S.CommentBox>
       <S.TitleBox>
-        <S.CommentTitle>댓글 목록</S.CommentTitle> <div>- {commentData.length}개의 댓글</div>
+        <S.CommentTitle>댓글 목록</S.CommentTitle> <div>- {CURRENT_COMMENT_NUM.length}개의 댓글</div>
       </S.TitleBox>
       <S.CommentWriteBox>
         <S.CommentInput ref={commentRef} type="text" placeholder="댓글을 입력하세요" />
@@ -97,10 +100,8 @@ const Comment = () => {
                     <div>
                       <S.CommentText>{comment.comment}</S.CommentText>
                       <S.ModifyDeleteButtons>
-                        <S.CommentModifyButton onClick={() => dispatch(handleEditToggle(comment.id))}>
-                          수정
-                        </S.CommentModifyButton>
-                        <S.CommentDeleteButton onClick={() => dispatch(handleDeleteComment(comment.id))}>
+                        <S.CommentModifyButton onClick={() => handleEditToggle(comment.id)}>수정</S.CommentModifyButton>
+                        <S.CommentDeleteButton onClick={() => handleDeleteComment(comment.id)}>
                           삭제
                         </S.CommentDeleteButton>
                       </S.ModifyDeleteButtons>
