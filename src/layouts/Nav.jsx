@@ -49,7 +49,7 @@ const MenuBox = styled.ul`
   }
 `;
 
-const Nav = ({ isVisible, toggleNav }) => {
+const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
