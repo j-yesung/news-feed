@@ -3,7 +3,6 @@ import Header from './Header';
 import UpDown from 'components/Button/UpDown';
 import { Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-import Nav from './Nav';
 
 const Section = styled.section`
   background-color: transparent;
@@ -24,7 +23,6 @@ const Layout = () => {
   return (
     <>
       <Header />
-      <Nav />
       <Section>
         <Outlet />
       </Section>

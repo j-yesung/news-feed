@@ -56,7 +56,7 @@ const Nav = ({ isVisible, toggleNav }) => {
   const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
 
   return (
-    <NavContainer isVisible={isVisible}>
+    <NavContainer is-visible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">
