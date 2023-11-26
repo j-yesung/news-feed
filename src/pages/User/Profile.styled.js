@@ -9,6 +9,8 @@ export const ProfileTop = styled.div`
 `;
 export const ProfileName = styled.div`
   background-color: blanchedalmond;
+  display: flex;
+  justify-content: space-between;
 `;
 
 export const ChangeName = styled.button`
@@ -47,11 +49,13 @@ export const MyEmail = styled.p`
 
 export const NowNickName = styled.p`
   font-size: 1.3rem;
+  padding-left: 10px;
 `;
 
 export const ChangeInput = styled.input`
   outline: none;
   border: none;
-  padding: 5px;
+  width: 570px;
+  padding: 10px;
   font-size: 1.3rem;
 `;

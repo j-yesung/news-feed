@@ -4,16 +4,18 @@ import styled from 'styled-components';
 
 const NavContainer = styled.nav`
   width: 200px;
+  background-color: #eee;
   text-align: center;
   position: fixed;
   height: calc(100vh - 73px);
   margin-top: 73px;
   @media (max-width: 768px) {
-    display: none;
+    display: ${({ isVisible }) => (isVisible ? 'block' : 'none')};
   }
 `;
 
 const Menu = styled.ul`
+  background-color: #eee;
   li {
     margin: 10px 0;
   }
@@ -47,14 +49,14 @@ const MenuBox = styled.ul`
   }
 `;
 
-const Nav = () => {
+const Nav = ({ isVisible, toggleNav }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
   const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
 
   return (
-    <NavContainer>
+    <NavContainer isVisible={isVisible}>
       <Menu>
         <MenuBox>
           <Link to="/">

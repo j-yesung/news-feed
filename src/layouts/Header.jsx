@@ -8,7 +8,8 @@ import menuIcon from '../assets/navigation_icon.svg';
 import { auth } from '../firebase';
 import { darkTheme, lightTheme } from 'styles/theme';
 import { setThemeMode } from 'redux/modules/dark';
-import { useEffect } from 'react';
+import Nav from './Nav';
+import { useEffect, useState } from 'react';
 
 const HeaderContainer = styled.header`
   font-family: 'yg-jalnan';
@@ -126,6 +127,12 @@ const Header = () => {
     dispatch(setThemeMode(lightTheme));
   }, [dispatch]);
 
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => {
+    setIsNavOpen(!isNavOpen);
+  };
+
   const toggleTheme = () => {
     if (themeMode === lightTheme) {
       dispatch(setThemeMode(darkTheme));
@@ -155,11 +162,12 @@ const Header = () => {
             <>
               <DarkMode src={lightIcon} onClick={toggleTheme} />
               <UserIcon src={authUser.photoURL} />
-              <MenuIcon src={menuIcon} />
+              <MenuIcon src={menuIcon} onClick={toggleNav} />
             </>
           )}
         </Buttons>
       </HeaderContainer>
+      <Nav isVisible={isNavOpen} toggleNav={toggleNav} />
     </>
   );
 };
