@@ -87,6 +87,12 @@ const ProfileImg = styled.img`
   border-radius: 50%;
   margin-top: 20px;
   box-shadow: 3px 3px 10px #aaa;
+  @media (max-width: 1024px) {
+    width: 100px;
+  }
+  @media (max-width: 935px) {
+    width: 300px;
+  }
 `;
 
 const ProfileImgBox = styled.div`
@@ -96,6 +102,14 @@ const ProfileImgBox = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   border-right: 2px solid #eee;
+  @media (max-width: 1024px) {
+    width: 250px;
+  }
+
+  @media (max-width: 935px) {
+    border-right: none;
+    width: 100%;
+  }
 `;
 
 const Upload = styled.input`
@@ -104,4 +118,8 @@ const Upload = styled.input`
   border-radius: 5px;
   padding: 10px;
   margin: 15px 0 10px;
+
+  @media (max-width: 935px) {
+    margin: 25px 0 10px;
+  }
 `;

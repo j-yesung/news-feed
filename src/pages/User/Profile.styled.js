@@ -5,6 +5,12 @@ export const ProfileTop = styled.div`
   width: 100%;
   margin-left: 20px;
   line-height: 2rem;
+  /* @media (max-width: 935px) {
+    margin-left: 0;
+  }
+  @media (max-width: 768px) {
+    margin-left: 20px;
+  } */
 `;
 export const ProfileName = styled.div`
   // background-color: blanchedalmond;
@@ -49,6 +55,15 @@ export const ProfileBox = styled.div`
   width: 900px;
   margin: 130px auto 30px;
   box-shadow: 3px 3px 10px #aaa;
+  @media (max-width: 1120px) {
+    width: 800px;
+  }
+  @media (max-width: 1024px) {
+    width: 700px;
+  }
+  @media (max-width: 935px) {
+    flex-wrap: wrap;
+  }
 `;
 
 export const MyEmail = styled.p`
@@ -101,6 +116,12 @@ export const BulletinBox = styled.div`
   font-size: 1.2rem;
 
   line-height: 2rem;
+  @media (max-width: 1120px) {
+    width: 800px;
+  }
+  @media (max-width: 1024px) {
+    width: 700px;
+  }
 `;
 
 export const Title = styled.h2`
