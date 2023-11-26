@@ -52,10 +52,6 @@ const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
 
-  const profilePage = () => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'));
-
-  console.log(isVisible);
-
   return (
     <NavContainer $isVisible={isVisible}>
       <Menu>
@@ -87,7 +83,7 @@ const Nav = ({ isVisible }) => {
         <li>
           {/* 세번째 섹션 */}
           <MenuBox>
-            <li onClick={profilePage}>마이 페이지</li>
+            <li onClick={() => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'))}>마이 페이지</li>
             <li>로그아웃</li>
           </MenuBox>
         </li>
