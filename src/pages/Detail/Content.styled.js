@@ -10,8 +10,13 @@ export const View = styled.div`
   border-radius: 20px;
   padding: 8px 10px 20px 20px;
   font-size: 20px;
-  height: calc(100vh - 300px);
+  height: 552px;
   position: relative;
+
+  @media (max-width: 1280px) {
+    height: 100%;
+    margin-top: 10px;
+  }
 `;
 
 export const ModifyBtn = styled.button`
@@ -40,6 +45,7 @@ export const DeleteBtn = styled.button`
   cursor: pointer;
   border-radius: 5px;
   background-color: #f4eba5;
+
   &:hover {
     background-color: #a5c7bb;
   }
@@ -50,7 +56,9 @@ export const Box = styled.div`
   align-items: center;
   width: 100%;
   height: calc(100vh - 85px);
-
+  @media (max-width: 768px) {
+    height: auto;
+  }
   //background-color: bisque;
 `;
 
@@ -68,10 +76,13 @@ export const AvatarName = styled.div`
   //background-color: lemonchiffon;
   align-items: center;
   width: 100%;
-
+  flex-wrap: wrap;
   padding: 5px 0 10px;
   border-bottom: 2px solid #a5c7bb;
   margin-bottom: 5px;
+  @media (max-width: 768px) {
+    margin-top: 73px;
+  }
 `;
 
 export const Date = styled.p`
@@ -79,10 +90,6 @@ export const Date = styled.p`
   margin-left: 20px;
   padding: 5px;
   font-size: 16px;
-
-  @media (max-width: 1099px) {
-    //
-  }
 `;
 
 export const Content = styled.div`
@@ -92,6 +99,12 @@ export const Content = styled.div`
   overflow: auto;
   width: 700px;
   padding-right: 15px;
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    height: auto;
+  }
   // border-right: 3px double #ccc;
 `;
 
@@ -102,7 +115,10 @@ export const Title = styled.h2`
   //background-color: aliceblue;
   width: 700px;
   margin-bottom: 2px;
-  //  border-right: 3px double #ccc;
+
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
 `;
 
 export const Textarea = styled.textarea`
@@ -116,6 +132,13 @@ export const Textarea = styled.textarea`
   padding: 10px;
 
   border-radius: 10px;
+
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+    height: auto;
+  }
 `;
 
 export const InputTitle = styled.input`
@@ -127,6 +150,9 @@ export const InputTitle = styled.input`
   margin: 10px 0 10px;
   outline: none;
   border-radius: 10px;
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
 `;
 
 export const ViewCommentBox = styled.div`
@@ -139,6 +165,12 @@ export const ViewCommentBox = styled.div`
 
 export const TitleTextarea = styled.div`
   width: 700px;
+
+  @media (max-width: 1280px) {
+    width: 100%;
+  }
+  @media (max-width: 768px) {
+  }
 `;
 
 export const FinishBtn = styled.button`
