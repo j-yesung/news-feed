@@ -5,10 +5,10 @@ export const Avatar = styled.img`
 `;
 
 export const View = styled.div`
-  background-color: skyblue;
-  width: 70%;
+  background-color: #fff;
+  width: 1067px;
   border-radius: 20px;
-  padding: 8px 20px 20px;
+  padding: 8px 10px 20px 20px;
   font-size: 20px;
   height: calc(100vh - 300px);
   position: relative;
@@ -50,6 +50,7 @@ export const Box = styled.div`
   align-items: center;
   width: 100%;
   height: calc(100vh - 85px);
+
   //background-color: bisque;
 `;
 
@@ -69,7 +70,8 @@ export const AvatarName = styled.div`
   width: 100%;
 
   padding: 5px 0 10px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 2px solid #a5c7bb;
+  margin-bottom: 5px;
 `;
 
 export const Date = styled.p`
@@ -85,41 +87,44 @@ export const Date = styled.p`
 
 export const Content = styled.div`
   line-height: 2rem;
-  height: 370px;
-  background-color: lemonchiffon;
+  height: 360px;
+  background-color: #fff;
   overflow: auto;
   width: 700px;
   padding-right: 15px;
+  // border-right: 3px double #ccc;
 `;
 
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 28px;
-  padding: 30px 0 20px;
-  background-color: aliceblue;
+  padding: 20px 0 20px;
+  //background-color: aliceblue;
   width: 700px;
+  margin-bottom: 2px;
+  //  border-right: 3px double #ccc;
 `;
 
 export const Textarea = styled.textarea`
   resize: none;
-  width: 100%;
+  width: 698px;
   font-size: 20px;
-  height: 350px;
+  height: 360px;
   outline: none;
   line-height: 2rem;
   border: 1px solid #ccc;
   padding: 10px;
-  margin: 10px 0;
+
   border-radius: 10px;
 `;
 
 export const InputTitle = styled.input`
   border: 1px solid #ccc;
   padding: 10px;
-  width: 100%;
+  width: 698px;
   font-weight: bold;
   font-size: 28px;
-  margin: 20px 0 10px;
+  margin: 10px 0 10px;
   outline: none;
   border-radius: 10px;
 `;
@@ -127,4 +132,27 @@ export const InputTitle = styled.input`
 export const ViewCommentBox = styled.div`
   //background-color: blueviolet;
   display: flex;
+  @media (max-width: 1280px) {
+    flex-wrap: wrap;
+  }
+`;
+
+export const TitleTextarea = styled.div`
+  width: 700px;
+`;
+
+export const FinishBtn = styled.button`
+  padding: 10px 20px;
+  border: none;
+  margin: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  background-color: #f4eba5;
+  &:hover {
+    background-color: #a5c7bb;
+  }
 `;
