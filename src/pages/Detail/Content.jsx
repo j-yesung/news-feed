@@ -54,12 +54,14 @@ const Content = () => {
               </div>
               {authUser?.displayName === findData.name ? (
                 findData.isEditing ? (
-                  <S.FinishBtn onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</S.FinishBtn>
+                  <S.FinishBox>
+                    <S.FinishBtn onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</S.FinishBtn>
+                  </S.FinishBox>
                 ) : (
-                  <>
+                  <S.ModiDeleButtons>
                     <S.ModifyBtn onClick={() => HandleEditingToggle(findData.id)}>수정</S.ModifyBtn>
                     <S.DeleteBtn onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</S.DeleteBtn>
-                  </>
+                  </S.ModiDeleButtons>
                 )
               ) : null}
             </S.AvatarName>
@@ -74,8 +76,8 @@ const Content = () => {
                   <S.Title>{findData.title}</S.Title>
                   <S.Content>{findData.content}</S.Content>
                   <S.HashTag>
-                    <div># {findData.category}</div>
-                    <div># {findData.category2}</div>
+                    <p># {findData.category}</p>
+                    <p># {findData.category2}</p>
                   </S.HashTag>
                 </div>
               )}
