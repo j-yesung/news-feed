@@ -15,7 +15,7 @@ const Write = () => {
   const authUser = useSelector(state => state.user.user);
   const titleRef = useRef();
   const contentRef = useRef();
-  const [selectedCategory, setSelectedCategory] = useState('default');
+  const [selectedCategory1, setSelectedCategory1] = useState('default');
   const [selectedCategory2, setSelectedCategory2] = useState('default');
 
   /**
@@ -35,8 +35,7 @@ const Write = () => {
       pic: authUser.photoURL,
       seq: shortid.generate(),
       isEditing: false,
-      category: selectedCategory,
-      category2: selectedCategory2,
+      category: selectedCategory1 + `,` + selectedCategory2,
     };
 
     if (!title || !content) return alert('제목과 내용을 입력해주세요.');
@@ -55,7 +54,7 @@ const Write = () => {
         <S.WriteBox>
           <S.TitleInput ref={titleRef} type="text" name="title" placeholder="제목" />
           <S.Textarea ref={contentRef} placeholder="내용" />
-          <select value={selectedCategory} onChange={e => setSelectedCategory(e.target.value)}>
+          <select value={selectedCategory1} onChange={e => setSelectedCategory1(e.target.value)}>
             <option value="default" disabled>
               선택하세요
             </option>
