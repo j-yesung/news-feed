@@ -1,25 +1,17 @@
-const UPDATE_CATEGORY1 = '/navbar/UPDATE_CATEGORY1';
-const UPDATE_CATEGORY2 = '/navbar/UPDATE_CATEGORY2';
+const UPDATE_CATEGORY = '/navbar/UPDATE_CATEGORY';
 
-export const setcategory1 = payload => {
-  return { type: UPDATE_CATEGORY1, payload };
-};
-export const setcategory2 = payload => {
-  return { type: UPDATE_CATEGORY2, payload };
+export const setcategory = payload => {
+  return { type: UPDATE_CATEGORY, payload };
 };
 
 const initialState = {
-  category1: 'default',
-  // category2: 'default',
+  category: 'default',
 };
 
 const navbar = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_CATEGORY1:
-      return { ...state, category1: action.payload };
-
-    case UPDATE_CATEGORY2:
-      return { ...state, category2: action.payload };
+    case UPDATE_CATEGORY:
+      return { ...state, category: action.payload };
 
     default:
       return state;

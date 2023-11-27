@@ -2,46 +2,33 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Home.styled';
 import { useState, useEffect } from 'react';
-
+import content from 'redux/modules/content';
 const Home = () => {
   const navigate = useNavigate();
   const contentsData = useSelector(state => state.contents.contents);
   const categoryData = useSelector(state => state.navbar);
-
-  const category = [
-    ['음악', '스포츠'], //section 1
-    ['직장인', '대학생'], //section2
-    [''],
-  ];
-
-  const [selectedCategory, setSelectedCategory] = useState('');
+  const [filteredData, setFilteredData] = useState([]);
+  console.log(contentsData); // [{ category: "음악", ....}, { category: "스포츠,대학생" }, {}, ....]
+  console.log(categoryData); // { category: "default"}
 
   useEffect(() => {
-    let foundCategory = '';
-    for (let i = 0; i < category.length; i++) {
-      for (let j = 0; j < category[i].length; j++) {
-        if (category[i][j] === categoryData.category1 || category[i][j] === categoryData.category2) {
-          foundCategory = category[i][j];
-          break;
-        }
-      }
-      break;
+    if (categoryData.category !== 'default') {
+      setFilteredData(
+        contentsData.filter(content => {
+          return content.category?.includes(categoryData.category);
+        }),
+      );
+    } else {
+      setFilteredData(contentsData);
     }
-    setSelectedCategory(foundCategory);
-    console.log('categoryData', categoryData);
-    // console.log('셋카테고리', categoryData);
-  }, [categoryData]);
-
-  const filteredContents = selectedCategory
-    ? contentsData.filter(content => [content.category, content.category2].includes(selectedCategory)) //content.category === selectedCategory)
-    : contentsData;
+  }, [categoryData, contentsData]);
 
   return (
     <>
       <S.Button onClick={() => navigate('/write')}>글쓰기</S.Button>
       <S.BoxContainer>
         <S.ContentsList>
-          {filteredContents.map(contents => (
+          {filteredData.map(contents => (
             <S.ContentsBox key={contents.id} onClick={() => navigate(`/content/${contents.id}`)}>
               <S.Title>{contents.title}</S.Title>
               <S.AvatarName>

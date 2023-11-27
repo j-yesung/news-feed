@@ -75,10 +75,7 @@ const Content = () => {
                 <div key={findData.id}>
                   <S.Title>{findData.title}</S.Title>
                   <S.Content>{findData.content}</S.Content>
-                  <S.HashTag>
-                    <p># {findData.category}</p>
-                    <p># {findData.category2}</p>
-                  </S.HashTag>
+                  <div># {findData.category?.split(',').join(' # ')}</div>
                 </div>
               )}
               <Comment />
