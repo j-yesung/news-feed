@@ -6,7 +6,8 @@ export const Avatar = styled.img`
 `;
 
 export const View = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
+  color: ${({ theme }) => theme.contentTextColor};
   width: 1067px;
   border-radius: 20px;
   padding: 8px 10px 20px 20px;
@@ -29,14 +30,37 @@ export const ModifyBtn = styled.button`
   position: absolute;
   cursor: pointer;
   right: 110px;
+  top: 15px;
   border-radius: 5px;
   background-color: #f4eba5;
   &:hover {
     background-color: #a5c7bb;
   }
+  @media (max-width: 450px) {
+    position: relative;
+    left: 0;
+    top: 0;
+  }
 `;
+
+export const ModiDeleButtons = styled.div`
+  @media (max-width: 450px) {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+`;
+export const FinishBox = styled.div`
+  @media (max-width: 450px) {
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+  }
+`;
+
 export const DeleteBtn = styled.button`
   padding: 10px 20px;
+  top: 15px;
   border: none;
   margin: 10px;
   font-size: 20px;
@@ -49,6 +73,11 @@ export const DeleteBtn = styled.button`
 
   &:hover {
     background-color: #a5c7bb;
+  }
+
+  @media (max-width: 450px) {
+    position: relative;
+    top: 0;
   }
 `;
 export const Box = styled.div`
@@ -70,6 +99,9 @@ export const Name = styled.p`
   font-weight: bold;
   width: 300px;
   font-size: 23px;
+  @media (max-width: 409px) {
+    width: 200px;
+  }
 `;
 
 export const AvatarName = styled.div`
@@ -82,7 +114,6 @@ export const AvatarName = styled.div`
   border-bottom: 2px solid #a5c7bb;
   margin-bottom: 5px;
   @media (max-width: 768px) {
-    margin-top: 73px;
   }
 `;
 
@@ -95,11 +126,12 @@ export const Date = styled.p`
 
 export const Content = styled.div`
   line-height: 2rem;
-  height: 360px;
-  background-color: #fff;
+  height: 340px;
+  background-color: ${({ theme }) => theme.contentBgColor};
   overflow: auto;
   width: 700px;
   padding-right: 15px;
+  margin-bottom: 15px;
   @media (max-width: 1280px) {
     width: 100%;
   }
@@ -112,7 +144,7 @@ export const Content = styled.div`
 export const Title = styled.h2`
   font-weight: bold;
   font-size: 28px;
-  padding: 20px 0 20px;
+  padding: 14px 0 10px;
   //background-color: aliceblue;
   width: 700px;
   margin-bottom: 2px;
@@ -187,5 +219,26 @@ export const FinishBtn = styled.button`
   background-color: #f4eba5;
   &:hover {
     background-color: #a5c7bb;
+  }
+  @media (max-width: 450px) {
+    position: relative;
+  }
+`;
+
+export const HashTag = styled.div`
+  display: flex;
+  align-items: center;
+
+  p {
+    padding: 6px 8px;
+    background-color: #a5c7bb;
+    border-radius: 5px;
+    color: #777;
+    font-size: 0.9rem;
+    font-weight: 600;
+    &:first-child {
+      margin-right: 10px;
+      background-color: #f4eba5;
+    }
   }
 `;

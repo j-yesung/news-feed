@@ -1,9 +1,8 @@
-import { getDocs } from 'firebase/firestore';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { deleteContents, editContents, setContents, updateContents } from 'redux/modules/content';
-import { deleteNewsFeed, newsFeedCollection, updateNewsFeed } from '../../firebase';
+import { deleteContents, editContents, updateContents } from 'redux/modules/content';
+import { deleteNewsFeed, updateNewsFeed } from '../../firebase';
 import Comment from './Comment';
 import * as S from './Content.styled';
 
@@ -16,16 +15,6 @@ const Content = () => {
   const authUser = useSelector(state => state.user.user);
   const titleRef = useRef();
   const contentRef = useRef();
-
-  // 조회 => 여기서 또 조회하는 이유는 새로고침 때문이다.
-  useEffect(() => {
-    const getContents = async () => {
-      const querySnapshot = await getDocs(newsFeedCollection);
-      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      dispatch(setContents(data));
-    };
-    getContents();
-  }, [dispatch]);
 
   // 수정 버튼 클릭했을 때
   const HandleEditingToggle = id => dispatch(editContents(id));
@@ -65,12 +54,14 @@ const Content = () => {
               </div>
               {authUser?.displayName === findData.name ? (
                 findData.isEditing ? (
-                  <S.FinishBtn onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</S.FinishBtn>
+                  <S.FinishBox>
+                    <S.FinishBtn onClick={() => HandleUpdateNewsFeed(findData)}>수정 완료</S.FinishBtn>
+                  </S.FinishBox>
                 ) : (
-                  <>
+                  <S.ModiDeleButtons>
                     <S.ModifyBtn onClick={() => HandleEditingToggle(findData.id)}>수정</S.ModifyBtn>
                     <S.DeleteBtn onClick={() => HandleDeleteNewsFeed(findData.id)}>삭제</S.DeleteBtn>
-                  </>
+                  </S.ModiDeleButtons>
                 )
               ) : null}
             </S.AvatarName>

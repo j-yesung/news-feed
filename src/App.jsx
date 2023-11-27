@@ -1,13 +1,13 @@
 import { ThemeProvider } from 'styled-components';
 import GlobalStyle from 'styles/GlobalStyle';
-import { lightTheme, theme } from 'styles/theme';
+import { lightTheme } from 'styles/theme';
 import Router from './shared/Router';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth, newsFeedCollection } from './firebase';
 import { setUser } from 'redux/modules/user';
-import { getDocs } from 'firebase/firestore';
+import { getDocs, orderBy, query } from 'firebase/firestore';
 import { setContents } from 'redux/modules/content';
 
 function App() {
@@ -15,12 +15,22 @@ function App() {
   const themeMode = useSelector(state => state.themeReducer.isMode);
 
   useEffect(() => {
-    // 뉴스피드 불러오기
-    (async () => {
-      const querySnapshot = await getDocs(newsFeedCollection);
-      const data = querySnapshot.docs.map(doc => ({ ...doc.data(), id: doc.id }));
-      dispatch(setContents(data));
-    })();
+    const getNewsFeed = async () => {
+      try {
+        const q = query(newsFeedCollection, orderBy('date', 'desc'));
+        const querySnapshot = await getDocs(q);
+        const newsFeedList = [];
+        querySnapshot.forEach(doc => {
+          newsFeedList.push({ ...doc.data(), id: doc.id });
+        });
+        dispatch(setContents(newsFeedList));
+      } catch (e) {
+        console.error(e);
+        return [];
+      }
+    };
+    getNewsFeed();
+
     // 사용자 정보 불러오기
     const subscribe = onAuthStateChanged(auth, user => {
       dispatch(setUser(user));
