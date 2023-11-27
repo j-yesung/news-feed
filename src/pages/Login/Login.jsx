@@ -78,6 +78,7 @@ const Login = () => {
   }
 
   function handleGithubLogin() {
+    alert('sss');
     const provider = new GithubAuthProvider(); // provider 깃허브 설정
     signInWithPopup(auth, provider) // 팝업창 띄워서 로그인
       .then(data => {

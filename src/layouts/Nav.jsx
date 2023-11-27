@@ -129,40 +129,44 @@ const Nav = ({ isVisible }) => {
         </li>
         <li>
           <MenuBox>
-            <MenuItem
-              $active={activeMenuItem === 6}
-              onClick={() => {
-                handleMenuItemClick(6);
-                MenuBarFiltering('직장인');
-              }}>
-              직장인
-            </MenuItem>
-            <MenuItem
-              $active={activeMenuItem === 7}
-              onClick={() => {
-                handleMenuItemClick(7);
-                MenuBarFiltering('대학생');
-              }}>
-              대학생
-            </MenuItem>
+            <Link to="/">
+              <MenuItem
+                $active={activeMenuItem === 6}
+                onClick={() => {
+                  handleMenuItemClick(6);
+                  MenuBarFiltering('직장인');
+                }}>
+                직장인
+              </MenuItem>
+              <MenuItem
+                $active={activeMenuItem === 7}
+                onClick={() => {
+                  handleMenuItemClick(7);
+                  MenuBarFiltering('대학생');
+                }}>
+                대학생
+              </MenuItem>
+            </Link>
           </MenuBox>
           <MenuBox>
-            <MenuItem
-              $active={activeMenuItem === 8}
-              onClick={() => {
-                handleMenuItemClick(8);
-                MenuBarFiltering('MBTI-E');
-              }}>
-              MBTI-E
-            </MenuItem>
-            <MenuItem
-              $active={activeMenuItem === 2}
-              onClick={() => {
-                handleMenuItemClick(9);
-                MenuBarFiltering('MBTI-I');
-              }}>
-              MBTI-I
-            </MenuItem>
+            <Link to="/">
+              <MenuItem
+                $active={activeMenuItem === 8}
+                onClick={() => {
+                  handleMenuItemClick(8);
+                  MenuBarFiltering('MBTI-E');
+                }}>
+                MBTI-E
+              </MenuItem>
+              <MenuItem
+                $active={activeMenuItem === 2}
+                onClick={() => {
+                  handleMenuItemClick(9);
+                  MenuBarFiltering('MBTI-I');
+                }}>
+                MBTI-I
+              </MenuItem>
+            </Link>
           </MenuBox>
           <MenuBox>
             <MenuItem
