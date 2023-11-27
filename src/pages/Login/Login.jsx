@@ -9,6 +9,7 @@ import googleButton from '../../assets/google.svg';
 import { auth } from '../../firebase';
 import * as S from './Login.styled';
 import FindPW from './FindPw';
+import Header from 'layouts/Header';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -103,6 +104,8 @@ const Login = () => {
 
   return (
     <>
+      {/* Header 컴포넌트 재사용 */}
+      {/* <Header /> */}
       <S.LoginBox>
         <h2>안녕하세요</h2>
         <p>만나서 반가워요. 오늘 하루는 행복했나요?</p>

@@ -49,10 +49,11 @@ export const SaveBtn = styled.button`
   }
 `;
 export const ProfileBox = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
   border-radius: 10px;
   display: flex;
   align-items: center;
+  color: ${({ theme }) => theme.contentTextColor};
   padding: 10px;
   width: 900px;
   margin: 130px auto 30px;
@@ -126,10 +127,12 @@ export const MyBulletin = styled.h2`
   font-size: 1.5rem;
   border-bottom: 5px solid #a5c7bb;
   padding-bottom: 5px;
+  color: ${({ theme }) => theme.contentTextColor};
 `;
 
 export const Bulletin = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
+  color: ${({ theme }) => theme.contentTextColor};
   padding: 10px;
   cursor: pointer;
   margin: 30px 0;

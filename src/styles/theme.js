@@ -3,6 +3,7 @@ export const lightTheme = {
   signatureColorTwo: '#a5c7bb', // 그린
   contentsHeaderColor: '#f4eba5',
   contentsFooterColor: '#a5c7bb',
+  contentBgColor: '#fff',
   contentTextColor: 'black',
   upButtonBgColor: '#f4eba5',
   downButtonBgColor: '#a5c7bb',
@@ -20,6 +21,7 @@ export const darkTheme = {
   signatureColorTwo: '#333', // 연한 블랙
   contentsHeaderColor: '#333',
   contentsFooterColor: '#F1EFEF',
+  contentBgColor: '#333',
   contentTextColor: 'white',
   upButtonBgColor: '#333',
   downButtonBgColor: '#B4B4B3',

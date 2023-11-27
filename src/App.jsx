@@ -23,7 +23,6 @@ function App() {
         querySnapshot.forEach(doc => {
           newsFeedList.push({ ...doc.data(), id: doc.id });
         });
-        console.log(newsFeedList);
         dispatch(setContents(newsFeedList));
       } catch (e) {
         console.error(e);

@@ -4,7 +4,6 @@ import { setcategory1, setcategory2 } from 'redux/modules/navbar';
 import styled from 'styled-components';
 const NavContainer = styled.nav`
   width: 200px;
-  background-color: #eee;
   text-align: center;
   position: fixed;
   z-index: 99999;
@@ -16,7 +15,6 @@ const NavContainer = styled.nav`
 `;
 
 const Menu = styled.ul`
-  background-color: #eee;
   li {
     margin: 10px 0;
   }

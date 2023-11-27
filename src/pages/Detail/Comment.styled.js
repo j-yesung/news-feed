@@ -4,7 +4,8 @@ export const CommentBox = styled.div`
   //background-color: lavenderblush;
   width: 338px;
   height: 448px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
+  color: ${({ theme }) => theme.contentTextColor};
   overflow-y: auto;
   overflow-x: hidden;
   border-left: 3px double #ccc;

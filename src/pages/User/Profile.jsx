@@ -9,7 +9,7 @@ const Profile = () => {
   const authUser = useSelector(state => state.user.user);
   const contentsData = useSelector(state => state.contents.contents);
   const [isNameEditing, setIsNameEditing] = useState(false);
-  const myContents = contentsData.filter(contents => contents.email === authUser.email);
+  const myContents = contentsData.filter(contents => contents?.email === authUser?.email);
   const nameRef = useRef();
   const navigate = useNavigate();
 

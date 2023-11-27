@@ -12,12 +12,16 @@ const FileUpload = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [downloadURL, setDownloadURL] = useState(authUser ? authUser.photoURL : userIcon);
 
-  const handleFileSelect = event => setSelectedFile(event.target.files[0]);
+  const handleFileSelect = event => {
+    // 폴더 열리고 취소 클릭 시
+    if (event.target.files.length === 0) return;
+    setSelectedFile(event.target.files[0]);
+    handleUpload(event.target.files[0]);
+  };
 
-  const handleUpload = async () => {
-    if (!selectedFile) return alert('파일을 업로드 해주세요.');
-    const imageRef = ref(storage, `${auth.currentUser.uid}/${selectedFile.name}`);
-    await uploadBytes(imageRef, selectedFile);
+  const handleUpload = async file => {
+    const imageRef = ref(storage, `${auth.currentUser.uid}/${file.name}`);
+    await uploadBytes(imageRef, file);
     const imageUrl = await getDownloadURL(imageRef);
 
     // 프로필 사진 업데이트
@@ -41,8 +45,11 @@ const FileUpload = () => {
         <div>
           <ProfileImg src={downloadURL} width="50px" alt="사진 없음" />
         </div>
-        <Upload ref={inputRef} type="file" onChange={handleFileSelect} />
-        <UploadBtn onClick={handleUpload}>업로드</UploadBtn>
+        {/* <Upload ref={inputRef} type="file" onChange={handleFileSelect} /> */}
+        <UploadBtn onClick={() => inputRef.current.click()}>업로드</UploadBtn>
+        <input ref={inputRef} onChange={handleFileSelect} type="file" style={{ display: 'none' }} />
+        {/* 업로드 */}
+        {/* </UploadBtn> */}
         <DeleteBtn onClick={onClearImage}>이미지 제거</DeleteBtn>
       </ProfileImgBox>
     </>

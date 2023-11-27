@@ -6,7 +6,8 @@ export const Avatar = styled.img`
 `;
 
 export const View = styled.div`
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
+  color: ${({ theme }) => theme.contentTextColor};
   width: 1067px;
   border-radius: 20px;
   padding: 8px 10px 20px 20px;
@@ -126,7 +127,7 @@ export const Date = styled.p`
 export const Content = styled.div`
   line-height: 2rem;
   height: 340px;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.contentBgColor};
   overflow: auto;
   width: 700px;
   padding-right: 15px;
