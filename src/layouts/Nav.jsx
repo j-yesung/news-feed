@@ -5,6 +5,7 @@ import { setcategory } from 'redux/modules/navbar';
 import styled from 'styled-components';
 
 const NavContainer = styled.nav`
+  background-color: ${({ theme }) => theme.bgColor};
   width: 200px;
   text-align: center;
   position: fixed;
@@ -159,7 +160,7 @@ const Nav = ({ isVisible }) => {
                 MBTI-E
               </MenuItem>
               <MenuItem
-                $active={activeMenuItem === 2}
+                $active={activeMenuItem === 9}
                 onClick={() => {
                   handleMenuItemClick(9);
                   MenuBarFiltering('MBTI-I');
