@@ -1,6 +1,6 @@
 import { updateProfile } from 'firebase/auth';
 import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import userIcon from '../../assets/user.svg';
@@ -9,7 +9,6 @@ import { auth, storage } from '../../firebase';
 const FileUpload = () => {
   const authUser = useSelector(state => state.user.user);
   const inputRef = useRef();
-  const [selectedFile, setSelectedFile] = useState(null);
   const [downloadURL, setDownloadURL] = useState(authUser ? authUser.photoURL : userIcon);
 
   const handleFileSelect = event => {

@@ -41,7 +41,6 @@ const Login = () => {
 
   // 로그인
   const signIn = async event => {
-    console.log('인증관리', auth);
     event.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -72,7 +71,6 @@ const Login = () => {
       .then(data => {
         setUserData(data.user); // user data 설정
         navigation('/');
-        console.log(data); // console에 UserCredentialImpl 출력
       })
       .catch(err => {
         console.log(err);
@@ -85,7 +83,6 @@ const Login = () => {
       .then(data => {
         setUserData(data.user); // user data 설정
         navigation('/');
-        console.log(data); // console에 UserCredentialImpl 출력
       })
       .catch(err => {
         console.log(err);
