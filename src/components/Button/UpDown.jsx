@@ -6,16 +6,10 @@ const UpDown = () => {
       behavior: 'smooth',
     });
   };
-  const scrollDown = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth',
-    });
-  };
+
   return (
     <UpDownBox>
       <UpButton onClick={scrollTop}>&#8593;</UpButton>
-      <DownButton onClick={scrollDown}>&#8595; </DownButton>
     </UpDownBox>
   );
 };
@@ -25,7 +19,7 @@ export default UpDown;
 const UpButton = styled.button`
   padding: 10px;
   position: fixed;
-  bottom: 90px;
+  bottom: 20px;
   right: 25px;
   border: none;
   background-color: ${({ theme }) => theme.upButtonBgColor};
@@ -40,23 +34,9 @@ const UpButton = styled.button`
     background-color: #ccc;
   }
 `;
-const DownButton = styled.button`
-  padding: 10px;
-  position: fixed;
-  font-weight: bold;
-  bottom: 20px;
-  border: none;
-  box-shadow: 2px 2px 2px #aaa;
-  border-radius: 10px;
-  right: 25px;
-  font-size: 30px;
-  background-color: ${({ theme }) => theme.downButtonBgColor};
-  width: 60px;
-  z-index: 99;
-  filter: ${({ theme }) => theme.invertFilter};
-  &:hover {
-    background-color: #ccc;
+
+const UpDownBox = styled.div`
+  @media (max-width: 768px) {
+    display: none;
   }
 `;
-
-const UpDownBox = styled.div``;

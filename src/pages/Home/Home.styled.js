@@ -16,11 +16,24 @@ export const Button = styled.button`
     background-color: ${({ theme }) => theme.signatureColorTwo};
   }
 `;
-export const Avatar = styled.img`
+
+export const AvartarFrame = styled.div`
   width: 50px;
+  height: 50px;
   margin-left: 10px;
-  padding: 10px 0;
+  position: relative;
   border-radius: 50%;
+  overflow: hidden;
+`;
+
+export const Avatar = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 export const Title = styled.h2`

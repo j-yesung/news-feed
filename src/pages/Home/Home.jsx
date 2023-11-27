@@ -1,8 +1,7 @@
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import * as S from './Home.styled';
-import { useState, useEffect } from 'react';
-import content from 'redux/modules/content';
 const Home = () => {
   const navigate = useNavigate();
   const contentsData = useSelector(state => state.contents.contents);
@@ -32,7 +31,9 @@ const Home = () => {
             <S.ContentsBox key={contents.id} onClick={() => navigate(`/content/${contents.id}`)}>
               <S.Title>{contents.title}</S.Title>
               <S.AvatarName>
-                <S.Avatar src={contents.pic} alt="사진" />
+                <S.AvartarFrame>
+                  <S.Avatar src={contents.pic} alt="사진" />
+                </S.AvartarFrame>
                 <S.Name>{contents.name}</S.Name>
               </S.AvatarName>
               <S.Content>{contents.content}</S.Content>

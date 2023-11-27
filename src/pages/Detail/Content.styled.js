@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 export const Avatar = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+`;
+
+export const AvatarBox = styled.div`
   width: 50px;
+  height: 50px;
   margin-left: 10px;
   border-radius: 50%;
+  overflow: hidden;
+  position: relative;
 `;
 
 export const View = styled.div`
