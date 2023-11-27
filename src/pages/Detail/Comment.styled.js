@@ -74,10 +74,22 @@ export const CommentBtn = styled.button`
   }
 `;
 export const AvatarPic = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+`;
+
+export const AvatarFrame = styled.div`
   width: 50px;
-  height: 50px;
+  height: 35px;
+  position: relative;
   border-radius: 50%;
   margin-left: 20px;
+  overflow: hidden;
 `;
 export const NameDate = styled.div`
   //background-color: lemonchiffon;

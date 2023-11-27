@@ -42,9 +42,9 @@ const FileUpload = () => {
     <>
       <ProfileImgBox>
         {/*<h2>프로필 이미지 변경</h2>*/}
-        <div>
+        <ProfileImgFrame>
           <ProfileImg src={downloadURL} width="50px" alt="사진 없음" />
-        </div>
+        </ProfileImgFrame>
         {/* <Upload ref={inputRef} type="file" onChange={handleFileSelect} /> */}
         <UploadBtn onClick={() => inputRef.current.click()}>업로드</UploadBtn>
         <input ref={inputRef} onChange={handleFileSelect} type="file" style={{ display: 'none' }} />
@@ -94,12 +94,38 @@ const DeleteBtn = styled.button`
   }
 `;
 
-const ProfileImg = styled.img`
+export const ProfileImgFrame = styled.div`
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-top: 20px;
   width: 150px;
   height: 150px;
+  @media (max-width: 1024px) {
+    width: 100px;
+    height: 100px;
+  }
+  @media (max-width: 935px) {
+    width: 300px;
+    height: 300px;
+  }
+  @media (max-width: 935px) {
+    width: 200px;
+    height: 200px;
+  }
+`;
+
+const ProfileImg = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
   text-align: center;
-  border-radius: 50%;
-  margin-top: 20px;
+
   box-shadow: 3px 3px 10px #aaa;
   @media (max-width: 1024px) {
     width: 100px;

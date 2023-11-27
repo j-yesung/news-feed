@@ -39,11 +39,13 @@ const HeaderContainer = styled.header`
 `;
 const UserIcon = styled.img`
   width: 30px;
+  height: 30px;
   border-radius: 50%;
 `;
 const DarkMode = styled.img`
   margin-right: 20px;
   width: 30px;
+
   cursor: pointer;
   filter: ${({ theme }) => theme.invertFilter};
   @media (max-width: 400px) {
