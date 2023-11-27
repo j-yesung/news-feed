@@ -57,7 +57,13 @@ const FileUpload = () => {
 };
 
 export default FileUpload;
-
+// const ProfileImgFrame = styled.div`
+//   width: 150px;
+//   height: 150px;
+//   overflow: hidden;
+//   border-radius: 50%;
+//   left: 50%;
+// `;
 const UploadBtn = styled.button`
   background-color: #f4eba5;
   border: none;
@@ -67,7 +73,7 @@ const UploadBtn = styled.button`
 
   width: 70%;
   border-radius: 5px;
-  margin: 10px 0;
+  margin: 10px 0 0px;
   &:hover {
     background-color: #a5c7bb;
   }
@@ -90,18 +96,22 @@ const DeleteBtn = styled.button`
 
 const ProfileImg = styled.img`
   width: 150px;
+  height: 150px;
   text-align: center;
   border-radius: 50%;
   margin-top: 20px;
   box-shadow: 3px 3px 10px #aaa;
   @media (max-width: 1024px) {
     width: 100px;
+    height: 100px;
   }
   @media (max-width: 935px) {
     width: 300px;
+    height: 300px;
   }
   @media (max-width: 935px) {
     width: 200px;
+    height: 200px;
   }
 `;
 
