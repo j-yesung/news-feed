@@ -49,6 +49,8 @@ const MenuBox = styled.ul`
   }
 `;
 
+const arr = [''];
+
 const Nav = ({ isVisible }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
@@ -69,23 +71,21 @@ const Nav = ({ isVisible }) => {
         <li>
           {/* 첫번째 섹션 */}
           <MenuBox>
+            <li onClick={() => MenuBarFiltering('즐거운날')}>즐거운날</li>
+            <li onClick={() => MenuBarFiltering('우울한날')}>우울한날</li>
+            <li onClick={() => MenuBarFiltering('화가난날')}>화가난날</li>
+            <li onClick={() => MenuBarFiltering('행복한날')}>행복한날</li>
+          </MenuBox>
+          <MenuBox>
             <li onClick={() => MenuBarFiltering('대학생')}>대학생</li>
             <li onClick={() => MenuBarFiltering('직장인')}>직장인</li>
-            <li onClick={() => MenuBarFiltering('음악')}>음악</li>
-            <li onClick={() => MenuBarFiltering('스포츠')}>스포츠</li>
           </MenuBox>
-        </li>
-        <li>
-          {/* 두번째 섹션 */}
           <MenuBox>
-            <li>5번째 섹션</li>
-            <li>6번째 섹션</li>
-            <li>7번째 섹션</li>
-            <li>8번째 섹션</li>
-            <li>9번째 섹션</li>
-            <li>10번째 섹션</li>
+            <li onClick={() => MenuBarFiltering('MBTI-E')}>MBTI-E</li>
+            <li onClick={() => MenuBarFiltering('MBTI-I')}>MBTI-I</li>
           </MenuBox>
         </li>
+
         <li>
           {/* 세번째 섹션 */}
           <MenuBox>

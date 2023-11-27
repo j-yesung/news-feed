@@ -75,7 +75,7 @@ const Content = () => {
                 <div key={findData.id}>
                   <S.Title>{findData.title}</S.Title>
                   <S.Content>{findData.content}</S.Content>
-                  <div># {findData.category?.split(',').join(' # ')}</div>
+                  <div> # {findData.category?.split(',').join(' # ')}</div>
                 </div>
               )}
               <Comment />
