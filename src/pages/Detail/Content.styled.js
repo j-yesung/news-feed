@@ -221,6 +221,7 @@ export const TitleTextarea = styled.div`
 `;
 
 export const FinishBtn = styled.button`
+  top: 15px;
   padding: 10px 20px;
   border: none;
   margin: 10px;
