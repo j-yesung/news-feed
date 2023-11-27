@@ -96,38 +96,74 @@ const Nav = ({ isVisible }) => {
                 $active={activeMenuItem === 2}
                 onClick={() => {
                   handleMenuItemClick(2);
-                  MenuBarFiltering('대학생');
+                  MenuBarFiltering('즐거운날');
                 }}>
-                대학생
+                즐거운날
               </MenuItem>
               <MenuItem
                 $active={activeMenuItem === 3}
                 onClick={() => {
                   handleMenuItemClick(3);
-                  MenuBarFiltering('직장인');
+                  MenuBarFiltering('우울한날');
                 }}>
-                직장인
+                우울한날
               </MenuItem>
               <MenuItem
                 $active={activeMenuItem === 4}
                 onClick={() => {
                   handleMenuItemClick(4);
-                  MenuBarFiltering('음악');
+                  MenuBarFiltering('화가난날');
                 }}>
-                음악
+                화가난날
               </MenuItem>
               <MenuItem
                 $active={activeMenuItem === 5}
                 onClick={() => {
                   handleMenuItemClick(5);
-                  MenuBarFiltering('스포츠');
+                  MenuBarFiltering('행복한날');
                 }}>
-                스포츠
+                행복한날
               </MenuItem>
             </Link>
           </MenuBox>
         </li>
         <li>
+          <MenuBox>
+            <MenuItem
+              $active={activeMenuItem === 6}
+              onClick={() => {
+                handleMenuItemClick(6);
+                MenuBarFiltering('직장인');
+              }}>
+              직장인
+            </MenuItem>
+            <MenuItem
+              $active={activeMenuItem === 7}
+              onClick={() => {
+                handleMenuItemClick(7);
+                MenuBarFiltering('대학생');
+              }}>
+              대학생
+            </MenuItem>
+          </MenuBox>
+          <MenuBox>
+            <MenuItem
+              $active={activeMenuItem === 8}
+              onClick={() => {
+                handleMenuItemClick(8);
+                MenuBarFiltering('MBTI-E');
+              }}>
+              MBTI-E
+            </MenuItem>
+            <MenuItem
+              $active={activeMenuItem === 2}
+              onClick={() => {
+                handleMenuItemClick(9);
+                MenuBarFiltering('MBTI-I');
+              }}>
+              MBTI-I
+            </MenuItem>
+          </MenuBox>
           <MenuBox>
             <MenuItem
               $active={activeMenuItem === 1}

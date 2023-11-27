@@ -16,6 +16,7 @@ const Write = () => {
   const contentRef = useRef();
   const [selectedCategory1, setSelectedCategory1] = useState('default');
   const [selectedCategory2, setSelectedCategory2] = useState('default');
+  const [selectedCategory3, setSelectedCategory3] = useState('default');
 
   /**
    * 뉴스피드 추가하기
@@ -34,7 +35,7 @@ const Write = () => {
       pic: authUser.photoURL,
       seq: shortid.generate(),
       isEditing: false,
-      category: selectedCategory1 + `,` + selectedCategory2,
+      category: selectedCategory1 + `,` + selectedCategory2 + `,` + selectedCategory3,
     };
 
     if (!title || !content) return alert('제목과 내용을 입력해주세요.');
@@ -57,8 +58,10 @@ const Write = () => {
             <option value="default" disabled>
               선택하세요
             </option>
-            <option value="음악">음악</option>
-            <option value="스포츠">스포츠</option>
+            <option value="즐거운날">즐거운날</option>
+            <option value="우울한날">우울한날</option>
+            <option value="화가난날">화가난날</option>
+            <option value="행복한날">행복한날</option>
           </S.SelectedCategory>
           <S.SelectedCategory2 value={selectedCategory2} onChange={e => setSelectedCategory2(e.target.value)}>
             <option value="default" disabled>
@@ -66,6 +69,13 @@ const Write = () => {
             </option>
             <option value="대학생">대학생</option>
             <option value="직장인">직장인</option>
+          </S.SelectedCategory2>
+          <S.SelectedCategory2 value={selectedCategory3} onChange={e => setSelectedCategory3(e.target.value)}>
+            <option value="default" disabled>
+              선택하세요
+            </option>
+            <option value="MBTI-E">MBTI-E</option>
+            <option value="MBTI-I">MBTI-I</option>
           </S.SelectedCategory2>
           <S.Button onClick={createNewsFeedArticle}>작성 완료</S.Button>
         </S.WriteBox>
