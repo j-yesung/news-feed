@@ -184,7 +184,7 @@ const Header = () => {
           )}
         </Buttons>
       </HeaderContainer>
-      <Nav isVisible={isNavOpen} />
+      <Nav isVisible={isNavOpen} toggleFunc={setIsNavOpen} />
     </>
   );
 };

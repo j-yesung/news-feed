@@ -56,7 +56,7 @@ const MenuItem = styled.li`
   `};
 `;
 
-const Nav = ({ isVisible }) => {
+const Nav = ({ isVisible, toggleFunc }) => {
   const navigator = useNavigate();
   const authUser = useSelector(state => state.user.user);
   const dispatch = useDispatch();
@@ -68,6 +68,7 @@ const Nav = ({ isVisible }) => {
   };
   const handleMenuItemClick = index => {
     setActiveMenuItem(index);
+    toggleFunc(!isVisible);
     setIsActive(!isActive);
   };
 
