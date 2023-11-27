@@ -7,8 +7,8 @@ const Home = () => {
   const contentsData = useSelector(state => state.contents.contents);
   const categoryData = useSelector(state => state.navbar);
   const [filteredData, setFilteredData] = useState([]);
-  console.log(contentsData); // [{ category: "음악", ....}, { category: "스포츠,대학생" }, {}, ....]
-  console.log(categoryData); // { category: "default"}
+  // console.log(contentsData); // [{ category: "음악", ....}, { category: "스포츠,대학생" }, {}, ....]
+  // console.log(categoryData); // { category: "default"}
 
   useEffect(() => {
     if (categoryData.category !== 'default') {

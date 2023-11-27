@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import styled from 'styled-components';
-import { UseSelector } from 'react-redux/es/hooks/useSelector';
-import { Dispatch, useState } from 'react';
+import { useState } from 'react';
 import { setcategory } from 'redux/modules/navbar';
+import styled from 'styled-components';
+
 const NavContainer = styled.nav`
   width: 200px;
   text-align: center;

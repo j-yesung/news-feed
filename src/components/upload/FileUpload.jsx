@@ -1,6 +1,6 @@
 import { updateProfile } from 'firebase/auth';
-import { getDownloadURL, ref, uploadBytes } from 'firebase/storage';
-import { useRef, useState } from 'react';
+import { deleteObject, getDownloadURL, ref, uploadBytes } from 'firebase/storage';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import userIcon from '../../assets/user.svg';
@@ -15,7 +15,6 @@ const FileUpload = () => {
   const handleFileSelect = event => {
     // 폴더 열리고 취소 클릭 시
     if (event.target.files.length === 0) return;
-    setSelectedFile(event.target.files[0]);
     handleUpload(event.target.files[0]);
   };
 
@@ -30,40 +29,40 @@ const FileUpload = () => {
       .catch(error => console.error('공습 경보!', error));
   };
 
-  const onClearImage = () => {
+  const onClearImage = async () => {
     if (window.confirm('이미지를 삭제하시겠습니까?')) {
-      setSelectedFile(null);
       setDownloadURL(userIcon);
       inputRef.current.value = null;
+
+      const imageRef = ref(storage, downloadURL);
+
+      try {
+        await deleteObject(imageRef);
+        updateProfile(authUser, { photoURL: userIcon })
+          .then(() => console.log('프로필 이미지가 제거되었습니다.'))
+          .catch(error => console.error('프로필 이미지를 제거 실패했습니다.', error));
+      } catch (error) {
+        console.error('공습 경보!', error);
+      }
     }
   };
 
   return (
     <>
       <ProfileImgBox>
-        {/*<h2>프로필 이미지 변경</h2>*/}
         <ProfileImgFrame>
-          <ProfileImg src={downloadURL} width="50px" alt="사진 없음" />
+          <ProfileImg src={downloadURL} />
         </ProfileImgFrame>
-        {/* <Upload ref={inputRef} type="file" onChange={handleFileSelect} /> */}
         <UploadBtn onClick={() => inputRef.current.click()}>업로드</UploadBtn>
         <input ref={inputRef} onChange={handleFileSelect} type="file" style={{ display: 'none' }} />
-        {/* 업로드 */}
-        {/* </UploadBtn> */}
-        <DeleteBtn onClick={onClearImage}>이미지 제거</DeleteBtn>
+        <DeleteBtn onClick={() => onClearImage(downloadURL)}>이미지 제거</DeleteBtn>
       </ProfileImgBox>
     </>
   );
 };
 
 export default FileUpload;
-// const ProfileImgFrame = styled.div`
-//   width: 150px;
-//   height: 150px;
-//   overflow: hidden;
-//   border-radius: 50%;
-//   left: 50%;
-// `;
+
 const UploadBtn = styled.button`
   background-color: #f4eba5;
   border: none;
@@ -142,7 +141,6 @@ const ProfileImg = styled.img`
 `;
 
 const ProfileImgBox = styled.div`
-  //background-color: #ddd;
   width: 350px;
   display: flex;
   flex-wrap: wrap;

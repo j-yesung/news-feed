@@ -20,8 +20,6 @@ const Comment = () => {
   const FIND_CONTENT_SEQUENCE = contentsData.find(contents => contents.id === params.id);
   const CURRENT_COMMENT_NUM = commentData.filter(comments => comments.seq === FIND_CONTENT_SEQUENCE.seq && comments);
 
-  console.log('lengthNum', CURRENT_COMMENT_NUM.length);
-
   useEffect(() => {
     const getComments = async () => {
       try {
@@ -31,7 +29,6 @@ const Comment = () => {
         querySnapshot.forEach(doc => {
           commentList.push({ ...doc.data(), id: doc.id });
         });
-        console.log(commentList);
         dispatch(setComment(commentList));
       } catch (e) {
         console.error(e);
