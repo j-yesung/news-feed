@@ -34,6 +34,8 @@ const GlobalStyle = createGlobalStyle`
   button {
     font-family: inherit;
   }
+
+  a{color:inherit;}
 `;
 
 export default GlobalStyle;

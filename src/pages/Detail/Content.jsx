@@ -47,7 +47,9 @@ const Content = () => {
         <S.Box>
           <S.View>
             <S.AvatarName>
-              <S.Avatar src={findData.pic} alt="사진" />
+              <S.AvatarBox>
+                <S.Avatar src={findData.pic} alt="사진" />
+              </S.AvatarBox>
               <div>
                 <S.Name>{findData.name}</S.Name>
                 <S.Date>{findData.date}</S.Date>
@@ -74,8 +76,8 @@ const Content = () => {
               ) : (
                 <div key={findData.id}>
                   <S.Title>{findData.title}</S.Title>
-                  <S.Content>{findData.content}</S.Content>
-                  <div> # {findData.category?.split(',').join(' # ')}</div>
+                  <S.Content>{findData.content}</S.Content>s{' '}
+                  <S.HashTag># {findData.category?.split(',').join(' # ')}</S.HashTag>
                 </div>
               )}
               <Comment />

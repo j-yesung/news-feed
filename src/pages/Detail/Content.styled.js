@@ -1,8 +1,22 @@
 import styled from 'styled-components';
 export const Avatar = styled.img`
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(50, 50);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: auto;
+`;
+
+export const AvatarBox = styled.div`
   width: 50px;
+  height: 50px;
   margin-left: 10px;
   border-radius: 50%;
+  overflow: hidden;
+  position: relative;
 `;
 
 export const View = styled.div`
@@ -226,19 +240,8 @@ export const FinishBtn = styled.button`
 `;
 
 export const HashTag = styled.div`
-  display: flex;
-  align-items: center;
-
-  p {
-    padding: 6px 8px;
-    background-color: #a5c7bb;
-    border-radius: 5px;
-    color: #777;
-    font-size: 0.9rem;
-    font-weight: 600;
-    &:first-child {
-      margin-right: 10px;
-      background-color: #f4eba5;
-    }
-  }
+  color: #a5c7bb;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
 `;

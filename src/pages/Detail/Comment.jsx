@@ -92,7 +92,9 @@ const Comment = () => {
               comment.seq === FIND_CONTENT_SEQUENCE.seq && (
                 <S.CommentBg key={comment.id}>
                   <S.CommentBundle>
-                    <S.AvatarPic src={comment.pic} alt="사진" />
+                    <S.AvatarFrame>
+                      <S.AvatarPic src={comment.pic} alt="사진" />
+                    </S.AvatarFrame>
                     <S.NameDate>
                       <p>{comment.name}</p>
                       <S.CommentDate>{comment.date}</S.CommentDate>
