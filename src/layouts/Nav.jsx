@@ -91,26 +91,88 @@ const Nav = ({ isVisible }) => {
         </MenuBox>
         <li>
           <MenuBox>
-            <li onClick={() => MenuBarFiltering('즐거운날')}>즐거운날</li>
-            <li onClick={() => MenuBarFiltering('우울한날')}>우울한날</li>
-            <li onClick={() => MenuBarFiltering('화가난날')}>화가난날</li>
-            <li onClick={() => MenuBarFiltering('행복한날')}>행복한날</li>
-          </MenuBox>
-          <MenuBox>
-            <li onClick={() => MenuBarFiltering('대학생')}>대학생</li>
-            <li onClick={() => MenuBarFiltering('직장인')}>직장인</li>
-          </MenuBox>
-          <MenuBox>
-            <li onClick={() => MenuBarFiltering('MBTI-E')}>MBTI-E</li>
-            <li onClick={() => MenuBarFiltering('MBTI-I')}>MBTI-I</li>
+            <Link to="/">
+              <MenuItem
+                $active={activeMenuItem === 2}
+                onClick={() => {
+                  handleMenuItemClick(2);
+                  MenuBarFiltering('즐거운날');
+                }}>
+                즐거운날
+              </MenuItem>
+              <MenuItem
+                $active={activeMenuItem === 3}
+                onClick={() => {
+                  handleMenuItemClick(3);
+                  MenuBarFiltering('우울한날');
+                }}>
+                우울한날
+              </MenuItem>
+              <MenuItem
+                $active={activeMenuItem === 4}
+                onClick={() => {
+                  handleMenuItemClick(4);
+                  MenuBarFiltering('화가난날');
+                }}>
+                화가난날
+              </MenuItem>
+              <MenuItem
+                $active={activeMenuItem === 5}
+                onClick={() => {
+                  handleMenuItemClick(5);
+                  MenuBarFiltering('행복한날');
+                }}>
+                행복한날
+              </MenuItem>
+            </Link>
           </MenuBox>
         </li>
-
         <li>
-          {/* 세번째 섹션 */}
           <MenuBox>
-            <li onClick={() => (!authUser ? alert('로그인이 필요합니다.') : navigator('/profile'))}>마이 페이지</li>
-            <li>로그아웃</li>
+            <MenuItem
+              $active={activeMenuItem === 6}
+              onClick={() => {
+                handleMenuItemClick(6);
+                MenuBarFiltering('직장인');
+              }}>
+              직장인
+            </MenuItem>
+            <MenuItem
+              $active={activeMenuItem === 7}
+              onClick={() => {
+                handleMenuItemClick(7);
+                MenuBarFiltering('대학생');
+              }}>
+              대학생
+            </MenuItem>
+          </MenuBox>
+          <MenuBox>
+            <MenuItem
+              $active={activeMenuItem === 8}
+              onClick={() => {
+                handleMenuItemClick(8);
+                MenuBarFiltering('MBTI-E');
+              }}>
+              MBTI-E
+            </MenuItem>
+            <MenuItem
+              $active={activeMenuItem === 2}
+              onClick={() => {
+                handleMenuItemClick(9);
+                MenuBarFiltering('MBTI-I');
+              }}>
+              MBTI-I
+            </MenuItem>
+          </MenuBox>
+          <MenuBox>
+            <MenuItem
+              $active={activeMenuItem === 1}
+              onClick={() => {
+                profilePage();
+                handleMenuItemClick(1);
+              }}>
+              마이 페이지
+            </MenuItem>
           </MenuBox>
         </li>
       </Menu>
