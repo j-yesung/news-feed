@@ -240,19 +240,8 @@ export const FinishBtn = styled.button`
 `;
 
 export const HashTag = styled.div`
-  display: flex;
-  align-items: center;
-
-  p {
-    padding: 6px 8px;
-    background-color: #a5c7bb;
-    border-radius: 5px;
-    color: #777;
-    font-size: 0.9rem;
-    font-weight: 600;
-    &:first-child {
-      margin-right: 10px;
-      background-color: #f4eba5;
-    }
-  }
+  color: #a5c7bb;
+  padding-top: 10px;
+  font-weight: bold;
+  font-size: 0.9rem;
 `;
