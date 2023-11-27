@@ -1,7 +1,7 @@
 import { addDoc, getDocs, orderBy, query } from 'firebase/firestore';
 import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { addComment, deleteComment, editComment, setComment, updateComment } from 'redux/modules/comment';
 import { getFormattedDate } from 'utils/date';
 import { commentCollection, deletingComment, updatingComment } from '../../firebase';
@@ -14,6 +14,7 @@ const Comment = () => {
   const params = useParams();
   const commentRef = useRef();
   const editCommentRef = useRef();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // SEQUENCE
@@ -41,6 +42,10 @@ const Comment = () => {
   // 댓글 작성 버튼 누르면 실행합니다.
   const createComment = async () => {
     const comment = commentRef.current.value;
+    if (!authUser) {
+      navigate('/login');
+      return alert('로그인이 필요합니다.');
+    }
     if (!comment) return alert('댓글을 입력해 주세요.');
 
     const newComment = {
